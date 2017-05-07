@@ -8,7 +8,8 @@ mod circle;
 mod ellipse;
 mod extension;
 mod line;
-mod point;
+mod shapes;
+mod traits;
 
 pub use float::{π, Float};
 
@@ -39,15 +40,6 @@ pub struct Line {
     pub start: Point,
     /// End of the line.
     pub end: Point,
-}
-
-/// A 2D point.
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct Point {
-    /// The x-coordinate.
-    pub x: Float,
-    /// The y-coordinate.
-    pub y: Float,
 }
 
 // noinspection NonAsciiCharacters
