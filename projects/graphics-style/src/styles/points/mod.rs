@@ -10,9 +10,3 @@ impl Default for PointSize {
         Self { value: 1.0 }
     }
 }
-
-impl GraphicsStyle for PointSize {
-    fn set_style(&self, context: &mut StyleResolver) {
-        context.local.point_size = self.0;
-    }
-}

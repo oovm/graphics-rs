@@ -11,3 +11,9 @@ impl StyleResolver {
         self.local.point_size.unwrap_or(self.theme.point_size.unwrap_or(PointSize::default()))
     }
 }
+
+impl GraphicsStyle for PointSize {
+    fn set_local_style(&self, context: &mut StyleResolver) {
+        context.local.point_size = Some(self.clone());
+    }
+}

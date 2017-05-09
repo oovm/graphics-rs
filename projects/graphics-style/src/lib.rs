@@ -1,13 +1,10 @@
-use crate::{
-    context::{StyleContext, StyleResolver},
-    styles::PointSize,
-};
+use crate::{context::StyleContext, styles::PointSize};
 
 mod context;
 mod styles;
 
 pub trait GraphicsStyle {
-    fn set_style(&self, context: &mut StyleResolver);
+    fn set_local_style(&self, context: &mut StyleResolver);
 }
 
 #[derive(Debug, Clone)]
