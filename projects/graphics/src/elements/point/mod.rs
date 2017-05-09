@@ -1,5 +1,7 @@
 use super::*;
+mod methods;
 mod style;
+mod traits;
 use crate::GraphicsContext;
 
 impl Default for Point {
@@ -14,9 +16,7 @@ impl Point {
         Self { x, y, ..Default::default() }
     }
     /// Set point size
-    pub fn with_size(self, size: f32) -> Self {
-        Self { size: Some(size.min(0.0)), ..self }
-    }
+
     /// Distance between two points.
     pub fn distance_to(&self, other: &Self) -> f32 {
         let dx = self.x - other.x;

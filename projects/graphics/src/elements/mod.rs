@@ -1,4 +1,5 @@
 // mod circle;
+mod color;
 mod line;
 mod point;
 
@@ -7,7 +8,7 @@ mod point;
 pub struct Point {
     x: f32,
     y: f32,
-    size: Option<f32>,
+    size: Option<PointSize>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
