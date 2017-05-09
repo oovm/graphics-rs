@@ -1,61 +1,50 @@
-#![allow(non_upper_case_globals)]
-#![allow(mixed_script_confusables)]
-#![deny(missing_docs)]
+// #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
 #![doc = include_str!("../Readme.md")]
 
-mod circle;
-mod ellipse;
-mod extension;
-mod line;
+mod canvas;
+mod errors;
 mod shapes;
+mod styles;
 mod traits;
 
-pub use float::{π, Float};
+pub use crate::{canvas::*, errors::*, shapes::*, styles::*, traits::*};
 
-/// The representation of a ellipse.
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct Ellipse {
-    a: Float,
-    b: Float,
-    c: Float,
-    d: Float,
-    e: Float,
-    f: Float,
+pub enum Shape {
+    // Circle(Circle),
+    // Rectangle(Rectangle),
+    Line(Line),
+    // Polygon(Polygon),
+    // Text(Text),
 }
 
-/// A circle.
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct Circle {
-    /// Center of the circle.
-    pub center: Point,
-    /// Radius of the circle.
-    pub radius: Float,
+pub enum Style {
+    PointSize(PointSize),
 }
 
-/// A circle.
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct Line {
-    /// Start of the line.
-    pub start: Point,
-    /// End of the line.
-    pub end: Point,
+pub enum Drawable {
+    Shape(Shape),
+    Style(Style),
 }
 
-// noinspection NonAsciiCharacters
-#[cfg(feature = "f32")]
-mod float {
-    /// Float Type
-    pub type Float = f32;
-    /// constant π
-    pub const π: Float = std::f32::consts::PI;
+impl GraphicsStyle for Style {
+    fn set_style(&self, context: &mut GraphicsContext) {
+        match self {
+            Style::PointSize(v) => v.set_style(context),
+        }
+    }
 }
 
-// noinspection NonAsciiCharacters
-#[cfg(feature = "f64")]
-mod float {
-    /// Float Type
-    pub type Float = f64;
-    /// constant π
-    pub const Pi: Float = std::f64::consts::PI;
+impl GraphicsStyle for PointSize {
+    fn set_style(&self, context: &mut GraphicsContext) {
+        context.point_size = self.0;
+    }
+}
+
+pub trait GraphicsStyle {
+    fn set_style(&self, context: &mut GraphicsContext);
+}
+
+pub trait GraphicsBackend {
+    fn draw(&mut self, ctx: &mut GraphicsContext, drawable: Drawable) -> Result<(), GraphicsError>;
 }

@@ -1,13 +1,21 @@
 use super::*;
+mod style;
+use crate::GraphicsContext;
+
+impl Default for Point {
+    fn default() -> Self {
+        Self { x: 0.0, y: 0.0, size: None }
+    }
+}
 
 impl Point {
     /// Construct new point
     pub fn new(x: f32, y: f32) -> Self {
-        Self { x, y }
+        Self { x, y, ..Default::default() }
     }
-    /// View point as tuple
-    pub fn as_tuple(&self) -> (f32, f32) {
-        (self.x, self.y)
+    /// Set point size
+    pub fn with_size(self, size: f32) -> Self {
+        Self { size: Some(size.min(0.0)), ..self }
     }
     /// Distance between two points.
     pub fn distance_to(&self, other: &Self) -> f32 {
@@ -15,20 +23,14 @@ impl Point {
         let dy = self.y - other.y;
         (dx * dx + dy * dy).sqrt()
     }
-    /// TeX representation of point
-    pub fn equation(&self) -> String {
-        format!("({}, {})", self.x, self.y)
+    pub fn is_empty(&self, ctx: &GraphicsContext) -> bool {
+        let size = self.size.unwrap_or(ctx.point_size) <= 0.0;
+        size
     }
 }
 
 impl From<(f32, f32)> for Point {
     fn from(point: (f32, f32)) -> Self {
-        Self { x: point.0, y: point.1 }
-    }
-}
-
-impl Default for Point {
-    fn default() -> Self {
-        Self { x: 0.0, y: 0.0 }
+        Self { x: point.0 as f32, y: point.1 as f32, ..Default::default() }
     }
 }
