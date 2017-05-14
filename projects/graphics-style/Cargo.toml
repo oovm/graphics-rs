@@ -1,21 +1,23 @@
 [package]
 name = "graphics-style"
-version = "0.3.1"
-authors = ["Hao Hou <haohou302@gmail.com>"]
-edition = "2018"
-license = "MIT"
-description = "Plotters SVG backend"
-homepage = "https://plotters-rs.github.io"
-repository = "https://github.com/plotters-rs/plotters-svg.git"
-readme = "README.md"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+version = "0.0.2"
+authors = ["Aster <192607617@qq.com>"]
+description = "The styles of all graphics elements"
+repository = "https://github.com/oovm/graphics-rs"
+documentation = "https://docs.rs/graphics-style"
+readme = "Readme.md"
+license = "MPL-2.0"
+edition = "2021"
 
 [dependencies]
-plotters-backend = "^0.3.*"
-
-[features]
-debug = []
+palette = "0.6.0"
 
 [dev-dependencies]
-plotters = {version = "^0.3.0", default_features = false, features = ["ttf"]}
+
+[features]
+default = []
+
+[package.metadata.wee]
+t = "cargo test"
+p = "cargo publish --allow-dirty"
+

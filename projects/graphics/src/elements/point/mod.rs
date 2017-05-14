@@ -1,8 +1,8 @@
 use super::*;
+
 mod methods;
 mod style;
 mod traits;
-use crate::GraphicsContext;
 
 impl Default for Point {
     fn default() -> Self {
@@ -23,8 +23,8 @@ impl Point {
         let dy = self.y - other.y;
         (dx * dx + dy * dy).sqrt()
     }
-    pub fn is_empty(&self, ctx: &GraphicsContext) -> bool {
-        let size = self.size.unwrap_or(ctx.point_size) <= 0.0;
+    pub fn is_empty(&self, ctx: &StyleResolver) -> bool {
+        let size = self.size.unwrap_or(ctx.point_size()) <= 0.0;
         size
     }
 }

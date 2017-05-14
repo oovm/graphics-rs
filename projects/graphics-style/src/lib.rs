@@ -1,4 +1,5 @@
-use crate::{context::StyleContext, styles::PointSize};
+use self::context::StyleContext;
+pub use self::styles::*;
 
 mod context;
 mod styles;

@@ -1,20 +1,15 @@
-use crate::{Drawable, PointSize};
-use std::fmt::Debug;
+use crate::Drawable;
+use graphics_style::StyleResolver;
+use std::fmt::{Debug, Formatter};
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct Graphics {
-    pub graphic: Vec<Drawable>,
-    pub context: GraphicsContext,
-    pub theme: GraphicsContext,
+    pub graphic: Vec<Box<dyn Drawable>>,
+    pub style: StyleResolver,
 }
 
-#[derive(Debug, Clone)]
-pub struct GraphicsContext {
-    pub point_size: Option<PointSize>,
-}
-
-impl Graphics {
-    pub fn point_size(&self) -> PointSize {
-        self.theme.point_size.unwrap_or(self.context.point_size.unwrap_or(PointSize::default()))
+impl Debug for Box<dyn Drawable> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        todo!()
     }
 }

@@ -5,10 +5,10 @@
 mod canvas;
 mod elements;
 mod errors;
-mod styles;
 mod traits;
 
-pub use crate::{canvas::*, elements::*, errors::*, styles::*, traits::*};
+pub use crate::{canvas::*, elements::*, errors::*, traits::*};
+use graphics_style::GraphicsStyle;
 
 pub enum Shape {
     // Circle(Circle),
@@ -18,11 +18,18 @@ pub enum Shape {
     // Text(Text),
 }
 
-pub enum Drawable {
-    Shape(Shape),
-    Style(Style),
+pub trait Drawable {}
+
+impl Clone for Shape {
+    fn clone(&self) -> Self {
+        todo!()
+    }
 }
 
+impl Drawable for Shape {}
+
+impl Drawable for dyn GraphicsStyle {}
+
 pub trait GraphicsBackend {
-    fn draw(&mut self, ctx: &mut GraphicsContext, drawable: Drawable) -> Result<(), GraphicsError>;
+    fn draw(&mut self, ctx: &mut GraphicsContext, drawable: dyn Drawable) -> Result<(), GraphicsError>;
 }

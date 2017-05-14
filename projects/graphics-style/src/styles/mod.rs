@@ -1,3 +1,6 @@
+use palette::Srgb;
+mod lines;
 mod points;
 
-pub use points::PointSize;
+pub use lines::{LineColor, LineWidth};
+pub use points::{PointColor, PointSize};

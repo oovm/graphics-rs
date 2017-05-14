@@ -23,37 +23,55 @@ impl GraphicsStyle for PointSize {
         context.local.point_size = Some(self.clone());
     }
 }
-"]
+"];
 
 
-getField[{field_,type_}]:=TemplateApply["pub `field`: Option<`type`>,", <|"field"->field, "type"->type|>]
+getField[{field_, type_}] := TemplateApply["    pub `field`: Option<`type`>,", <|"field" -> field, "type" -> type|>];
 
-buildField[pattern_]:=TemplateApply["
+buildField[pattern_] := TemplateApply["\
 #[derive(Debug, Clone)]
 pub(crate) struct StyleContext {\n`1`\n}",
-StringRiffle[getField/@pattern,"\n"]
-]
+    StringRiffle[getField /@ pattern, "\n"]
+];
 
 
-getGetter[{field_,type_}]:=TemplateApply["
+getGetter[{field_, type_}] := TemplateApply["\
     /// Set the value of [`e``type``e`]
     pub fn `field`(&self) -> `type` {
         self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`type`::default()))
-    }", <|"field"->field, "type"->type, "e" ->"`"|>]
-buildGetter[pattern_]:=TemplateApply["impl StyleResolver {\n`1`\n}",
-StringRiffle[getGetter/@pattern,"\n"]
-]
+    }"
+    ,
+    <|"field" -> field, "type" -> type, "e" -> "`"|>
+];
+buildGetter[pattern_] := TemplateApply[
+    "impl StyleResolver {\n`1`\n}",
+    StringRiffle[getGetter /@ pattern, "\n"]
+];
 
-getSetter[{field_,type_}]:=TemplateApply["impl GraphicsStyle for `type` {
+
+getSetter[{field_, type_}] := TemplateApply["\
+impl GraphicsStyle for `type` {
     fn set_local_style(&self, context: &mut StyleResolver) {
         context.local.`field` = Some(self.clone());
     }
-}", <|"field"->field, "type"->type|>]
+}",
+    <|"field" -> field, "type" -> type|>
+];
 
 
-    buildField[{{"point_size", "PointSize"},{"point_size", "PointSize"},{"point_size", "PointSize"}}]
-buildGetter[{{"point_size", "PointSize"},{"point_size", "PointSize"},{"point_size", "PointSize"}}]
-StringRiffle[getSetter/@{{"point_size", "PointSize"},{"point_size", "PointSize"},{"point_size", "PointSize"}},"\n"]
-
-
-
+patterns = {
+    {"point_size", "PointSize"},
+    {"point_color", "PointColor"},
+    {"line_color", "LineColor"},
+    {"line_width", "LineWidth"}
+};
+codegen = StringRiffle[
+    Flatten@{
+        "use super::*;",
+        buildField[patterns],
+        buildGetter[patterns],
+        getSetter /@ patterns
+    },
+    "\n\n"
+];
+Export["mod.rs", codegen, "Text"]
