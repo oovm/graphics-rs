@@ -1,4 +1,19 @@
-use super::*;
+use crate::*;
+
+#[derive(Debug, Clone)]
+pub struct StyleResolver {
+    theme: StyleContext,
+    local: StyleContext,
+}
+
+/// All available styles.
+#[derive(Debug, Clone)]
+pub enum GraphicsStyle {
+    PointSize(PointSize),
+    PointColor(PointColor),
+    LineColor(LineColor),
+    LineWidth(LineWidth),
+}
 
 #[derive(Debug, Clone)]
 pub(crate) struct StyleContext {
@@ -27,26 +42,38 @@ impl StyleResolver {
     }
 }
 
-impl GraphicsStyle for PointSize {
-    fn set_local_style(&self, context: &mut StyleResolver) {
-        context.local.point_size = Some(self.clone());
+impl StyleResolver {
+    /// Set the style of the given element.
+    pub fn set_local_style<T>(&mut self, style: T)
+    where
+        T: Into<GraphicsStyle>,
+    {
+        match style.into() {
+            GraphicsStyle::PointSize(s) => self.local.point_size = Some(s.clone()),
+            GraphicsStyle::PointColor(s) => self.local.point_color = Some(s.clone()),
+            GraphicsStyle::LineColor(s) => self.local.line_color = Some(s.clone()),
+            GraphicsStyle::LineWidth(s) => self.local.line_width = Some(s.clone()),
+        }
     }
 }
 
-impl GraphicsStyle for PointColor {
-    fn set_local_style(&self, context: &mut StyleResolver) {
-        context.local.point_color = Some(self.clone());
+impl From<PointSize> for GraphicsStyle {
+    fn from(s: PointSize) -> Self {
+        Self::PointSize(s)
     }
 }
-
-impl GraphicsStyle for LineColor {
-    fn set_local_style(&self, context: &mut StyleResolver) {
-        context.local.line_color = Some(self.clone());
+impl From<PointColor> for GraphicsStyle {
+    fn from(s: PointColor) -> Self {
+        Self::PointColor(s)
     }
 }
-
-impl GraphicsStyle for LineWidth {
-    fn set_local_style(&self, context: &mut StyleResolver) {
-        context.local.line_width = Some(self.clone());
+impl From<LineColor> for GraphicsStyle {
+    fn from(s: LineColor) -> Self {
+        Self::LineColor(s)
+    }
+}
+impl From<LineWidth> for GraphicsStyle {
+    fn from(s: LineWidth) -> Self {
+        Self::LineWidth(s)
     }
 }

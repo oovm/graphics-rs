@@ -2,36 +2,38 @@
 
 SetDirectory@NotebookDirectory[];
 
+buildHead[] := "
+use crate::*;
 
-TemplateApply["
-use super::*;
+#[derive(Debug, Clone)]
+pub struct StyleResolver {
+    theme: StyleContext,
+    local: StyleContext,
+}
+";
 
+
+getGraphicsStyle[{field_, type_}] := TemplateApply["\
+    `type`(`type`),",
+    <|"field" -> field, "type" -> type|>
+];
+buildGraphicsStyle[pattern_] := TemplateApply["\
+/// All available styles.
+#[derive(Debug, Clone)]
+pub enum GraphicsStyle {
+`1`
+}",
+    StringRiffle[getGraphicsStyle /@ pattern, "\n"]
+];
+
+
+getStyleContext[{field_, type_}] := TemplateApply["    pub `field`: Option<`type`>,", <|"field" -> field, "type" -> type|>];
+buildStyleContext[pattern_] := TemplateApply["\
 #[derive(Debug, Clone)]
 pub(crate) struct StyleContext {
-    pub point_size: Option<PointSize>,
-}
-
-impl StyleResolver {
-    /// Set the value of [`PointSize`]
-    pub fn point_size(&self) -> PointSize {
-        self.local.point_size.unwrap_or(self.theme.point_size.unwrap_or(PointSize::default()))
-    }
-}
-
-impl GraphicsStyle for PointSize {
-    fn set_local_style(&self, context: &mut StyleResolver) {
-        context.local.point_size = Some(self.clone());
-    }
-}
-"];
-
-
-getField[{field_, type_}] := TemplateApply["    pub `field`: Option<`type`>,", <|"field" -> field, "type" -> type|>];
-
-buildField[pattern_] := TemplateApply["\
-#[derive(Debug, Clone)]
-pub(crate) struct StyleContext {\n`1`\n}",
-    StringRiffle[getField /@ pattern, "\n"]
+`1`
+}",
+    StringRiffle[getStyleContext /@ pattern, "\n"]
 ];
 
 
@@ -49,13 +51,36 @@ buildGetter[pattern_] := TemplateApply[
 ];
 
 
-getSetter[{field_, type_}] := TemplateApply["\
-impl GraphicsStyle for `type` {
-    fn set_local_style(&self, context: &mut StyleResolver) {
-        context.local.`field` = Some(self.clone());
+getSetter[{field_, type_}] := TemplateApply["            GraphicsStyle::`type`(s) => self.local.`field` = Some(s.clone()),",
+    <|"field" -> field, "type" -> type|>
+];
+buildSetter[pattern_] := TemplateApply["\
+impl StyleResolver {
+    /// Set the style of the given element.
+    pub fn set_local_style<T>(&mut self, style: T)
+    where
+        T: Into<GraphicsStyle>,
+    {
+        match style.into() {
+        `1`
+        }
+    }
+}",
+    StringRiffle[getSetter /@ pattern, "\n"]
+];
+
+
+getConvert[{field_, type_}] := TemplateApply["\
+impl From<`type`> for GraphicsStyle {
+    fn from(s: `type`) -> Self {
+        Self::`type`(s)
     }
 }",
     <|"field" -> field, "type" -> type|>
+];
+buildConvert[pattern_] := TemplateApply[
+    "`1`",
+    StringRiffle[getConvert /@ pattern, "\n"]
 ];
 
 
@@ -67,10 +92,12 @@ patterns = {
 };
 codegen = StringRiffle[
     Flatten@{
-        "use super::*;",
-        buildField[patterns],
+        buildHead[],
+        buildGraphicsStyle[patterns],
+        buildStyleContext[patterns],
         buildGetter[patterns],
-        getSetter /@ patterns
+        buildSetter[patterns],
+        buildConvert[patterns]
     },
     "\n\n"
 ];

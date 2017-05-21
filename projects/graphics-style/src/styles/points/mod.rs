@@ -1,4 +1,5 @@
 use super::*;
+mod size;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct PointSize {
@@ -8,12 +9,6 @@ pub struct PointSize {
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct PointColor {
     pub value: Srgb,
-}
-
-impl Default for PointSize {
-    fn default() -> Self {
-        Self { value: 1.0 }
-    }
 }
 
 impl Default for PointColor {

@@ -3,7 +3,6 @@ mod color;
 mod line;
 mod point;
 
-use crate::Graphics;
 use graphics_style::{PointSize, StyleResolver};
 
 /// A 2D point.
