@@ -1,5 +1,6 @@
 use crate::*;
 
+/// Resolve missing style
 #[derive(Debug, Clone)]
 pub struct StyleResolver {
     theme: StyleContext,
@@ -9,9 +10,13 @@ pub struct StyleResolver {
 /// All available styles.
 #[derive(Debug, Clone)]
 pub enum GraphicsStyle {
+    /// Set the missing style of PointSize
     PointSize(PointSize),
+    /// Set the missing style of PointColor
     PointColor(PointColor),
+    /// Set the missing style of LineColor
     LineColor(LineColor),
+    /// Set the missing style of LineWidth
     LineWidth(LineWidth),
 }
 

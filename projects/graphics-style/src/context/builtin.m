@@ -5,6 +5,7 @@ SetDirectory@NotebookDirectory[];
 buildHead[] := "
 use crate::*;
 
+/// Resolve missing style
 #[derive(Debug, Clone)]
 pub struct StyleResolver {
     theme: StyleContext,
@@ -14,6 +15,7 @@ pub struct StyleResolver {
 
 
 getGraphicsStyle[{field_, type_}] := TemplateApply["\
+    /// Set the missing style of `type`
     `type`(`type`),",
     <|"field" -> field, "type" -> type|>
 ];

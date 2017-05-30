@@ -1,12 +1,16 @@
 use super::*;
 
+/// Line width
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct LineWidth {
+    /// The line width
     pub value: f32,
 }
 
+/// Line color
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct LineColor {
+    /// The line color
     pub value: Srgb,
 }
 
