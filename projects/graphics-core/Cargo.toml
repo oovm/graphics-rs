@@ -1,5 +1,5 @@
 [package]
-name = "graphics"
+name = "graphics-core"
 version = "0.0.2"
 authors = ["Aster <192607617@qq.com>"]
 description = "The representation of a circle"

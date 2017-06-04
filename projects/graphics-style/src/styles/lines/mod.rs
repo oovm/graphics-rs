@@ -1,4 +1,5 @@
 use super::*;
+mod width;
 
 /// Line width
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -11,17 +12,11 @@ pub struct LineWidth {
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct LineColor {
     /// The line color
-    pub value: Srgb,
-}
-
-impl Default for LineWidth {
-    fn default() -> Self {
-        Self { value: 1.0 }
-    }
+    pub value: Srgba,
 }
 
 impl Default for LineColor {
     fn default() -> Self {
-        Self { value: Srgb::new(1.0, 1.0, 1.0) }
+        Self { value: Srgba::new(1.0, 1.0, 1.0, 1.0) }
     }
 }

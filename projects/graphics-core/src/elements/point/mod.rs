@@ -4,19 +4,20 @@ mod methods;
 mod style;
 mod traits;
 
-impl Default for Point {
-    fn default() -> Self {
-        Self { x: 0.0, y: 0.0, size: None }
-    }
-}
-
 impl Point {
     /// Construct new point
     pub fn new(x: f32, y: f32) -> Self {
         Self { x, y, ..Default::default() }
     }
-    /// Set point size
+}
 
+impl Point {
+    pub fn get_x(&self) -> f32 {
+        self.x
+    }
+    pub fn get_y(&self) -> f32 {
+        self.y
+    }
     /// Distance between two points.
     pub fn distance_to(&self, other: &Self) -> f32 {
         let dx = self.x - other.x;
@@ -24,13 +25,8 @@ impl Point {
         (dx * dx + dy * dy).sqrt()
     }
     pub fn is_empty(&self, ctx: &StyleResolver) -> bool {
-        let size = self.size.unwrap_or(ctx.point_size()) <= 0.0;
-        size
-    }
-}
-
-impl From<(f32, f32)> for Point {
-    fn from(point: (f32, f32)) -> Self {
-        Self { x: point.0 as f32, y: point.1 as f32, ..Default::default() }
+        let size = || self.get_size(ctx) <= 0.0;
+        let color = || self.get_color(ctx).is_empty();
+        size() || color()
     }
 }

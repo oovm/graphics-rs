@@ -13,7 +13,7 @@ pub enum GraphicsStyle {
     /// Set the missing style of PointSize
     PointSize(PointSize),
     /// Set the missing style of PointColor
-    PointColor(PointColor),
+    PointColor(RGBA),
     /// Set the missing style of LineColor
     LineColor(LineColor),
     /// Set the missing style of LineWidth
@@ -23,7 +23,7 @@ pub enum GraphicsStyle {
 #[derive(Debug, Clone)]
 pub(crate) struct StyleContext {
     pub point_size: Option<PointSize>,
-    pub point_color: Option<PointColor>,
+    pub point_color: Option<RGBA>,
     pub line_color: Option<LineColor>,
     pub line_width: Option<LineWidth>,
 }
@@ -34,8 +34,8 @@ impl StyleResolver {
         self.local.point_size.unwrap_or(self.theme.point_size.unwrap_or(PointSize::default()))
     }
     /// Set the value of [`PointColor`]
-    pub fn point_color(&self) -> PointColor {
-        self.local.point_color.unwrap_or(self.theme.point_color.unwrap_or(PointColor::default()))
+    pub fn point_color(&self) -> RGBA {
+        self.local.point_color.unwrap_or(self.theme.point_color.unwrap_or(RGBA::default()))
     }
     /// Set the value of [`LineColor`]
     pub fn line_color(&self) -> LineColor {
@@ -67,8 +67,8 @@ impl From<PointSize> for GraphicsStyle {
         Self::PointSize(s)
     }
 }
-impl From<PointColor> for GraphicsStyle {
-    fn from(s: PointColor) -> Self {
+impl From<RGBA> for GraphicsStyle {
+    fn from(s: RGBA) -> Self {
         Self::PointColor(s)
     }
 }
