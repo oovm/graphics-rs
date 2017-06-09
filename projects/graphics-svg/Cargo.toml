@@ -9,6 +9,10 @@ readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"
 
+[dependencies]
+text-utils = "0.4.3"
+indenter = "0.3.1"
+
 [dependencies.graphics-core]
 version = "0.0.*"
 features = []

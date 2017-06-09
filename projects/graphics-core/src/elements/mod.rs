@@ -4,6 +4,7 @@ mod point;
 
 use graphics_style::{LineColor, LineWidth, PointSize, StyleResolver, RGBA};
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Pixel {
     pub x: u32,
     pub y: u32,

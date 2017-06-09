@@ -1,5 +1,5 @@
 use crate::SVG;
-use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Point, StyleResolver};
+use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point, StyleResolver};
 use std::{collections::BTreeMap, mem::take};
 
 pub struct SvgRenderer {
@@ -10,8 +10,9 @@ pub struct SvgRenderer {
 
 impl GraphicsBackend for SvgRenderer {
     type Output = SVG;
+    type Error = GraphicsError;
 
-    fn get_output(&mut self, _: &Graphics) -> Result<Self::Output, GraphicsError> {
+    fn get_output(&mut self, _: &Graphics) -> Result<Self::Output, Self::Error> {
         let attributes = &[
             ("width", format!("{}", self.width)),
             ("height", format!("{}", self.height)),
@@ -21,13 +22,17 @@ impl GraphicsBackend for SvgRenderer {
         Ok(SVG::new("svg", attributes, take(&mut self.buffer)))
     }
 
-    fn on_start(&mut self, state: &mut Graphics) -> Result<(), GraphicsError> {
+    fn on_start(&mut self, state: &mut Graphics) -> Result<(), Self::Error> {
         self.width = state.setting.width;
         self.height = state.setting.height;
         Ok(())
     }
 
-    fn draw_point(&mut self, context: &Graphics, shape: &Point) -> Result<(), GraphicsError> {
+    fn draw_pixel(&mut self, context: &Graphics, shape: &Pixel) -> Result<(), Self::Error> {
+        todo!()
+    }
+
+    fn draw_point(&mut self, context: &Graphics, shape: &Point) -> Result<(), Self::Error> {
         let style = &context.style;
         if shape.is_empty(style) {
             return Ok(());
@@ -44,7 +49,7 @@ impl GraphicsBackend for SvgRenderer {
         Ok(self.buffer.push(point))
     }
 
-    fn draw_line(&mut self, context: &Graphics, shape: &Line) -> Result<(), GraphicsError> {
+    fn draw_line(&mut self, context: &Graphics, shape: &Line) -> Result<(), Self::Error> {
         let style = &context.style;
         if shape.is_empty(style) {
             return Ok(());

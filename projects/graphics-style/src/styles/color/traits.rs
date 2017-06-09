@@ -5,3 +5,11 @@ impl Default for RGBA {
         Self(Srgba::new(1.0, 1.0, 1.0, 1.0))
     }
 }
+
+impl PartialEq<Self> for RGBA {
+    fn eq(&self, other: &Self) -> bool {
+        self.0.eq(&other.0)
+    }
+}
+
+impl Eq for RGBA {}

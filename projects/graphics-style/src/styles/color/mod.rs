@@ -2,10 +2,9 @@ mod display;
 mod traits;
 
 use super::*;
-use std::ops::Deref;
 
 /// A color with red, green, blue, and alpha components.
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone)]
 pub struct RGBA(Srgba);
 
 impl RGBA {

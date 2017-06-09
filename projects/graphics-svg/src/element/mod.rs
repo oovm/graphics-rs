@@ -1,3 +1,4 @@
+mod display;
 use std::collections::BTreeMap;
 
 pub struct SVG {

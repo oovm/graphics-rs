@@ -14,10 +14,13 @@ pub struct StyleResolver {
 ";
 
 
-getGraphicsStyle[{field_, type_}] := TemplateApply["\
-    /// Set the missing style of `type`
-    `type`(`type`),",
-    <|"field" -> field, "type" -> type|>
+getGraphicsStyle[{field_, type_}] := Block[
+    {type2 = If[StringEndsQ[type, "Color"], "RGBA", type]},
+    TemplateApply["\
+    /// Set the missing style of `type1`
+    `type1`(`type2`),",
+        <|"type1" -> type, "type2" -> type2|>
+    ]
 ];
 buildGraphicsStyle[pattern_] := TemplateApply["\
 /// All available styles.
@@ -29,7 +32,10 @@ pub enum GraphicsStyle {
 ];
 
 
-getStyleContext[{field_, type_}] := TemplateApply["    pub `field`: Option<`type`>,", <|"field" -> field, "type" -> type|>];
+getStyleContext[{field_, type_}] := Block[
+    {type2 = If[StringEndsQ[type, "Color"], "RGBA", type]},
+    TemplateApply["    pub `field`: Option<`type2`>,", <|"field" -> field, "type2" -> type2|>]
+];
 buildStyleContext[pattern_] := TemplateApply["\
 #[derive(Debug, Clone)]
 pub(crate) struct StyleContext {
@@ -39,13 +45,16 @@ pub(crate) struct StyleContext {
 ];
 
 
-getGetter[{field_, type_}] := TemplateApply["\
-    /// Set the value of [`e``type``e`]
-    pub fn `field`(&self) -> `type` {
-        self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`type`::default()))
+getGetter[{field_, type_}] := Block[
+    {type2 = If[StringEndsQ[type, "Color"], "RGBA", type]},
+    TemplateApply["\
+    /// Set the value of [`e``type2``e`]
+    pub fn `field`(&self) -> `type2` {
+        self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`type2`::default()))
     }"
     ,
-    <|"field" -> field, "type" -> type, "e" -> "`"|>
+    <|"field" -> field, "type2" -> type2,"e" -> "`"|>
+]
 ];
 buildGetter[pattern_] := TemplateApply[
     "impl StyleResolver {\n`1`\n}",
@@ -72,13 +81,17 @@ impl StyleResolver {
 ];
 
 
-getConvert[{field_, type_}] := TemplateApply["\
+getConvert[{field_, type_}] := Block[
+{},
+If[StringEndsQ[type, "Color"], Return[""]];
+TemplateApply["\
 impl From<`type`> for GraphicsStyle {
     fn from(s: `type`) -> Self {
         Self::`type`(s)
     }
 }",
     <|"field" -> field, "type" -> type|>
+]
 ];
 buildConvert[pattern_] := TemplateApply[
     "`1`",
