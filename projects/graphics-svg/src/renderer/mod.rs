@@ -1,11 +1,17 @@
 use crate::SVG;
-use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point, StyleResolver};
-use std::{collections::BTreeMap, mem::take};
+use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point};
+use std::mem::take;
 
 pub struct SvgRenderer {
     width: f32,
     height: f32,
     buffer: Vec<SVG>,
+}
+
+impl Default for SvgRenderer {
+    fn default() -> Self {
+        Self { width: 100.0, height: 100.0, buffer: Vec::new() }
+    }
 }
 
 impl GraphicsBackend for SvgRenderer {
