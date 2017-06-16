@@ -1,12 +1,5 @@
 use crate::*;
 
-/// Resolve missing style
-#[derive(Debug, Clone)]
-pub struct StyleResolver {
-    theme: StyleContext,
-    local: StyleContext,
-}
-
 /// All available styles.
 #[derive(Debug, Clone)]
 pub enum GraphicsStyle {
@@ -20,7 +13,7 @@ pub enum GraphicsStyle {
     LineWidth(LineWidth),
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub(crate) struct StyleContext {
     pub point_size: Option<PointSize>,
     pub point_color: Option<RGBA>,

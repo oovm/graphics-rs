@@ -2,7 +2,7 @@
 mod line;
 mod point;
 
-use graphics_style::{LineColor, LineWidth, PointSize, StyleResolver, RGBA};
+use graphics_style::{LineWidth, PointSize, StyleResolver, RGBA};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Pixel {
@@ -26,5 +26,5 @@ pub struct Line {
     start: Point,
     end: Point,
     width: Option<LineWidth>,
-    color: Option<LineColor>,
+    color: Option<RGBA>,
 }

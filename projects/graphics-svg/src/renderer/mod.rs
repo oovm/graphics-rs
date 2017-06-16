@@ -1,5 +1,5 @@
 use crate::SVG;
-use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point};
+use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point, StyleResolver};
 use std::mem::take;
 
 pub struct SvgRenderer {
@@ -28,36 +28,34 @@ impl GraphicsBackend for SvgRenderer {
         Ok(SVG::new("svg", attributes, take(&mut self.buffer)))
     }
 
-    fn on_start(&mut self, state: &mut Graphics) -> Result<(), Self::Error> {
-        self.width = state.setting.width;
-        self.height = state.setting.height;
+    fn on_start(&mut self, context: &Graphics, _: &mut StyleResolver) -> Result<(), Self::Error> {
+        self.width = context.setting.width;
+        self.height = context.setting.height;
         Ok(())
     }
 
-    fn draw_pixel(&mut self, context: &Graphics, shape: &Pixel) -> Result<(), Self::Error> {
+    fn draw_pixel(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error> {
         todo!()
     }
 
-    fn draw_point(&mut self, context: &Graphics, shape: &Point) -> Result<(), Self::Error> {
-        let style = &context.style;
-        if shape.is_empty(style) {
+    fn draw_point(&mut self, _: &Graphics, state: &mut StyleResolver, shape: &Point) -> Result<(), Self::Error> {
+        if shape.is_empty(state) {
             return Ok(());
         }
-        let size = shape.get_size(style);
-        let color = shape.get_color(style);
+        let size = shape.get_size(state);
+        let color = shape.get_color(state);
         let attributes = &[
             ("cx", format!("{}", shape.get_x())),
             ("cy", format!("{}", shape.get_y())),
             ("r", format!("{}", size.value)),
             ("fill", format!("{:#X}", color)),
         ];
-        let point = SVG::new("circle", attributes, take(&mut self.buffer));
+        let point = SVG::new("circle", attributes, vec![]);
         Ok(self.buffer.push(point))
     }
 
-    fn draw_line(&mut self, context: &Graphics, shape: &Line) -> Result<(), Self::Error> {
-        let style = &context.style;
-        if shape.is_empty(style) {
+    fn draw_line(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error> {
+        if shape.is_empty(state) {
             return Ok(());
         }
         return Ok(());
