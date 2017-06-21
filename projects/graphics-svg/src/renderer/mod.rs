@@ -1,5 +1,5 @@
 use crate::SVG;
-use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point, StyleResolver};
+use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point, Rectangle, StyleResolver};
 use std::mem::take;
 
 pub struct SvgRenderer {
@@ -42,16 +42,14 @@ impl GraphicsBackend for SvgRenderer {
         if shape.is_empty(state) {
             return Ok(());
         }
-        let size = shape.get_size(state);
-        let color = shape.get_color(state);
         let attributes = &[
             ("cx", format!("{}", shape.get_x())),
             ("cy", format!("{}", shape.get_y())),
-            ("r", format!("{}", size.value)),
-            ("fill", format!("{:#X}", color)),
+            ("r", format!("{}", shape.get_size(state))),
+            ("fill", format!("{:#X}", shape.get_color(state))),
         ];
-        let point = SVG::new("circle", attributes, vec![]);
-        Ok(self.buffer.push(point))
+        let svg = SVG::new("circle", attributes, vec![]);
+        Ok(self.buffer.push(svg))
     }
 
     fn draw_line(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error> {
@@ -59,5 +57,20 @@ impl GraphicsBackend for SvgRenderer {
             return Ok(());
         }
         return Ok(());
+    }
+
+    fn draw_rectangle(&mut self, _: &Graphics, state: &mut StyleResolver, shape: &Rectangle) -> Result<(), Self::Error> {
+        if shape.is_empty(state) {
+            return Ok(());
+        }
+        let attributes = &[
+            ("x", format!("{}", shape.get_x())),
+            ("y", format!("{}", shape.get_y())),
+            ("width", format!("{}", shape.get_width())),
+            ("height", format!("{}", shape.get_height())),
+            // ("fill", format!("{:#X}", shape.get_color(state))),
+        ];
+        let svg = SVG::new("rect", attributes, vec![]);
+        Ok(self.buffer.push(svg))
     }
 }

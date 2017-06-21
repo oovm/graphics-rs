@@ -12,9 +12,3 @@ impl From<Point> for GraphicsShape {
         Self::Point(v)
     }
 }
-
-impl From<Point> for Drawable {
-    fn from(v: Point) -> Self {
-        Self::Shape(GraphicsShape::Point(v))
-    }
-}

@@ -1,8 +1,8 @@
 use super::*;
 
 impl Point {
-    pub fn get_size(&self, style: &StyleResolver) -> PointSize {
-        self.size.unwrap_or(style.point_size()).clone()
+    pub fn get_size(&self, style: &StyleResolver) -> f32 {
+        self.size.unwrap_or(style.point_size()).clone().value
     }
 
     pub fn set_size<T>(&mut self, value: T)

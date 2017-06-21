@@ -1,6 +1,7 @@
+mod convert;
 #[cfg(feature = "wolfram_wxf")]
 mod wolfram;
-use crate::{Drawable, Graphics, GraphicsShape, Line, Pixel, Point};
+use crate::{Drawable, Graphics, GraphicsShape, Line, Pixel, Point, Rectangle};
 use graphics_style::StyleResolver;
 
 pub trait Distance {
@@ -30,10 +31,12 @@ pub trait GraphicsBackend {
                 GraphicsShape::Point(s) => self.draw_point(context, state, s),
                 GraphicsShape::Line(s) => self.draw_line(context, state, s),
                 GraphicsShape::Pixel(s) => self.draw_pixel(context, state, s),
+                GraphicsShape::Rectangle(s) => self.draw_rectangle(context, state, s),
             },
         }
     }
     fn draw_pixel(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error>;
     fn draw_point(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Point) -> Result<(), Self::Error>;
     fn draw_line(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error>;
+    fn draw_rectangle(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Rectangle) -> Result<(), Self::Error>;
 }
