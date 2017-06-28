@@ -27,6 +27,7 @@ pub trait GraphicsBackend {
     fn draw(&mut self, context: &Graphics, state: &mut StyleResolver, drawable: &Drawable) -> Result<(), Self::Error> {
         match drawable {
             Drawable::Style(inner) => Ok(state.set_local_style(inner.clone())),
+            Drawable::Shape(inner) if inner.is_empty(state) => Ok(()),
             Drawable::Shape(inner) => match inner {
                 GraphicsShape::Point(s) => self.draw_point(context, state, s),
                 GraphicsShape::Line(s) => self.draw_line(context, state, s),

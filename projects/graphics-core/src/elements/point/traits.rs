@@ -1,5 +1,5 @@
 use super::*;
-use crate::{Drawable, GraphicsShape};
+use crate::GraphicsShape;
 
 impl From<(f32, f32)> for Point {
     fn from(point: (f32, f32)) -> Self {

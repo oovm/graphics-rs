@@ -4,39 +4,39 @@ use crate::*;
 #[derive(Debug, Clone)]
 pub enum GraphicsStyle {
     /// Set the missing style of PointSize
-    PointSize(PointSize),
+    PointSize(f32),
     /// Set the missing style of PointColor
     PointColor(RGBA),
     /// Set the missing style of LineColor
     LineColor(RGBA),
     /// Set the missing style of LineWidth
-    LineWidth(LineWidth),
+    LineWidth(f32),
 }
 
 #[derive(Debug, Clone, Default)]
 pub(crate) struct StyleContext {
-    pub point_size: Option<PointSize>,
+    pub point_size: Option<f32>,
     pub point_color: Option<RGBA>,
     pub line_color: Option<RGBA>,
-    pub line_width: Option<LineWidth>,
+    pub line_width: Option<f32>,
 }
 
 impl StyleResolver {
     /// Set the value of [`PointSize`]
-    pub fn point_size(&self) -> PointSize {
-        self.local.point_size.unwrap_or(self.theme.point_size.unwrap_or(PointSize::default()))
+    pub fn point_size(&self) -> f32 {
+        self.local.point_size.unwrap_or(self.theme.point_size.unwrap_or(PointSize::default().value))
     }
-    /// Set the value of [`RGBA`]
+    /// Set the value of [`PointColor`]
     pub fn point_color(&self) -> RGBA {
-        self.local.point_color.unwrap_or(self.theme.point_color.unwrap_or(RGBA::default()))
+        self.local.point_color.unwrap_or(self.theme.point_color.unwrap_or(PointColor::default().value))
     }
-    /// Set the value of [`RGBA`]
+    /// Set the value of [`LineColor`]
     pub fn line_color(&self) -> RGBA {
-        self.local.line_color.unwrap_or(self.theme.line_color.unwrap_or(RGBA::default()))
+        self.local.line_color.unwrap_or(self.theme.line_color.unwrap_or(LineColor::default().value))
     }
     /// Set the value of [`LineWidth`]
-    pub fn line_width(&self) -> LineWidth {
-        self.local.line_width.unwrap_or(self.theme.line_width.unwrap_or(LineWidth::default()))
+    pub fn line_width(&self) -> f32 {
+        self.local.line_width.unwrap_or(self.theme.line_width.unwrap_or(LineWidth::default().value))
     }
 }
 
@@ -57,12 +57,21 @@ impl StyleResolver {
 
 impl From<PointSize> for GraphicsStyle {
     fn from(s: PointSize) -> Self {
-        Self::PointSize(s)
+        Self::PointSize(s.value)
     }
 }
-
+impl From<PointColor> for GraphicsStyle {
+    fn from(s: PointColor) -> Self {
+        Self::PointColor(s.value)
+    }
+}
+impl From<LineColor> for GraphicsStyle {
+    fn from(s: LineColor) -> Self {
+        Self::LineColor(s.value)
+    }
+}
 impl From<LineWidth> for GraphicsStyle {
     fn from(s: LineWidth) -> Self {
-        Self::LineWidth(s)
+        Self::LineWidth(s.value)
     }
 }

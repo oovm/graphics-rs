@@ -34,14 +34,19 @@ impl GraphicsBackend for SvgRenderer {
         Ok(())
     }
 
-    fn draw_pixel(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error> {
-        todo!()
+    fn draw_pixel(&mut self, _: &Graphics, _: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error> {
+        let attributes = &[
+            ("x", format!("{}", shape.x)),
+            ("y", format!("{}", shape.y)),
+            ("width", format!("{}", 1)),
+            ("height", format!("{}", 1)),
+            // ("fill", format!("{:#X}", shape.get_color(state))),
+        ];
+        let svg = SVG::new("rect", attributes, vec![]);
+        Ok(self.buffer.push(svg))
     }
 
     fn draw_point(&mut self, _: &Graphics, state: &mut StyleResolver, shape: &Point) -> Result<(), Self::Error> {
-        if shape.is_empty(state) {
-            return Ok(());
-        }
         let attributes = &[
             ("cx", format!("{}", shape.get_x())),
             ("cy", format!("{}", shape.get_y())),
@@ -52,23 +57,17 @@ impl GraphicsBackend for SvgRenderer {
         Ok(self.buffer.push(svg))
     }
 
-    fn draw_line(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error> {
-        if shape.is_empty(state) {
-            return Ok(());
-        }
+    fn draw_line(&mut self, _: &Graphics, _: &mut StyleResolver, _: &Line) -> Result<(), Self::Error> {
         return Ok(());
     }
 
     fn draw_rectangle(&mut self, _: &Graphics, state: &mut StyleResolver, shape: &Rectangle) -> Result<(), Self::Error> {
-        if shape.is_empty(state) {
-            return Ok(());
-        }
         let attributes = &[
             ("x", format!("{}", shape.get_x())),
             ("y", format!("{}", shape.get_y())),
             ("width", format!("{}", shape.get_width())),
             ("height", format!("{}", shape.get_height())),
-            // ("fill", format!("{:#X}", shape.get_color(state))),
+            ("fill", format!("{:#X}", shape.get_color(state))),
         ];
         let svg = SVG::new("rect", attributes, vec![]);
         Ok(self.buffer.push(svg))

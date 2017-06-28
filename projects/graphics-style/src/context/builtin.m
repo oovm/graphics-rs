@@ -4,22 +4,15 @@ SetDirectory@NotebookDirectory[];
 
 buildHead[] := "
 use crate::*;
-
-/// Resolve missing style
-#[derive(Debug, Clone)]
-pub struct StyleResolver {
-    theme: StyleContext,
-    local: StyleContext,
-}
 ";
 
 
-getGraphicsStyle[{field_, type_}] := Block[
-    {type2 = If[StringEndsQ[type, "Color"], "RGBA", type]},
+getGraphicsStyle[{field_, outer_, inner_}] := Block[
+    {},
     TemplateApply["\
-    /// Set the missing style of `type1`
-    `type1`(`type2`),",
-        <|"type1" -> type, "type2" -> type2|>
+    /// Set the missing style of `outer`
+    `outer`(`inner`),",
+        <|"outer" -> outer, "inner" -> inner|>
     ]
 ];
 buildGraphicsStyle[pattern_] := TemplateApply["\
@@ -32,12 +25,12 @@ pub enum GraphicsStyle {
 ];
 
 
-getStyleContext[{field_, type_}] := Block[
-    {type2 = If[StringEndsQ[type, "Color"], "RGBA", type]},
-    TemplateApply["    pub `field`: Option<`type2`>,", <|"field" -> field, "type2" -> type2|>]
+getStyleContext[{field_, outer_, inner_}] := Block[
+    {},
+    TemplateApply["    pub `field`: Option<`inner`>,", <|"field" -> field, "inner" -> inner|>]
 ];
 buildStyleContext[pattern_] := TemplateApply["\
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub(crate) struct StyleContext {
 `1`
 }",
@@ -45,16 +38,16 @@ pub(crate) struct StyleContext {
 ];
 
 
-getGetter[{field_, type_}] := Block[
-    {type2 = If[StringEndsQ[type, "Color"], "RGBA", type]},
+getGetter[{field_, outer_, inner_}] := Block[
+    {},
     TemplateApply["\
-    /// Set the value of [`e``type2``e`]
-    pub fn `field`(&self) -> `type2` {
-        self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`type2`::default()))
+    /// Set the value of [`e``outer``e`]
+    pub fn `field`(&self) -> `inner` {
+        self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`outer`::default().value))
     }"
-    ,
-    <|"field" -> field, "type2" -> type2,"e" -> "`"|>
-]
+        ,
+        <|"field" -> field, "outer" -> outer, "inner" -> inner, "e" -> "`"|>
+    ]
 ];
 buildGetter[pattern_] := TemplateApply[
     "impl StyleResolver {\n`1`\n}",
@@ -62,8 +55,8 @@ buildGetter[pattern_] := TemplateApply[
 ];
 
 
-getSetter[{field_, type_}] := TemplateApply["            GraphicsStyle::`type`(s) => self.local.`field` = Some(s.clone()),",
-    <|"field" -> field, "type" -> type|>
+getSetter[{field_, outer_, inner_}] := TemplateApply["            GraphicsStyle::`outer`(s) => self.local.`field` = Some(s.clone()),",
+    <|"field" -> field, "outer" -> outer|>
 ];
 buildSetter[pattern_] := TemplateApply["\
 impl StyleResolver {
@@ -73,7 +66,7 @@ impl StyleResolver {
         T: Into<GraphicsStyle>,
     {
         match style.into() {
-        `1`
+`1`
         }
     }
 }",
@@ -81,17 +74,16 @@ impl StyleResolver {
 ];
 
 
-getConvert[{field_, type_}] := Block[
-{},
-If[StringEndsQ[type, "Color"], Return[""]];
-TemplateApply["\
+getConvert[{field_, outer_, inner_}] := Block[
+    {},
+    TemplateApply["\
 impl From<`type`> for GraphicsStyle {
     fn from(s: `type`) -> Self {
-        Self::`type`(s)
+        Self::`type`(s.value)
     }
 }",
-    <|"field" -> field, "type" -> type|>
-]
+        <|"field" -> field, "type" -> outer|>
+    ]
 ];
 buildConvert[pattern_] := TemplateApply[
     "`1`",
@@ -100,10 +92,10 @@ buildConvert[pattern_] := TemplateApply[
 
 
 patterns = {
-    {"point_size", "PointSize"},
-    {"point_color", "PointColor"},
-    {"line_color", "LineColor"},
-    {"line_width", "LineWidth"}
+    {"point_size", "PointSize", "f32"},
+    {"point_color", "PointColor", "RGBA"},
+    {"line_color", "LineColor", "RGBA"},
+    {"line_width", "LineWidth", "f32"}
 };
 codegen = StringRiffle[
     Flatten@{

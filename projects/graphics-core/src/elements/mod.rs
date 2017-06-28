@@ -4,13 +4,13 @@ mod pixel;
 mod point;
 mod rectangle;
 mod square;
-use graphics_style::{LineWidth, PointSize, StyleResolver, RGBA};
+use graphics_style::{StyleResolver, RGBA};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Pixel {
-    pub x: u32,
-    pub y: u32,
-    pub color: RGBA,
+    pub x: f32,
+    pub y: f32,
+    pub c: RGBA,
 }
 
 /// A 2D point.
@@ -18,7 +18,7 @@ pub struct Pixel {
 pub struct Point {
     x: f32,
     y: f32,
-    size: Option<PointSize>,
+    size: Option<f32>,
     color: Option<RGBA>,
 }
 
@@ -27,7 +27,7 @@ pub struct Point {
 pub struct Line {
     start: Point,
     end: Point,
-    width: Option<LineWidth>,
+    width: Option<f32>,
     color: Option<RGBA>,
 }
 

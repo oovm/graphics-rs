@@ -8,5 +8,5 @@ mod lines;
 mod points;
 
 pub use color::RGBA;
-pub use lines::LineWidth;
-pub use points::PointSize;
+pub use lines::{LineColor, LineWidth};
+pub use points::{PointColor, PointSize};

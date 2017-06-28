@@ -1,5 +1,5 @@
 use super::*;
-use crate::{Drawable, GraphicsShape};
+use crate::GraphicsShape;
 
 impl Default for Rectangle {
     fn default() -> Self {
