@@ -22,4 +22,12 @@ impl Rectangle {
     {
         self.color = Some(value.into())
     }
+
+    pub fn with_color<T>(mut self, value: T) -> Self
+    where
+        T: Into<RGBA>,
+    {
+        self.set_color(value);
+        self
+    }
 }
