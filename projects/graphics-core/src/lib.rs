@@ -4,10 +4,10 @@
 
 mod canvas;
 mod elements;
-mod errors;
+mod macros;
 mod traits;
 
-pub use crate::{canvas::*, elements::*, errors::*, traits::*};
+pub use crate::{canvas::*, elements::*, macros::*, traits::*};
 pub use graphics_style::{GraphicsStyle, StyleResolver};
 pub use traits::GraphicsBackend;
 

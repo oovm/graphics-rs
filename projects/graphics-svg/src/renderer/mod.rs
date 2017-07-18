@@ -1,5 +1,5 @@
 use crate::SVG;
-use graphics_core::{Graphics, GraphicsBackend, GraphicsError, Line, Pixel, Point, Rectangle, StyleResolver};
+use graphics_core::{Graphics, GraphicsBackend, Line, Pixel, Point, Rectangle, StyleResolver};
 use std::mem::take;
 
 pub struct SvgRenderer {
@@ -16,7 +16,7 @@ impl Default for SvgRenderer {
 
 impl GraphicsBackend for SvgRenderer {
     type Output = SVG;
-    type Error = GraphicsError;
+    type Error = String;
 
     fn get_output(&mut self, _: &Graphics) -> Result<Self::Output, Self::Error> {
         let attributes = &[
