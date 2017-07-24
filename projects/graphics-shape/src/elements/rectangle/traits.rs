@@ -1,9 +1,8 @@
 use super::*;
-use crate::GraphicsShape;
 
 impl Default for Rectangle {
     fn default() -> Self {
-        Self { x: 0.0, y: 0.0, width: 1.0, height: 0.618, color: None }
+        Self { x: 0.0, y: 0.0, width: 1.0, height: 0.618 }
     }
 }
 
@@ -13,8 +12,8 @@ impl Default for Rectangle {
 //     }
 // }
 
-impl From<Rectangle> for GraphicsShape {
-    fn from(v: Rectangle) -> Self {
-        Self::Rectangle(v)
-    }
-}
+// impl From<Rectangle> for GraphicsShape {
+//     fn from(v: Rectangle) -> Self {
+//         Self::Rectangle(v)
+//     }
+// }
