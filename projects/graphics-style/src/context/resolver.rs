@@ -14,7 +14,7 @@ pub enum GraphicsStyle {
 }
 
 #[derive(Debug, Clone, Default)]
-pub(crate) struct StyleContext {
+pub struct StyleContext {
     pub point_size: Option<f32>,
     pub point_color: Option<RGBA>,
     pub line_color: Option<RGBA>,
@@ -52,26 +52,5 @@ impl StyleResolver {
             GraphicsStyle::LineColor(s) => self.local.line_color = Some(s.clone()),
             GraphicsStyle::LineWidth(s) => self.local.line_width = Some(s.clone()),
         }
-    }
-}
-
-impl From<PointSize> for GraphicsStyle {
-    fn from(s: PointSize) -> Self {
-        Self::PointSize(s.value)
-    }
-}
-impl From<PointColor> for GraphicsStyle {
-    fn from(s: PointColor) -> Self {
-        Self::PointColor(s.value)
-    }
-}
-impl From<LineColor> for GraphicsStyle {
-    fn from(s: LineColor) -> Self {
-        Self::LineColor(s.value)
-    }
-}
-impl From<LineWidth> for GraphicsStyle {
-    fn from(s: LineWidth) -> Self {
-        Self::LineWidth(s.value)
     }
 }

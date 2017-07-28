@@ -1,6 +1,5 @@
 use super::*;
 
-mod add_assign;
 mod size;
 
 /// A point style.
