@@ -1,37 +1,37 @@
 (* ::Package:: *)
 
 SetDirectory@NotebookDirectory[];
+styles = Import["../../../style-inherit.json", "RawJSON"];
+kMap[k_ , v_] := Append[v, "typeSuper" -> k];
+styles = KeyValueMap[kMap, styles];
+
 
 buildHead[] := "\
 use super::*;
 ";
-kMap[f_, a_ -> b_] := StringRiffle[f@Append[#, a]& /@ b, "\n"];
 
 
-getField[{field_, inner_, outer_ }] := TemplateApply["\
-impl AddAssign<`inner`> for `outer` {
-    fn add_assign(&mut self, rhs: `inner`) {
+getField[item_Association] := TemplateApply["\
+impl AddAssign<`typeOuter`> for `typeSuper` {
+    fn add_assign(&mut self, rhs: `typeOuter`) {
         self.`field` = Some(rhs.value);
     }
 }
 
-impl AddAssign<&`inner`> for `outer` {
-    fn add_assign(&mut self, rhs: `inner`) {
+impl AddAssign<&`typeOuter`> for `typeSuper` {
+    fn add_assign(&mut self, rhs: `typeOuter`) {
         self.`field` = Some(rhs.value.clone());
     }
 }
 ",
-    <|"field" -> field, "outer" -> outer, "inner" -> inner|>
+    item
 ];
-buildXXStyle[pattern_] := TemplateApply[
-    "`1`",
-    kMap[getField, pattern]
-];
+buildXXStyle[data_List] := getField /@ Flatten@data;
 
 
-getField1[{field_, inner_, outer_}] := TemplateApply["self.`1` = rhs.`1`;", field];
-getField2[{field_, inner_, outer_}] := TemplateApply["self.`1` = rhs.`1`.clone();", field];
-buildSelf[pattern_] := TemplateApply["\
+getField1[item_Association] := TemplateApply["self.`field` = rhs.`field`;", item];
+getField2[item_Association] := TemplateApply["self.`field` = rhs.`field`.clone();", item];
+buildSelf[data_Association] := TemplateApply["\
 impl AddAssign<Self> for `3` {
     fn add_assign(&mut self, rhs: Self) {`1`}
 }
@@ -40,9 +40,9 @@ impl AddAssign<&Self> for `3` {
     fn add_assign(&mut self, rhs: Self) {`2`}
 }",
     {
-        kMap[getField1, pattern] ,
-        kMap[getField2, pattern],
-        First@pattern
+        getField1 /@ data // StringJoin,
+        getField2 /@ data // StringJoin,
+        data["super"]
     }
 ];
 
@@ -62,33 +62,13 @@ impl AddAssign<&`inner`> for StyleContext {
 ",
     <|"field" -> field, "outer" -> outer, "inner" -> inner, "e" -> "`"|>
 ];
-buildXX2Context[pattern_] := TemplateApply[
+buildXXToContext[pattern_] := TemplateApply[
     "`1`",
     kMap[getField, pattern]
 ];
 
 
-getSetter[{field_, outer_, inner_}] := TemplateApply["
-impl AddAssign<PointSize> for StyleContext {
-    fn add_assign(&mut self, rhs: PointSize) {
-        self.point_size = Some(rhs.value);
-    }
-}
-",
-    <|"field" -> field, "outer" -> outer|>
-];
-buildSetter[pattern_] := TemplateApply["\
-impl AddAssign<PointSize> for StyleContext {
-    fn add_assign(&mut self, rhs: PointSize) {
-        self.point_size = Some(rhs.value);
-    }
-}
-",
-    kMap[getSetter, pattern]
-];
-
-
-getField[{field_, inner_, outer_}] := TemplateApply["\
+getField1[{field_, inner_, outer_}] := TemplateApply["\
 impl From<`inner`> for GraphicsStyle {
     fn from(s: `inner`) -> Self {
         Self::`inner`(s.value)
@@ -97,29 +77,32 @@ impl From<`inner`> for GraphicsStyle {
 ",
     <|"field" -> field, "inner" -> inner|>
 ];
+getField2[{field_, inner_, outer_}] := TemplateApply["\
+impl From<`outer`> for GraphicsStyle {
+    fn from(s: `outer`) -> Self {
+        Self::`outer`(s.value)
+    }
+}
+",
+    <|"field" -> field, "outer" -> outer|>
+];
 buildFromXX[pattern_] := TemplateApply[
-    "`1`",
-    kMap[getField, pattern]
+    "`1``2`",
+    {
+        kMap[getField1, pattern],
+        kMap[getField2, pattern]
+    }
 ];
 
 
-patterns = {
-    "PointStyle" -> {
-        {"point_size", "PointSize"},
-        {"point_color", "PointColor"}
-    },
-    "LineStyle" -> {
-        {"line_width", "LineWidth"},
-        {"line_color", "LineColor"}
-    }
-};
+
 codegen = StringRiffle[
     Flatten@{
         buildHead[],
-        buildXXStyle /@ patterns,
-        buildSelf /@ patterns,
-        buildXX2Context /@ patterns,
-        buildFromXX /@ patterns
+        buildXXStyle[styles],
+        buildSelf[styles],
+        buildXXToContext[styles],
+        buildFromXX[styles]
     },
     "\n\n"
 ];

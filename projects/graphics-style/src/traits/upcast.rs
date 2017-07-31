@@ -1,101 +1,70 @@
 use super::*;
 
-impl From<PointSize> for GraphicsStyle {
-    fn from(s: PointSize) -> Self {
-        Self::PointSize(s.value)
+
+impl AddAssign<PointSize> for  {
+    fn add_assign(&mut self, rhs: PointSize) {
+        self.point_size = Some(rhs.value);
     }
 }
 
-impl From<PointColor> for GraphicsStyle {
-    fn from(s: PointColor) -> Self {
-        Self::PointColor(s.value)
+impl AddAssign<&PointSize> for  {
+    fn add_assign(&mut self, rhs: PointSize) {
+        self.point_size = Some(rhs.value.clone());
     }
 }
 
-impl From<LineWidth> for GraphicsStyle {
-    fn from(s: LineWidth) -> Self {
-        Self::LineWidth(s.value)
+
+impl AddAssign<PointColor> for  {
+    fn add_assign(&mut self, rhs: PointColor) {
+        self.point_color = Some(rhs.value);
     }
 }
 
-impl From<LineColor> for GraphicsStyle {
-    fn from(s: LineColor) -> Self {
-        Self::LineColor(s.value)
+impl AddAssign<&PointColor> for  {
+    fn add_assign(&mut self, rhs: PointColor) {
+        self.point_color = Some(rhs.value.clone());
     }
 }
 
-impl AddAssign<Self> for PointStyle {
-    fn add_assign(&mut self, rhs: Self) {
-        self.point_size = rhs.point_size;
-        self.point_color = rhs.point_color;
+
+getField[typeSuper -> PointStyle]
+
+impl AddAssign<LineWidth> for  {
+    fn add_assign(&mut self, rhs: LineWidth) {
+        self.line_width = Some(rhs.value);
     }
 }
 
-impl AddAssign<&Self> for PointStyle {
-    fn add_assign(&mut self, rhs: Self) {
-        self.point_size = rhs.point_size.clone();
-        self.point_color = rhs.point_color.clone();
+impl AddAssign<&LineWidth> for  {
+    fn add_assign(&mut self, rhs: LineWidth) {
+        self.line_width = Some(rhs.value.clone());
     }
 }
 
-impl AddAssign<Self> for LineStyle {
-    fn add_assign(&mut self, rhs: Self) {
-        self.line_width = rhs.line_width;
-        self.line_color = rhs.line_color;
+
+impl AddAssign<LineColor> for  {
+    fn add_assign(&mut self, rhs: LineColor) {
+        self.line_color = Some(rhs.value);
     }
 }
 
-impl AddAssign<&Self> for LineStyle {
-    fn add_assign(&mut self, rhs: Self) {
-        self.line_width = rhs.line_width.clone();
-        self.line_color = rhs.line_color.clone();
+impl AddAssign<&LineColor> for  {
+    fn add_assign(&mut self, rhs: LineColor) {
+        self.line_color = Some(rhs.value.clone());
     }
 }
 
-impl From<PointSize> for GraphicsStyle {
-    fn from(s: PointSize) -> Self {
-        Self::PointSize(s.value)
-    }
+
+getField[typeSuper -> LineStyle]
+
+impl AddAssign<Self> for {<|field -> point_size, typeOuter -> PointSize, typeInner -> f64|>, <|field -> point_color, typeOuter -> PointColor, typeInner -> RGBA|>, typeSuper -> PointStyle} {
+    fn add_assign(&mut self, rhs: Self) {{{<|field -> point_size, typeOuter -> PointSize, typeInner -> f64|>, <|field -> point_color, typeOuter -> PointColor, typeInner -> RGBA|>, typeSuper -> PointStyle}, {<|field -> line_width, typeOuter -> LineWidth, typeInner -> f64|>, <|field -> line_color, typeOuter -> LineColor, typeInner -> RGBA|>, typeSuper -> LineStyle}, typeSuper -> getField1}}
 }
 
-impl From<PointColor> for GraphicsStyle {
-    fn from(s: PointColor) -> Self {
-        Self::PointColor(s.value)
-    }
+impl AddAssign<&Self> for {<|field -> point_size, typeOuter -> PointSize, typeInner -> f64|>, <|field -> point_color, typeOuter -> PointColor, typeInner -> RGBA|>, typeSuper -> PointStyle} {
+    fn add_assign(&mut self, rhs: Self) {{{<|field -> point_size, typeOuter -> PointSize, typeInner -> f64|>, <|field -> point_color, typeOuter -> PointColor, typeInner -> RGBA|>, typeSuper -> PointStyle}, {<|field -> line_width, typeOuter -> LineWidth, typeInner -> f64|>, <|field -> line_color, typeOuter -> LineColor, typeInner -> RGBA|>, typeSuper -> LineStyle}, typeSuper -> getField2}}
 }
 
-impl From<LineWidth> for GraphicsStyle {
-    fn from(s: LineWidth) -> Self {
-        Self::LineWidth(s.value)
-    }
-}
+{<|field -> point_size, typeOuter -> PointSize, typeInner -> f64|>, <|field -> point_color, typeOuter -> PointColor, typeInner -> RGBA|>, typeSuper -> PointStyle}
 
-impl From<LineColor> for GraphicsStyle {
-    fn from(s: LineColor) -> Self {
-        Self::LineColor(s.value)
-    }
-}
-
-impl From<PointSize> for GraphicsStyle {
-    fn from(s: PointSize) -> Self {
-        Self::PointSize(s.value)
-    }
-}
-
-impl From<PointColor> for GraphicsStyle {
-    fn from(s: PointColor) -> Self {
-        Self::PointColor(s.value)
-    }
-}
-
-impl From<LineWidth> for GraphicsStyle {
-    fn from(s: LineWidth) -> Self {
-        Self::LineWidth(s.value)
-    }
-}
-
-impl From<LineColor> for GraphicsStyle {
-    fn from(s: LineColor) -> Self {
-        Self::LineColor(s.value)
-    }
-}
+{{<|field -> point_size, typeOuter -> PointSize, typeInner -> f64|>, <|field -> point_color, typeOuter -> PointColor, typeInner -> RGBA|>, typeSuper -> PointStyle}, {<|field -> line_width, typeOuter -> LineWidth, typeInner -> f64|>, <|field -> line_color, typeOuter -> LineColor, typeInner -> RGBA|>, typeSuper -> LineStyle}, typeSuper -> getField1}{{<|field -> point_size, typeOuter -> PointSize, typeInner -> f64|>, <|field -> point_color, typeOuter -> PointColor, typeInner -> RGBA|>, typeSuper -> PointStyle}, {<|field -> line_width, typeOuter -> LineWidth, typeInner -> f64|>, <|field -> line_color, typeOuter -> LineColor, typeInner -> RGBA|>, typeSuper -> LineStyle}, typeSuper -> getField2}

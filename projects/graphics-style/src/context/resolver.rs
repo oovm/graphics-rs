@@ -11,6 +11,8 @@ pub enum GraphicsStyle {
     LineColor(RGBA),
     /// Set the missing style of LineWidth
     LineWidth(f32),
+    /// Multiple instruction at once
+    Instructions(Vec<Self>),
 }
 
 #[derive(Debug, Clone, Default)]

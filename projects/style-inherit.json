@@ -1,0 +1,26 @@
+{
+    "PointStyle": [
+        {
+            "field": "point_size",
+            "typeOuter": "PointSize",
+            "typeInner": "f64"
+        },
+        {
+            "field": "point_color",
+            "typeOuter": "PointColor",
+            "typeInner": "RGBA"
+        }
+    ],
+    "LineStyle": [
+        {
+            "field": "line_width",
+            "typeOuter": "LineWidth",
+            "typeInner": "f64"
+        },
+        {
+            "field": "line_color",
+            "typeOuter": "LineColor",
+            "typeInner": "RGBA"
+        }
+    ]
+}
