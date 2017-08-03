@@ -15,14 +15,6 @@ pub enum GraphicsStyle {
     Instructions(Vec<Self>),
 }
 
-#[derive(Debug, Clone, Default)]
-pub struct StyleContext {
-    pub point_size: Option<f32>,
-    pub point_color: Option<RGBA>,
-    pub line_color: Option<RGBA>,
-    pub line_width: Option<f32>,
-}
-
 impl StyleResolver {
     /// Set the value of [`PointSize`]
     pub fn point_size(&self) -> f32 {

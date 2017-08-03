@@ -1,14 +1,20 @@
 (* ::Package:: *)
 
+(* ::Section:: *)
+(*Prepare Data*)
+
+
 SetDirectory@NotebookDirectory[];
 styles = Import["../../../style-inherit.json", "RawJSON"];
 kMap[k_ , v_] := <|"super" -> k, "items" -> (Append[#, "typeSuper" -> k]& /@ v) |>;
 styles = KeyValueMap[kMap, styles];
 
 
-buildHead[] := "\
-use super::*;
-";
+(* ::Section:: *)
+(*Upcast*)
+
+
+buildHead = "use super::*;";
 
 
 getAddXX[item_Association] := TemplateApply["\
@@ -25,7 +31,7 @@ impl AddAssign<&`typeOuter`> for `typeSuper` {
 }
 
 impl AddAssign<`typeOuter`> for StyleContext {
-    fn add_assign(&mut self, rhs: `inner`) {
+    fn add_assign(&mut self, rhs: `typeOuter`) {
         self.`field` = Some(rhs.value);
     }
 }
@@ -63,6 +69,7 @@ impl AddAssign<&Self> for `3` {
     }
 ];
 
+
 getFromXX[item_Association] := TemplateApply["\
 impl From<`typeOuter`> for GraphicsStyle {
     fn from(s: `typeOuter`) -> Self {
@@ -86,14 +93,62 @@ buildFromXX[data_Association] := TemplateApply[
 ];
 
 
+upcast = Flatten@{
+    buildHead,
+    buildAddXX /@ styles,
+    buildAddSelf /@ styles,
+    buildFromXX /@ styles
+};
+Export["upcast.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
-codegen = StringRiffle[
-    Flatten@{
-        buildHead[],
-        buildAddXX /@ styles,
-        buildAddSelf /@ styles,
-        buildFromXX /@ styles
-    },
-    "\n\n"
+
+(* ::Section:: *)
+(*DrawStyle*)
+
+
+buildHead = "use super::*;";
+
+
+getDrawXX[item_Association] := TemplateApply["\
+impl GraphicsStyle for PointSize {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.point_size = Some(self.value.clone());
+    }
+}
+
+",
+    item
 ];
-Export["upcast.rs", codegen, "Text"]
+buildDrawXX[data_Association] := TemplateApply[
+    "`1`",
+    {
+        getDrawXX /@ data["items"] // StringJoin
+    }
+];
+
+
+getDrawXXStyle[item_Association] := TemplateApply["\
+state.`field` = Some(self.`field`.unwrap_or(`typeOuter`::default().value).clone());\
+",
+    item
+];
+buildDrawXXStyle[data_Association] := TemplateApply["\
+impl GraphicsStyle for `2` {
+    fn draw_style(&self, state: &mut StyleContext) {
+`1`
+    }
+}
+",
+    {
+        getDrawXXStyle /@ data["items"] // StringJoin,
+        data["items"][[1]]["typeOuter"]
+    }
+];
+
+
+drawStyle = Flatten@{
+    buildHead,
+    buildDrawXX /@ styles,
+    buildDrawXXStyle /@ styles
+};
+Export["draw_style.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
