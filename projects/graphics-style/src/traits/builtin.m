@@ -11,7 +11,7 @@ styles = KeyValueMap[kMap, styles];
 
 
 (* ::Section:: *)
-(*Upcast*)
+(*AddAssign*)
 
 
 buildHead = "use super::*;";
@@ -25,7 +25,7 @@ impl AddAssign<`typeOuter`> for `typeSuper` {
 }
 
 impl AddAssign<&`typeOuter`> for `typeSuper` {
-    fn add_assign(&mut self, rhs: `typeOuter`) {
+    fn add_assign(&mut self, rhs: &`typeOuter`) {
         self.`field` = Some(rhs.value.clone());
     }
 }
@@ -37,7 +37,7 @@ impl AddAssign<`typeOuter`> for StyleContext {
 }
 
 impl AddAssign<&`typeOuter`> for StyleContext {
-    fn add_assign(&mut self, rhs: `typeOuter`) {
+    fn add_assign(&mut self, rhs: &`typeOuter`) {
         self.`field` = Some(rhs.value);
     }
 }
@@ -60,7 +60,7 @@ impl AddAssign<Self> for `3` {
 }
 
 impl AddAssign<&Self> for `3` {
-    fn add_assign(&mut self, rhs: Self) {`2`}
+    fn add_assign(&mut self, rhs: &Self) {`2`}
 }",
     {
         getAddSelf /@ data["items"] // StringJoin,
@@ -68,6 +68,21 @@ impl AddAssign<&Self> for `3` {
         data["super"]
     }
 ];
+
+
+upcast = Flatten@{
+    buildHead,
+    buildAddXX /@ styles,
+    buildAddSelf /@ styles
+};
+Export["add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
+
+
+(* ::Section:: *)
+(*AddAssign*)
+
+
+buildHead = "use super::*;";
 
 
 getFromXX[item_Association] := TemplateApply["\
@@ -95,11 +110,9 @@ buildFromXX[data_Association] := TemplateApply[
 
 upcast = Flatten@{
     buildHead,
-    buildAddXX /@ styles,
-    buildAddSelf /@ styles,
     buildFromXX /@ styles
 };
-Export["upcast.rs", StringRiffle[upcast , "\n\n"], "Text"];
+Export["from.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
 
 (* ::Section:: *)
@@ -110,9 +123,9 @@ buildHead = "use super::*;";
 
 
 getDrawXX[item_Association] := TemplateApply["\
-impl GraphicsStyle for PointSize {
+impl GraphicsStyle for `typeOuter` {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.point_size = Some(self.value.clone());
+        state.`field` = Some(self.value.clone());
     }
 }
 
@@ -141,7 +154,7 @@ impl GraphicsStyle for `2` {
 ",
     {
         getDrawXXStyle /@ data["items"] // StringJoin,
-        data["items"][[1]]["typeOuter"]
+        data["items"][[1]]["typeSuper"]
     }
 ];
 
