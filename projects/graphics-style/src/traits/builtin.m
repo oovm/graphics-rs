@@ -79,43 +79,6 @@ Export["add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
 
 (* ::Section:: *)
-(*AddAssign*)
-
-
-buildHead = "use super::*;";
-
-
-getFromXX[item_Association] := TemplateApply["\
-impl From<`typeOuter`> for GraphicsStyle {
-    fn from(s: `typeOuter`) -> Self {
-        Self::`typeOuter`(s.value)
-    }
-}
-
-impl From<`typeSuper`> for GraphicsStyle {
-    fn from(s: `typeSuper`) -> Self {
-        Self::`typeSuper`(s.value)
-    }
-}
-",
-    item
-];
-buildFromXX[data_Association] := TemplateApply[
-    "`1`",
-    {
-        getFromXX /@ data["items"] // StringJoin
-    }
-];
-
-
-upcast = Flatten@{
-    buildHead,
-    buildFromXX /@ styles
-};
-Export["from.rs", StringRiffle[upcast , "\n\n"], "Text"];
-
-
-(* ::Section:: *)
 (*DrawStyle*)
 
 

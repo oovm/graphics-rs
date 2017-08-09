@@ -1,12 +1,9 @@
-#![deny(missing_docs)]
+// #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
 #![doc = include_str!("../Readme.md")]
 
-pub use self::{
-    context::{GraphicsStyle, StyleResolver},
-    styles::*,
-};
+pub use self::{resolver::StyleResolver, styles::*, traits::GraphicsStyle};
 
-mod context;
+mod resolver;
 mod styles;
 mod traits;

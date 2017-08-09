@@ -1,7 +1,6 @@
 mod add_assign;
 mod draw_style;
-mod from;
-use crate::{context::StyleContext, *};
+use crate::{resolver::StyleContext, *};
 use std::ops::AddAssign;
 
 pub trait GraphicsStyle {

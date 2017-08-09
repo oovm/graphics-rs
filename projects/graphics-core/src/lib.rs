@@ -14,7 +14,7 @@ pub use traits::GraphicsBackend;
 #[derive(Debug)]
 pub enum Drawable {
     Shape(GraphicsShape),
-    Style(GraphicsStyle),
+    Style(dyn GraphicsStyle),
 }
 
 impl Clone for Drawable {
