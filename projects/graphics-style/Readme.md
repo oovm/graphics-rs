@@ -1,8 +1,22 @@
-# plotters-svg - The SVG backend for Plotters
+Graphics Style
+==============
 
-This is a part of plotters project. For more details, please check the following links:
+The definition of all graphics style properties.
 
-- For high-level intro of Plotters, see: [Plotters on crates.io](https://crates.io/crates/plotters)
-- Check the main repo at [Plotters repo](https://github.com/38/plotters.git)
-- For detailed documentation about this crate, check [plotters-backend on docs.rs](https://docs.rs/plotters-backend/)
-- You can also visit Plotters [Homepage](https://plotters-rs.github.io)
+## Theme Style
+
+If you want to make a theme, just define a new [`StyleContext`].
+
+```rust
+#[test]
+fn test_theme() {
+    let mut resolver = StyleResolver::default();
+    let my_theme = StyleContext { point_size: Some(2.0), ..Default::default() };
+    resolver.set_theme_style(my_theme);
+}
+```
+
+## Custom Style
+
+If you want to extend style directives, you just need to implement [`GraphicsStyle`].
+

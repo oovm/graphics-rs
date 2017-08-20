@@ -1,5 +1,5 @@
 use crate::{Drawable, GraphicsBackend};
-use graphics_style::StyleResolver;
+use graphics_style::{StyleContext, StyleResolver};
 use std::fmt::Debug;
 
 #[derive(Debug, Default)]
@@ -25,6 +25,13 @@ impl Graphics {
 }
 
 impl Graphics {
+    pub fn new(theme: Option<StyleContext>, config: Option<GraphicsSetting>) -> Self {
+        Self {
+            graphic: Vec::new(),
+            setting: config.unwrap_or_default(),
+            style: StyleResolver::with_theme_style(theme.unwrap_or_default()),
+        }
+    }
     pub fn render_with<T>(&self, backend: &mut T) -> Result<<T as GraphicsBackend>::Output, <T as GraphicsBackend>::Error>
     where
         T: GraphicsBackend,
@@ -36,6 +43,9 @@ impl Graphics {
         }
         backend.on_finish(self, &mut state)?;
         backend.get_output(self)
+    }
+    pub fn clear(&mut self) {
+        self.graphic.clear();
     }
 }
 

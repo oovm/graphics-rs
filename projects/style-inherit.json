@@ -3,7 +3,7 @@
         {
             "field": "point_size",
             "typeOuter": "PointSize",
-            "typeInner": "f64"
+            "typeInner": "f32"
         },
         {
             "field": "point_color",
@@ -15,7 +15,7 @@
         {
             "field": "line_width",
             "typeOuter": "LineWidth",
-            "typeInner": "f64"
+            "typeInner": "f32"
         },
         {
             "field": "line_color",

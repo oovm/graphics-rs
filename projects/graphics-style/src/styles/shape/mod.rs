@@ -1,5 +1,7 @@
 use std::ops::{Deref, DerefMut};
 
+///
+#[derive(Clone, Debug, PartialEq)]
 pub struct StyledShape<Shape, Style> {
     shape: Shape,
     style: Style,
