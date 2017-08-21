@@ -7,14 +7,12 @@
             {
                 "field": "x",
                 "type": "f32",
-                "docs": "The x-coordinate of the point",
-                "getter": "Get the x-coordinate of the point"
+                "docs": "the x-coordinate of the point"
             },
             {
                 "field": "y",
                 "type": "f32",
-                "docs": "the y-coordinate of the point",
-                "getter": "Get the y-coordinate of the point"
+                "docs": "the y-coordinate of the point"
             }
         ],
         "style": [
@@ -35,31 +33,58 @@
     "circle": {
         "name": "Circle",
         "docs": "Represent a 2D point on the plane",
-        "derive_default": true,
+        "derive_default": false,
         "property": [
             {
                 "field": "x",
                 "type": "f32",
-                "docs": "The x-coordinate of the point",
-                "getter": "Get the x-coordinate of the point"
+                "docs": "the x-coordinate of the circle center"
             },
             {
                 "field": "y",
                 "type": "f32",
-                "docs": "the y-coordinate of the point",
-                "getter": "Get the y-coordinate of the point"
+                "docs": "the y-coordinate of the circle center"
+            },
+            {
+                "field": "radius",
+                "type": "f32",
+                "docs": "the radius of the circle"
             }
         ],
         "style": [
             {
-                "name": "PointSize",
-                "meta": "point_size",
-                "field": "size",
-                "type": "f32"
+                "name": "CircleColor",
+                "meta": "circle_color",
+                "field": "color",
+                "type": "RGBA"
+            }
+        ]
+    },
+    "disk": {
+        "name": "Disk",
+        "docs": "Represent a 2D point on the plane",
+        "derive_default": false,
+        "property": [
+            {
+                "field": "x",
+                "type": "f32",
+                "docs": "the x-coordinate of the circle center"
             },
             {
-                "name": "PointColor",
-                "meta": "point_color",
+                "field": "y",
+                "type": "f32",
+                "docs": "the y-coordinate of the circle center"
+            },
+            {
+                "field": "radius",
+                "type": "f32",
+                "docs": "the radius of the circle"
+            }
+        ],
+        "style": [
+            {
+                "name": "CircleColor",
+                "meta": "circle_color",
                 "field": "color",
                 "type": "RGBA"
             }

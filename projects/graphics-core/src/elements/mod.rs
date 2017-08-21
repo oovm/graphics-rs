@@ -1,4 +1,5 @@
 mod circle;
+mod disk;
 mod line;
 mod pixel;
 mod point;
@@ -23,8 +24,17 @@ pub struct Point {
 }
 
 /// A 2D point.
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Circle {
+    x: f32,
+    y: f32,
+    radius: f32,
+    color: Option<RGBA>,
+}
+
+/// A 2D point.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Disk {
     x: f32,
     y: f32,
     radius: f32,

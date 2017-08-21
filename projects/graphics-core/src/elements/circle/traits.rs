@@ -7,6 +7,12 @@ impl From<(f32, f32)> for Point {
     }
 }
 
+impl Default for Circle {
+    fn default() -> Self {
+        Self { x: 0.0, y: 0.0, radius: 1.0, color: None }
+    }
+}
+
 impl From<Point> for Circle {
     fn from(v: Point) -> Self {
         Self { x: v.x, y: v.y, radius: v.size.unwrap_or(1.0), color: v.color }
