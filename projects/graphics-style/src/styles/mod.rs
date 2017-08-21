@@ -12,5 +12,5 @@ mod shape;
 pub use color::RGBA;
 pub use definitions::*;
 pub use lines::{LineColor, LineStyle, LineWidth};
-pub use points::{PointColor, PointSize, PointStyle};
+pub use points::{CircleColor, CircleSize, CircleStyle};
 pub use shape::StyledShape;

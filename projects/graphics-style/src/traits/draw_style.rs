@@ -1,12 +1,12 @@
 use super::*;
 
-impl GraphicsStyle for PointSize {
+impl GraphicsStyle for CircleSize {
     fn draw_style(&self, state: &mut StyleContext) {
         state.point_size = Some(self.value.clone());
     }
 }
 
-impl GraphicsStyle for PointColor {
+impl GraphicsStyle for CircleColor {
     fn draw_style(&self, state: &mut StyleContext) {
         state.point_color = Some(self.value.clone());
     }
@@ -24,10 +24,10 @@ impl GraphicsStyle for LineColor {
     }
 }
 
-impl GraphicsStyle for PointStyle {
+impl GraphicsStyle for CircleStyle {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.point_size = Some(self.point_size.unwrap_or(PointSize::default().value).clone());
-        state.point_color = Some(self.point_color.unwrap_or(PointColor::default().value).clone());
+        state.point_size = Some(self.point_size.unwrap_or(CircleSize::default().value).clone());
+        state.point_color = Some(self.point_color.unwrap_or(CircleColor::default().value).clone());
     }
 }
 

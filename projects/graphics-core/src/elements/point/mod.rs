@@ -1,9 +1,5 @@
 use super::*;
 
-mod methods;
-mod style;
-mod traits;
-
 impl Point {
     /// Construct new point
     pub fn new(x: f32, y: f32) -> Self {
@@ -12,12 +8,6 @@ impl Point {
 }
 
 impl Point {
-    pub fn get_x(&self) -> f32 {
-        self.x
-    }
-    pub fn get_y(&self) -> f32 {
-        self.y
-    }
     /// Distance between two points.
     pub fn distance_to(&self, other: &Self) -> f32 {
         let dx = self.x - other.x;

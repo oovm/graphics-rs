@@ -2,25 +2,27 @@ use super::*;
 
 mod size;
 
-/// A point style.
+/// Represent the available style of a point.
 #[derive(Debug, Clone, Copy, PartialEq)]
-pub struct PointStyle {
-    /// Re size of the point, see more in [`PointSize`].
+pub struct CircleStyle {
+    /// Represent the size of the point, see more in [`PointSize`].
     pub point_size: Option<f32>,
-    /// The color of the point. [`PointColor`]
+    /// Represent the color of the point, see more in [`PointColor`].
     pub point_color: Option<RGBA>,
 }
 
-/// A point style.
+/// Represent the size of a point.
 #[derive(Debug, Clone, Copy, PartialEq)]
-pub struct PointSize {
-    /// The size of the point.
+pub struct CircleSize {
+    /// Represent 1px on canvas.
+    ///
+    /// Actual occupancy depends on shape.
     pub value: f32,
 }
 
-/// Line width
+/// Represent the color of a point.
 #[derive(Debug, Clone, Copy, PartialEq, Default)]
-pub struct PointColor {
+pub struct CircleColor {
     /// The line width
     pub value: RGBA,
 }

@@ -1,5 +1,5 @@
 use crate::*;
-use graphics_style::PointSize;
+use graphics_style::CircleSize;
 
 macro_rules! from_shape {
     ($($t:ty),*) => {
@@ -27,4 +27,4 @@ macro_rules! from_style {
 
 from_shape![Rectangle, Point];
 
-from_style![PointSize];
+from_style![CircleSize];

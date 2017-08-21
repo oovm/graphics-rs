@@ -1,4 +1,4 @@
-// mod circle;
+mod circle;
 mod line;
 mod pixel;
 mod point;
@@ -19,6 +19,15 @@ pub struct Point {
     x: f32,
     y: f32,
     size: Option<f32>,
+    color: Option<RGBA>,
+}
+
+/// A 2D point.
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct Circle {
+    x: f32,
+    y: f32,
+    radius: f32,
     color: Option<RGBA>,
 }
 
@@ -53,9 +62,8 @@ pub struct Rectangle {
 #[derive(Debug)]
 pub enum GraphicsShape {
     Pixel(Pixel),
-    Point(Point),
     Line(Line),
-    // Circle(Circle),
+    Circle(Circle),
     Rectangle(Rectangle),
     // Polygon(Polygon),
     // Text(Text),

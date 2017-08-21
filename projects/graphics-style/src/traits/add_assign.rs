@@ -1,48 +1,48 @@
 use super::*;
 
-impl AddAssign<PointSize> for PointStyle {
-    fn add_assign(&mut self, rhs: PointSize) {
+impl AddAssign<CircleSize> for CircleStyle {
+    fn add_assign(&mut self, rhs: CircleSize) {
         self.point_size = Some(rhs.value);
     }
 }
 
-impl AddAssign<&PointSize> for PointStyle {
-    fn add_assign(&mut self, rhs: &PointSize) {
+impl AddAssign<&CircleSize> for CircleStyle {
+    fn add_assign(&mut self, rhs: &CircleSize) {
         self.point_size = Some(rhs.value.clone());
     }
 }
 
-impl AddAssign<PointSize> for StyleContext {
-    fn add_assign(&mut self, rhs: PointSize) {
+impl AddAssign<CircleSize> for StyleContext {
+    fn add_assign(&mut self, rhs: CircleSize) {
         self.point_size = Some(rhs.value);
     }
 }
 
-impl AddAssign<&PointSize> for StyleContext {
-    fn add_assign(&mut self, rhs: &PointSize) {
+impl AddAssign<&CircleSize> for StyleContext {
+    fn add_assign(&mut self, rhs: &CircleSize) {
         self.point_size = Some(rhs.value);
     }
 }
-impl AddAssign<PointColor> for PointStyle {
-    fn add_assign(&mut self, rhs: PointColor) {
+impl AddAssign<CircleColor> for CircleStyle {
+    fn add_assign(&mut self, rhs: CircleColor) {
         self.point_color = Some(rhs.value);
     }
 }
 
-impl AddAssign<&PointColor> for PointStyle {
-    fn add_assign(&mut self, rhs: &PointColor) {
+impl AddAssign<&CircleColor> for CircleStyle {
+    fn add_assign(&mut self, rhs: &CircleColor) {
         self.point_color = Some(rhs.value.clone());
     }
 }
 
-impl AddAssign<PointColor> for StyleContext {
-    fn add_assign(&mut self, rhs: PointColor) {
+impl AddAssign<CircleColor> for StyleContext {
+    fn add_assign(&mut self, rhs: CircleColor) {
         self.point_color = Some(rhs.value);
     }
 }
 
-impl AddAssign<&PointColor> for StyleContext {
-    fn add_assign(&mut self, rhs: &PointColor) {
+impl AddAssign<&CircleColor> for StyleContext {
+    fn add_assign(&mut self, rhs: &CircleColor) {
         self.point_color = Some(rhs.value);
     }
 }
@@ -94,14 +94,14 @@ impl AddAssign<&LineColor> for StyleContext {
     }
 }
 
-impl AddAssign<Self> for PointStyle {
+impl AddAssign<Self> for CircleStyle {
     fn add_assign(&mut self, rhs: Self) {
         self.point_size = rhs.point_size;
         self.point_color = rhs.point_color;
     }
 }
 
-impl AddAssign<&Self> for PointStyle {
+impl AddAssign<&Self> for CircleStyle {
     fn add_assign(&mut self, rhs: &Self) {
         self.point_size = rhs.point_size.clone();
         self.point_color = rhs.point_color.clone();
