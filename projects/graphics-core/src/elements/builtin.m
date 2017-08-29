@@ -65,15 +65,9 @@ impl `3` {
 
 circleStyle = Flatten@{
     buildHead,
-    buildSetterGetter[styles["circle"]]
-};
-Export["circle/style.rs", StringRiffle[circleStyle , "\n\n"], "Text"];
-circleStyle = Flatten@{
-    buildHead,
     buildSetterGetter[styles["point"]],
+    buildSetterGetter[styles["circle"]],
     buildSetterGetter[styles["disk"]]
+
 };
 Export["disk/style.rs", StringRiffle[circleStyle , "\n\n"], "Text"];
-
-
-

@@ -89,5 +89,86 @@
                 "type": "RGBA"
             }
         ]
+    },
+    "line": {
+        "name": "Disk",
+        "docs": "Represent a 2D point on the plane",
+        "derive_default": false,
+        "property": [
+            {
+                "field": "x1",
+                "type": "f32",
+                "docs": "the x-coordinate of the circle center"
+            },
+            {
+                "field": "y1",
+                "type": "f32",
+                "docs": "the y-coordinate of the circle center"
+            },
+            {
+                "field": "x2",
+                "type": "f32",
+                "docs": "the radius of the circle"
+            },
+            {
+                "field": "y2",
+                "type": "f32",
+                "docs": "the radius of the circle"
+            }
+        ],
+        "style": [
+            {
+                "name": "CircleColor",
+                "meta": "circle_color",
+                "field": "width",
+                "type": "RGBA"
+            },
+            {
+                "name": "CircleColor",
+                "meta": "circle_color",
+                "field": "color",
+                "type": "RGBA"
+            }
+        ]
+    },
+    "triangle": {
+        "name": "Triangle",
+        "docs": "Represent a 2D point on the plane",
+        "derive_default": false,
+        "property": [
+            {
+                "field": "vertex",
+                "type": "[(f32, f32); 3]",
+                "docs": "the 3 vertex of a triangle"
+            }
+        ],
+        "style": [
+            {
+                "name": "Triangle",
+                "meta": "triangle_color",
+                "field": "color",
+                "type": "RGBA"
+            }
+        ]
+    },
+    "parallelogram": {
+        "name": "Parallelogram",
+        "docs": "Represent a 2D point on the plane",
+        "derive_default": false,
+        "property": [
+            {
+                "field": "vertex",
+                "type": "[(f32, f32); 4]",
+                "docs": "the 4 vertex of a parallelogram"
+            }
+        ],
+        "style": [
+            {
+                "name": "Triangle",
+                "meta": "triangle_color",
+                "field": "color",
+                "type": "RGBA"
+            }
+        ]
     }
 }

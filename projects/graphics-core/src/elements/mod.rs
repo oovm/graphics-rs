@@ -1,8 +1,7 @@
-mod circle;
 mod disk;
 mod line;
 mod pixel;
-mod point;
+mod polygon;
 mod rectangle;
 mod square;
 use graphics_style::{StyleResolver, RGBA};
@@ -44,12 +43,27 @@ pub struct Disk {
 /// A circle.
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct Line {
-    start: Point,
-    end: Point,
+    x1: f32,
+    y1: f32,
+    x2: f32,
+    y2: f32,
     width: Option<f32>,
     color: Option<RGBA>,
 }
 
+/// A circle.
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct Triangle {
+    vertex: [(f32, f32); 3],
+    color: Option<RGBA>,
+}
+
+/// A circle.
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct Parallelogram {
+    vertex: [(f32, f32); 4],
+    color: Option<RGBA>,
+}
 /// A rectangle.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Square {
