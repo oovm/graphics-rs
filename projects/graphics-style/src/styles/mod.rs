@@ -3,14 +3,18 @@ use std::{
     cmp::Ordering,
     fmt::{Display, Formatter, LowerHex, UpperHex, Write},
 };
+mod circle;
 mod color;
-mod definitions;
+mod disk;
 mod lines;
 mod points;
 mod shape;
 
-pub use color::RGBA;
-pub use definitions::*;
-pub use lines::{LineColor, LineStyle, LineWidth};
-pub use points::{CircleColor, CircleSize, CircleStyle};
-pub use shape::StyledShape;
+pub use self::{
+    circle::{CircleColor, CircleStyle, CircleWidth},
+    color::RGBA,
+    disk::{DiskColor, DiskSize, DiskStyle},
+    lines::{LineColor, LineStyle, LineWidth},
+    points::{PointColor, PointSize, PointStyle},
+    shape::StyledShape,
+};

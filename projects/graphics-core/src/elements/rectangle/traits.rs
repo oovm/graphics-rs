@@ -1,20 +1,32 @@
 use super::*;
 use crate::GraphicsShape;
 
-impl Default for Rectangle {
+impl Default for Square {
     fn default() -> Self {
-        Self { x: 0.0, y: 0.0, width: 1.0, height: 0.618, color: None }
+        Self { x: 0.0, y: 0.0, side: 1.0, color: None }
     }
 }
 
-// impl From<(f32, f32)> for Point {
-//     fn from(point: (f32, f32)) -> Self {
-//         Self { x: point.0 as f32, y: point.1 as f32, ..Default::default() }
-//     }
-// }
+impl Default for Rectangle {
+    fn default() -> Self {
+        Self { x: 0.0, y: 0.0, width: 1.618, height: 1.0, color: None }
+    }
+}
+
+impl From<Square> for Rectangle {
+    fn from(v: Square) -> Self {
+        Self { x: v.x, y: v.y, width: v.side, height: v.side, color: v.color }
+    }
+}
 
 impl From<Rectangle> for GraphicsShape {
     fn from(v: Rectangle) -> Self {
         Self::Rectangle(v)
+    }
+}
+
+impl From<Square> for GraphicsShape {
+    fn from(v: Square) -> Self {
+        Rectangle::from(v).into()
     }
 }

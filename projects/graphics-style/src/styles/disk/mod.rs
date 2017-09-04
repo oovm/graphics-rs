@@ -1,19 +1,17 @@
 use super::*;
 
-mod size;
-
 /// Represent the available style of a point.
 #[derive(Debug, Clone, Copy, PartialEq)]
-pub struct PointStyle {
+pub struct DiskStyle {
     /// Represent the size of the point, see more in [`PointSize`].
-    pub point_size: Option<f32>,
+    pub disk_size: Option<f32>,
     /// Represent the color of the point, see more in [`PointColor`].
-    pub point_color: Option<RGBA>,
+    pub disk_color: Option<RGBA>,
 }
 
 /// Represent the size of a point.
 #[derive(Debug, Clone, Copy, PartialEq)]
-pub struct PointSize {
+pub struct DiskSize {
     /// Represent 1px on canvas.
     ///
     /// Actual occupancy depends on shape.
@@ -22,7 +20,7 @@ pub struct PointSize {
 
 /// Represent the color of a point.
 #[derive(Debug, Clone, Copy, PartialEq, Default)]
-pub struct PointColor {
+pub struct DiskColor {
     /// The line width
     pub value: RGBA,
 }

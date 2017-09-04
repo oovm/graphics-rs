@@ -5,7 +5,7 @@
 
 
 SetDirectory@NotebookDirectory[];
-styles = Import["../../../shape-inherit.json", "RawJSON"];
+shapes = Import["../../../shape-inherit.json", "RawJSON"];
 
 
 (* ::Section:: *)
@@ -17,8 +17,8 @@ buildHead = "use super::*;";
 
 propertyGetter[item_Association] := TemplateApply["\
     /// Get `docs`
-    pub fn get_`field`(&self) -> `type` {
-        self.`field`
+    pub fn get_`field`(&self) -> &`type` {
+        &self.`field`
     }
 
 ",
@@ -63,11 +63,23 @@ impl `3` {
 ];
 
 
-circleStyle = Flatten@{
+styles = Flatten@{
     buildHead,
-    buildSetterGetter[styles["point"]],
-    buildSetterGetter[styles["circle"]],
-    buildSetterGetter[styles["disk"]]
-
+    buildSetterGetter[shapes["point"]],
+    buildSetterGetter[shapes["circle"]],
+    buildSetterGetter[shapes["disk"]]
 };
-Export["disk/style.rs", StringRiffle[circleStyle , "\n\n"], "Text"];
+Export["disk/style.rs", StringRiffle[styles , "\n\n"], "Text"];
+styles = Flatten@{
+    buildHead,
+    buildSetterGetter[shapes["square"]],
+    buildSetterGetter[shapes["rectangle"]]
+};
+Export["rectangle/style.rs", StringRiffle[styles , "\n\n"], "Text"];
+styles = Flatten@{
+    buildHead,
+    buildSetterGetter[shapes["triangle"]],
+    buildSetterGetter[shapes["parallelogram"]],
+    buildSetterGetter[shapes["polygon"]]
+};
+Export["polygon/style.rs", StringRiffle[styles , "\n\n"], "Text"];

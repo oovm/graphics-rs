@@ -1,6 +1,3 @@
-mod style;
-mod traits;
-
 use super::*;
 
 impl Circle {

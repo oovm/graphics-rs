@@ -1,7 +1,7 @@
 mod convert;
 #[cfg(feature = "wolfram_wxf")]
 mod wolfram;
-use crate::{Drawable, Graphics, GraphicsShape, Line, Pixel, Point, Rectangle};
+use crate::{Drawable, Graphics, GraphicsShape, Line, Pixel, Point, Polygon, Rectangle};
 use graphics_style::StyleResolver;
 
 pub trait Distance {
@@ -29,15 +29,19 @@ pub trait GraphicsBackend {
             Drawable::Style(inner) => Ok(state.set_local_style(inner.clone())),
             Drawable::Shape(inner) if inner.is_empty(state) => Ok(()),
             Drawable::Shape(inner) => match inner {
-                GraphicsShape::Point(s) => self.draw_point(context, state, s),
-                GraphicsShape::Line(s) => self.draw_line(context, state, s),
                 GraphicsShape::Pixel(s) => self.draw_pixel(context, state, s),
+                GraphicsShape::Line(s) => self.draw_line(context, state, s),
+                GraphicsShape::Circle(s) => self.draw_rectangle(context, state, s),
                 GraphicsShape::Rectangle(s) => self.draw_rectangle(context, state, s),
+                GraphicsShape::Polygon(s) => self.draw_rectangle(context, state, s),
             },
         }
     }
     fn draw_pixel(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error>;
-    fn draw_point(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Point) -> Result<(), Self::Error>;
     fn draw_line(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error>;
-    fn draw_rectangle(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Rectangle) -> Result<(), Self::Error>;
+    fn draw_circle(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error>;
+    fn draw_rectangle(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Rectangle) -> Result<(), Self::Error> {
+        self.draw_polygon(context, state, &Polygon::from(shape))
+    }
+    fn draw_polygon(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Polygon) -> Result<(), Self::Error>;
 }

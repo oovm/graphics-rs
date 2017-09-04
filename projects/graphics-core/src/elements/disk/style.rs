@@ -2,15 +2,14 @@ use super::*;
 
 impl Point {
     /// Get the x-coordinate of the point
-    pub fn get_x(&self) -> f32 {
-        self.x
+    pub fn get_x(&self) -> &f32 {
+        &self.x
     }
 
     /// Get the y-coordinate of the point
-    pub fn get_y(&self) -> f32 {
-        self.y
+    pub fn get_y(&self) -> &f32 {
+        &self.y
     }
-
 
     /// Getter of [`PointSize`]
     pub fn get_size(&self, style: &StyleResolver) -> f32 {
@@ -54,26 +53,23 @@ impl Point {
         self.set_color(value);
         self
     }
-
 }
-
 
 impl Circle {
     /// Get the x-coordinate of the circle center
-    pub fn get_x(&self) -> f32 {
-        self.x
+    pub fn get_x(&self) -> &f32 {
+        &self.x
     }
 
     /// Get the y-coordinate of the circle center
-    pub fn get_y(&self) -> f32 {
-        self.y
+    pub fn get_y(&self) -> &f32 {
+        &self.y
     }
 
     /// Get the radius of the circle
-    pub fn get_radius(&self) -> f32 {
-        self.radius
+    pub fn get_radius(&self) -> &f32 {
+        &self.radius
     }
-
 
     /// Getter of [`CircleColor`]
     pub fn get_color(&self, style: &StyleResolver) -> RGBA {
@@ -96,26 +92,23 @@ impl Circle {
         self.set_color(value);
         self
     }
-
 }
-
 
 impl Disk {
     /// Get the x-coordinate of the circle center
-    pub fn get_x(&self) -> f32 {
-        self.x
+    pub fn get_x(&self) -> &f32 {
+        &self.x
     }
 
     /// Get the y-coordinate of the circle center
-    pub fn get_y(&self) -> f32 {
-        self.y
+    pub fn get_y(&self) -> &f32 {
+        &self.y
     }
 
     /// Get the radius of the circle
-    pub fn get_radius(&self) -> f32 {
-        self.radius
+    pub fn get_radius(&self) -> &f32 {
+        &self.radius
     }
-
 
     /// Getter of [`CircleColor`]
     pub fn get_color(&self, style: &StyleResolver) -> RGBA {
@@ -138,5 +131,4 @@ impl Disk {
         self.set_color(value);
         self
     }
-
 }

@@ -91,7 +91,7 @@
         ]
     },
     "line": {
-        "name": "Disk",
+        "name": "Line",
         "docs": "Represent a 2D point on the plane",
         "derive_default": false,
         "property": [
@@ -117,18 +117,6 @@
             }
         ],
         "style": [
-            {
-                "name": "CircleColor",
-                "meta": "circle_color",
-                "field": "width",
-                "type": "RGBA"
-            },
-            {
-                "name": "CircleColor",
-                "meta": "circle_color",
-                "field": "color",
-                "type": "RGBA"
-            }
         ]
     },
     "triangle": {
@@ -143,12 +131,6 @@
             }
         ],
         "style": [
-            {
-                "name": "Triangle",
-                "meta": "triangle_color",
-                "field": "color",
-                "type": "RGBA"
-            }
         ]
     },
     "parallelogram": {
@@ -163,12 +145,73 @@
             }
         ],
         "style": [
+        ]
+    },
+    "polygon": {
+        "name": "Polygon",
+        "docs": "Represent a 2D point on the plane",
+        "derive_default": false,
+        "property": [
             {
-                "name": "Triangle",
-                "meta": "triangle_color",
-                "field": "color",
-                "type": "RGBA"
+                "field": "vertex",
+                "type": "Vec<(f32, f32)>",
+                "docs": "the n vertex of a parallelogram"
             }
+        ],
+        "style": [
+        ]
+    },
+    "square": {
+        "name": "Square",
+        "docs": "Represent a 2D point on the plane",
+        "derive_default": false,
+        "property": [
+            {
+                "field": "x",
+                "type": "f32",
+                "docs": "the x-coordinate of the left top point"
+            },
+            {
+                "field": "y",
+                "type": "f32",
+                "docs": "the y-coordinate of the left top point"
+            },
+            {
+                "field": "side",
+                "type": "f32",
+                "docs": "the side length of square"
+            }
+        ],
+        "style": [
+        ]
+    },
+    "rectangle": {
+        "name": "Rectangle",
+        "docs": "Represent a 2D point on the plane",
+        "derive_default": false,
+        "property": [
+            {
+                "field": "x",
+                "type": "f32",
+                "docs": "the x-coordinate of the left top point"
+            },
+            {
+                "field": "y",
+                "type": "f32",
+                "docs": "the y-coordinate of the left top point"
+            },
+            {
+                "field": "width",
+                "type": "f32",
+                "docs": "the side length of square"
+            },
+            {
+                "field": "height",
+                "type": "f32",
+                "docs": "the side length of square"
+            }
+        ],
+        "style": [
         ]
     }
 }

@@ -3,7 +3,6 @@ mod line;
 mod pixel;
 mod polygon;
 mod rectangle;
-mod square;
 use graphics_style::{StyleResolver, RGBA};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -64,6 +63,14 @@ pub struct Parallelogram {
     vertex: [(f32, f32); 4],
     color: Option<RGBA>,
 }
+
+/// A circle.
+#[derive(Clone, Debug, PartialEq, Default)]
+pub struct Polygon {
+    vertex: Vec<(f32, f32)>,
+    color: Option<RGBA>,
+}
+
 /// A rectangle.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Square {
@@ -89,17 +96,18 @@ pub enum GraphicsShape {
     Line(Line),
     Circle(Circle),
     Rectangle(Rectangle),
-    // Polygon(Polygon),
+    Polygon(Polygon),
     // Text(Text),
 }
 
 impl GraphicsShape {
     pub fn is_empty(&self, state: &StyleResolver) -> bool {
-        match self {
-            Self::Pixel(s) => s.is_empty(state),
-            Self::Point(s) => s.is_empty(state),
-            Self::Line(s) => s.is_empty(state),
-            Self::Rectangle(s) => s.is_empty(state),
-        }
+        true
+        // match self {
+        //     Self::Pixel(s) => s.is_empty(state),
+        //     Self::Point(s) => s.is_empty(state),
+        //     Self::Line(s) => s.is_empty(state),
+        //     Self::Rectangle(s) => s.is_empty(state),
+        // }
     }
 }

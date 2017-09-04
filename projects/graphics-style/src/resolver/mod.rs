@@ -11,6 +11,7 @@ pub struct StyleResolver {
 }
 
 impl StyleResolver {
+    /// Create a new style resolver
     pub fn get_theme_style(&self) -> &StyleContext {
         &self.theme
     }
@@ -22,7 +23,7 @@ impl StyleResolver {
     pub fn with_theme_style(theme: StyleContext) -> Self {
         Self { theme, local: Default::default() }
     }
-
+    /// Set the style of the given element.
     pub fn get_local_style(&self) -> &StyleContext {
         &self.local
     }
