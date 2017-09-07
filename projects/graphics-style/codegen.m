@@ -1,18 +1,21 @@
 (* ::Package:: *)
 
-(* ::Section:: *)
+(* ::Subsection::Closed:: *)
 (*Prepare Data*)
 
 
 SetDirectory@NotebookDirectory[];
-styles = Import["../../../style-inherit.json", "RawJSON"];
-kMap[k_ , v_] := Block[
-    {kMap, items = v},
-    items = Append[#, "typeSuper" -> k]& /@ items;
-    items = Append[#, "typeOuter" -> StringJoin[Capitalize /@ StringSplit[#field, "_"]]]& /@ items;
-    <|"super" -> k, "items" -> items |>
+styleRaw = reMap /@ Import["../style-inherit.json", "RawJSON"];
+reMap[data_Association] := Block[
+    {typeOuter, typeSuper, subtype},
+    typeOuter = StringJoin[Capitalize /@ StringSplit[#field, "_"]]&;
+    typeSuper = data["type"];
+    subtype = Join[#, <|"typeSuper" -> typeSuper, "typeOuter" -> typeOuter[#]|>]& /@ data["subtype"];
+    Join[data, <|"subtype" -> subtype|>]
 ];
-styles = KeyValueMap[kMap, styles];
+styleGrouped = reMap /@ styleRaw;
+styleFlatten = Flatten[#subtype& /@ styleGrouped];
+Export["../style-inherit.m", ResourceFunction["ReadableForm"][styleGrouped], "Text"];
 
 
 (* ::Subsection:: *)
@@ -26,13 +29,13 @@ styles = KeyValueMap[kMap, styles];
 buildHead = "use super::*;";
 
 
-getDrawXX[item_Association] := TemplateApply["\
+getDrawXX[item_Association] := TemplateApply["
     /// Get default [<*\"`\"*>`typeOuter`<*\"`\"*>] when missing.
-    pub `field`: Option<`typeInner`>,\
+    pub `field`: Option<`typeInner`>,
 ",
     item
 ];
-buildDrawXX[data_List] := TemplateApply["\
+buildDrawXX[data_List] := TemplateApply["
 /// Get default style when not specified.
 #[derive(Debug, Clone, Default)]
 pub struct StyleContext {`1`}
@@ -43,7 +46,7 @@ pub struct StyleContext {`1`}
 ];
 
 
-getDrawXXStyle[item_Association] := TemplateApply["\
+getDrawXXStyle[item_Association] := TemplateApply["
     /// Set the value of [<*\"`\"*>`typeOuter`<*\"`\"*>]
     pub fn `field`(&self) -> `typeInner` {
         self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`typeOuter`::default().value).clone())
@@ -51,7 +54,7 @@ getDrawXXStyle[item_Association] := TemplateApply["\
 ",
     item
 ];
-buildDrawXXStyle[data_List] := TemplateApply["\
+buildDrawXXStyle[data_List] := TemplateApply["
 impl StyleResolver {`1`}
 ",
     {
@@ -62,17 +65,17 @@ impl StyleResolver {`1`}
 
 drawStyle = Flatten@{
     buildHead,
-    buildDrawXX@Flatten[#items& /@ styles],
-    buildDrawXXStyle@Flatten[#items& /@ styles]
+    buildDrawXX @ styleFlatten,
+    buildDrawXXStyle @ styleFlatten
 };
-Export["content.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
+Export["src/resolver/content.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 
 
 (* ::Subsection:: *)
 (*Traits*)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*AddAssign*)
 
 
@@ -134,8 +137,8 @@ impl AddAssign<&Self> for `3` {
 
 upcast = Flatten@{
     buildHead,
-    buildAddXX /@ styles,
-    buildAddSelf /@ styles
+    buildAddXX /@ styleGrouped,
+    buildAddSelf /@ styleGrouped
 };
 Export["add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
@@ -186,7 +189,7 @@ impl GraphicsStyle for `2` {
 
 drawStyle = Flatten@{
     buildHead,
-    buildDrawXX /@ styles,
-    buildDrawXXStyle /@ styles
+    buildDrawXX /@ styleGrouped,
+    buildDrawXXStyle /@ styleGrouped
 };
 Export["draw_style.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
