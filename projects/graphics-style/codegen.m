@@ -72,10 +72,64 @@ Export["src/resolver/content.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 
 
 (* ::Subsection:: *)
-(*Traits*)
+(*Styles*)
 
 
 (* ::Subsubsection:: *)
+(*DrawStyle*)
+
+
+buildHead = "use super::*;";
+
+
+getXX[item_Association] := TemplateApply["
+/// `docs`
+///
+`details`
+#[derive(`derive`)]
+pub struct `typeOuter` {
+    /// Actual value for [<*\"`\"*>StyleResolver::`field`<*\"`\"*>]
+    pub value: `typeInner`,
+}
+",
+    item
+];
+buildXX[data_] := getXX[data];
+
+
+getXXStyle[item_Association] := TemplateApply["\
+    /// `docs`, see more in [<*\"`\"*>`typeOuter`<*\"`\"*>].
+    pub `field`: Option<`typeInner`>,
+",
+    item
+];
+buildXXStyle[data_] := TemplateApply["\
+/// `docs`
+#[derive(`derive`)]
+pub struct `typeOuter` {`record`}
+",
+    Join[
+    data,
+    <|
+        "record"->getXXStyle /@ data["subtype"] // StringJoin
+    |>]
+];
+
+
+drawStyle = Flatten@{
+    buildHead,
+        buildXXStyle /@ styleGrouped,
+    buildXX /@ styleFlatten
+
+};
+Export["src/styles/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
+
+
+(* ::Subsection:: *)
+(*Traits*)
+
+
+(* ::Subsubsection::Closed:: *)
 (*AddAssign*)
 
 
@@ -109,10 +163,10 @@ impl AddAssign<&`typeOuter`> for StyleContext {
 ",
     item
 ];
-buildAddXX[data_Association] := TemplateApply[
+buildAddXX[data_List] := TemplateApply[
     "`1`",
     {
-        getAddXX /@ data["items"] // StringJoin
+        getAddXX /@ data // StringJoin
     }
 ];
 
@@ -128,19 +182,19 @@ impl AddAssign<&Self> for `3` {
     fn add_assign(&mut self, rhs: &Self) {`2`}
 }",
     {
-        getAddSelf /@ data["items"] // StringJoin,
-        getSelfClone /@ data["items"] // StringJoin,
-        data["super"]
+        getAddSelf /@ data["subtype"] // StringJoin,
+        getSelfClone /@ data["subtype"] // StringJoin,
+        data["type"]
     }
 ];
 
 
 upcast = Flatten@{
     buildHead,
-    buildAddXX /@ styleGrouped,
+    buildAddXX @ styleFlatten,
     buildAddSelf /@ styleGrouped
 };
-Export["add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
+Export["src/traits/add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
 
 (* ::Subsubsection:: *)
@@ -160,12 +214,7 @@ impl GraphicsStyle for `typeOuter` {
 ",
     item
 ];
-buildDrawXX[data_Association] := TemplateApply[
-    "`1`",
-    {
-        getDrawXX /@ data["items"] // StringJoin
-    }
-];
+buildDrawXX[data_] := getDrawXX[data];
 
 
 getDrawXXStyle[item_Association] := TemplateApply["\
@@ -173,7 +222,7 @@ state.`field` = Some(self.`field`.unwrap_or(`typeOuter`::default().value).clone(
 ",
     item
 ];
-buildDrawXXStyle[data_Association] := TemplateApply["\
+buildDrawXXStyle[data_] := TemplateApply["\
 impl GraphicsStyle for `2` {
     fn draw_style(&self, state: &mut StyleContext) {
 `1`
@@ -181,15 +230,15 @@ impl GraphicsStyle for `2` {
 }
 ",
     {
-        getDrawXXStyle /@ data["items"] // StringJoin,
-        data["items"][[1]]["typeSuper"]
+        getDrawXXStyle /@ data["subtype"] // StringJoin,
+        data["type"]
     }
 ];
 
 
 drawStyle = Flatten@{
     buildHead,
-    buildDrawXX /@ styleGrouped,
+    buildDrawXX /@ styleFlatten,
     buildDrawXXStyle /@ styleGrouped
 };
-Export["draw_style.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
+Export["src/traits/draw_style.rs", StringRiffle[drawStyle , "\n\n"], "Text"]

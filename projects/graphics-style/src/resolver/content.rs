@@ -15,14 +15,14 @@ pub struct StyleContext {
     /// Get default [`CircleColor`] when missing.
     pub circle_color: Option<RGBA>,
 
-    /// Get default [`FillColor`] when missing.
-    pub fill_color: Option<RGBA>,
+    /// Get default [`DiskFillColor`] when missing.
+    pub disk_fill_color: Option<RGBA>,
 
-    /// Get default [`EdgeWidth`] when missing.
-    pub edge_width: Option<f32>,
+    /// Get default [`DiskEdgeWidth`] when missing.
+    pub disk_edge_width: Option<f32>,
 
-    /// Get default [`EdgeColor`] when missing.
-    pub edge_color: Option<RGBA>,
+    /// Get default [`DiskEdgeColor`] when missing.
+    pub disk_edge_color: Option<RGBA>,
 
     /// Get default [`LineWidth`] when missing.
     pub line_width: Option<f32>,
@@ -52,19 +52,19 @@ impl StyleResolver {
         self.local.circle_color.unwrap_or(self.theme.circle_color.unwrap_or(CircleColor::default().value).clone())
     }
 
-    /// Set the value of [`FillColor`]
-    pub fn fill_color(&self) -> RGBA {
-        self.local.fill_color.unwrap_or(self.theme.fill_color.unwrap_or(FillColor::default().value).clone())
+    /// Set the value of [`DiskFillColor`]
+    pub fn disk_fill_color(&self) -> RGBA {
+        self.local.disk_fill_color.unwrap_or(self.theme.disk_fill_color.unwrap_or(DiskFillColor::default().value).clone())
     }
 
-    /// Set the value of [`EdgeWidth`]
-    pub fn edge_width(&self) -> f32 {
-        self.local.edge_width.unwrap_or(self.theme.edge_width.unwrap_or(EdgeWidth::default().value).clone())
+    /// Set the value of [`DiskEdgeWidth`]
+    pub fn disk_edge_width(&self) -> f32 {
+        self.local.disk_edge_width.unwrap_or(self.theme.disk_edge_width.unwrap_or(DiskEdgeWidth::default().value).clone())
     }
 
-    /// Set the value of [`EdgeColor`]
-    pub fn edge_color(&self) -> RGBA {
-        self.local.edge_color.unwrap_or(self.theme.edge_color.unwrap_or(EdgeColor::default().value).clone())
+    /// Set the value of [`DiskEdgeColor`]
+    pub fn disk_edge_color(&self) -> RGBA {
+        self.local.disk_edge_color.unwrap_or(self.theme.disk_edge_color.unwrap_or(DiskEdgeColor::default().value).clone())
     }
 
     /// Set the value of [`LineWidth`]

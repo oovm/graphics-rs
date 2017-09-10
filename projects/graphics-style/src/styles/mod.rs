@@ -8,13 +8,7 @@ mod color;
 mod disk;
 mod lines;
 mod points;
-mod shape;
 
-pub use self::{
-    circle::{CircleColor, CircleStyle, CircleWidth},
-    color::RGBA,
-    disk::{DiskColor, DiskSize, DiskStyle},
-    lines::{LineColor, LineStyle, LineWidth},
-    points::{PointColor, PointSize, PointStyle},
-    shape::StyledShape,
-};
+pub use self::color::RGBA;
+
+include!("shape.rs");

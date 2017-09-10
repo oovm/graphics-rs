@@ -1,10 +1,15 @@
 {
     <|
         "type" -> "PointStyle",
+        "derive" -> "Debug, Clone, Copy, PartialEq, Default",
+        "docs" -> "Represent the available style of a point.",
         "subtype" ->
             {
                 <|
                     "field" -> "point_size",
+                    "docs" -> "Represent the size of a point",
+                    "details" -> "/// 1=1px on canvas.\n///\n/// The shape of the point is always round.",
+                    "derive" -> "Debug, Clone, Copy, PartialEq",
                     "typeInner" -> "f32",
                     "typeSuper" -> "PointStyle",
                     "typeOuter" -> "PointSize"
@@ -40,22 +45,22 @@
         "subtype" ->
             {
                 <|
-                    "field" -> "fill_color",
+                    "field" -> "disk_fill_color",
                     "typeInner" -> "RGBA",
                     "typeSuper" -> "DiskStyle",
-                    "typeOuter" -> "FillColor"
+                    "typeOuter" -> "DiskFillColor"
                 |>,
                 <|
-                    "field" -> "edge_width",
+                    "field" -> "disk_edge_width",
                     "typeInner" -> "f32",
                     "typeSuper" -> "DiskStyle",
-                    "typeOuter" -> "EdgeWidth"
+                    "typeOuter" -> "DiskEdgeWidth"
                 |>,
                 <|
-                    "field" -> "edge_color",
+                    "field" -> "disk_edge_color",
                     "typeInner" -> "RGBA",
                     "typeSuper" -> "DiskStyle",
-                    "typeOuter" -> "EdgeColor"
+                    "typeOuter" -> "DiskEdgeColor"
                 |>
             }
     |>,

@@ -24,21 +24,21 @@ impl GraphicsStyle for CircleColor {
     }
 }
 
-impl GraphicsStyle for FillColor {
+impl GraphicsStyle for DiskFillColor {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.fill_color = Some(self.value.clone());
+        state.disk_fill_color = Some(self.value.clone());
     }
 }
 
-impl GraphicsStyle for EdgeWidth {
+impl GraphicsStyle for DiskEdgeWidth {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.edge_width = Some(self.value.clone());
+        state.disk_edge_width = Some(self.value.clone());
     }
 }
 
-impl GraphicsStyle for EdgeColor {
+impl GraphicsStyle for DiskEdgeColor {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.edge_color = Some(self.value.clone());
+        state.disk_edge_color = Some(self.value.clone());
     }
 }
 
@@ -70,9 +70,9 @@ impl GraphicsStyle for CircleStyle {
 
 impl GraphicsStyle for DiskStyle {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.fill_color = Some(self.fill_color.unwrap_or(FillColor::default().value).clone());
-        state.edge_width = Some(self.edge_width.unwrap_or(EdgeWidth::default().value).clone());
-        state.edge_color = Some(self.edge_color.unwrap_or(EdgeColor::default().value).clone());
+        state.disk_fill_color = Some(self.disk_fill_color.unwrap_or(DiskFillColor::default().value).clone());
+        state.disk_edge_width = Some(self.disk_edge_width.unwrap_or(DiskEdgeWidth::default().value).clone());
+        state.disk_edge_color = Some(self.disk_edge_color.unwrap_or(DiskEdgeColor::default().value).clone());
     }
 }
 

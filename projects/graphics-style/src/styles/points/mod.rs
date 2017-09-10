@@ -1,9 +1,8 @@
 use super::*;
 
 mod size;
-
 /// Represent the available style of a point.
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Default)]
 pub struct PointStyle {
     /// Represent the size of the point, see more in [`PointSize`].
     pub point_size: Option<f32>,
