@@ -75,7 +75,7 @@ Export["src/resolver/content.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 (*Styles*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*DrawStyle*)
 
 
@@ -103,23 +103,25 @@ getXXStyle[item_Association] := TemplateApply["\
 ",
     item
 ];
-buildXXStyle[data_] := TemplateApply["\
+buildXXStyle[data_] := TemplateApply["
 /// `docs`
 #[derive(`derive`)]
-pub struct `typeOuter` {`record`}
+pub struct `type` {`record`}
+
+`subtypes`
 ",
     Join[
     data,
     <|
-        "record"->getXXStyle /@ data["subtype"] // StringJoin
+    "subtypes" -> StringJoin[getXX /@ data["subtype"]],
+        "record"->StringJoin[getXXStyle /@ data["subtype"]]
     |>]
 ];
 
 
 drawStyle = Flatten@{
     buildHead,
-        buildXXStyle /@ styleGrouped,
-    buildXX /@ styleFlatten
+        buildXXStyle /@ styleGrouped
 
 };
 Export["src/styles/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
@@ -197,7 +199,7 @@ upcast = Flatten@{
 Export["src/traits/add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*DrawStyle*)
 
 
@@ -241,4 +243,4 @@ drawStyle = Flatten@{
     buildDrawXX /@ styleFlatten,
     buildDrawXXStyle /@ styleGrouped
 };
-Export["src/traits/draw_style.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
+Export["src/traits/draw_style.rs", StringRiffle[drawStyle , "\n\n"], "Text"]'

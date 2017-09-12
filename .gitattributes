@@ -1,0 +1,4 @@
+*.m     linguist-language=mathematica
+*.json  linguist-language=mathematica
+*.htm   linguist-detectable=false
+*.html  linguist-detectable=false

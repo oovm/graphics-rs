@@ -1,11 +1,5 @@
 use super::*;
 
-impl Default for LineWidth {
-    fn default() -> Self {
-        Self { value: 1.0 }
-    }
-}
-
 impl PartialEq<f32> for LineWidth {
     fn eq(&self, other: &f32) -> bool {
         self.value.eq(other)
