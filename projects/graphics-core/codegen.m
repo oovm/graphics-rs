@@ -5,7 +5,7 @@
 
 
 SetDirectory@NotebookDirectory[];
-shapes = Import["../../../shape-inherit.json", "RawJSON"];
+shapes = Import["../shape-inherit.json", "RawJSON"];
 
 
 (* ::Section:: *)

@@ -1,6 +1,5 @@
 use super::*;
 
-
 /// Get default style when not specified.
 #[derive(Debug, Clone, Default)]
 pub struct StyleContext {
@@ -31,8 +30,6 @@ pub struct StyleContext {
     /// Get default [`LineColor`] when missing.
     pub line_color: Option<RGBA>,
 }
-
-
 
 impl StyleResolver {
     /// Set the value of [`PointSize`]

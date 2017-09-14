@@ -1,12 +1,12 @@
 {
     <|
-        "Name" -> "aliceblue",
+        "Name" -> "alice_blue",
         "Hex" -> "#F0F8FF",
         "RGB" -> { 240, 248, 255 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "antiquewhite",
+        "Name" -> "antique_white",
         "Hex" -> "#FAEBD7",
         "RGB" -> { 250, 235, 215 },
         "Gray" -> 100
@@ -18,7 +18,7 @@
         "Gray" -> 70
     |>,
     <|
-        "Name" -> "aquamarine",
+        "Name" -> "aqua_marine",
         "Hex" -> "#7FFFD4",
         "RGB" -> { 127, 255, 212 },
         "Gray" -> 100
@@ -60,7 +60,7 @@
         "Gray" -> 11
     |>,
     <|
-        "Name" -> "blueviolet",
+        "Name" -> "blue_violet",
         "Hex" -> "#8A2BE2",
         "RGB" -> { 138, 43, 226 },
         "Gray" -> 100
@@ -78,7 +78,7 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "cadetblue",
+        "Name" -> "cadet_blue",
         "Hex" -> "#5F9EA0",
         "RGB" -> { 95, 158, 160 },
         "Gray" -> 100
@@ -102,7 +102,7 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "cornflowerblue",
+        "Name" -> "cornflower_blue",
         "Hex" -> "#6495ED",
         "RGB" -> { 100, 149, 237 },
         "Gray" -> 100
@@ -126,127 +126,127 @@
         "Gray" -> 70
     |>,
     <|
-        "Name" -> "darkblue",
+        "Name" -> "dark_blue",
         "Hex" -> "#00008B",
         "RGB" -> { 0, 0, 139 },
         "Gray" -> 11
     |>,
     <|
-        "Name" -> "darkcyan",
+        "Name" -> "dark_cyan",
         "Hex" -> "#008B8B",
         "RGB" -> { 0, 139, 139 },
         "Gray" -> 70
     |>,
     <|
-        "Name" -> "darkgoldenrod",
+        "Name" -> "dark_goldenrod",
         "Hex" -> "#B8860B",
         "RGB" -> { 184, 134, 11 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkgray",
+        "Name" -> "dark_gray",
         "Hex" -> "#A9A9A9",
         "RGB" -> { 169, 169, 169 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkgreen",
+        "Name" -> "dark_green",
         "Hex" -> "#006400",
         "RGB" -> { 0, 100, 0 },
         "Gray" -> 59
     |>,
     <|
-        "Name" -> "darkgrey",
+        "Name" -> "dark_grey",
         "Hex" -> "#A9A9A9",
         "RGB" -> { 169, 169, 169 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkkhaki",
+        "Name" -> "dark_khaki",
         "Hex" -> "#BDB76B",
         "RGB" -> { 189, 183, 107 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkmagenta",
+        "Name" -> "dark_magenta",
         "Hex" -> "#8B008B",
         "RGB" -> { 139, 0, 139 },
         "Gray" -> 41
     |>,
     <|
-        "Name" -> "darkolivegreen",
+        "Name" -> "dark_olive_green",
         "Hex" -> "#556B2F",
         "RGB" -> { 85, 107, 47 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkorange",
+        "Name" -> "dark_orange",
         "Hex" -> "#FF8C00",
         "RGB" -> { 255, 140, 0 },
         "Gray" -> 89
     |>,
     <|
-        "Name" -> "darkorchid",
+        "Name" -> "dark_orchid",
         "Hex" -> "#9932CC",
         "RGB" -> { 153, 50, 204 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkred",
+        "Name" -> "dark_red",
         "Hex" -> "#8B0000",
         "RGB" -> { 139, 0, 0 },
         "Gray" -> 30
     |>,
     <|
-        "Name" -> "darksalmon",
+        "Name" -> "dark_salmon",
         "Hex" -> "#E9967A",
         "RGB" -> { 233, 150, 122 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkseagreen",
+        "Name" -> "dark_seagreen",
         "Hex" -> "#8FBC8F",
         "RGB" -> { 143, 188, 143 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkslateblue",
+        "Name" -> "dark_slate_blue",
         "Hex" -> "#483D8B",
         "RGB" -> { 72, 61, 139 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkslategray",
+        "Name" -> "dark_slategray",
         "Hex" -> "#2F4F4F",
         "RGB" -> { 47, 79, 79 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkslategrey",
+        "Name" -> "dark_slategrey",
         "Hex" -> "#2F4F4F",
         "RGB" -> { 47, 79, 79 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "darkturquoise",
+        "Name" -> "dark_turquoise",
         "Hex" -> "#00CED1",
         "RGB" -> { 0, 206, 209 },
         "Gray" -> 70
     |>,
     <|
-        "Name" -> "darkviolet",
+        "Name" -> "dark_violet",
         "Hex" -> "#9400D3",
         "RGB" -> { 148, 0, 211 },
         "Gray" -> 41
     |>,
     <|
-        "Name" -> "deeppink",
+        "Name" -> "deep_pink",
         "Hex" -> "#FF1493",
         "RGB" -> { 255, 20, 147 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "deepskyblue",
+        "Name" -> "deep_skyblue",
         "Hex" -> "#00BFFF",
         "RGB" -> { 0, 191, 255 },
         "Gray" -> 70
@@ -264,7 +264,7 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "dodgerblue",
+        "Name" -> "dodger_blue",
         "Hex" -> "#1E90FF",
         "RGB" -> { 30, 144, 255 },
         "Gray" -> 100
@@ -276,7 +276,7 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "floralwhite",
+        "Name" -> "floral_white",
         "Hex" -> "#FFFAF0",
         "RGB" -> { 255, 250, 240 },
         "Gray" -> 100
@@ -300,13 +300,13 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "ghostwhite",
+        "Name" -> "ghost_white",
         "Hex" -> "#F8F8FF",
         "RGB" -> { 248, 248, 255 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "goldenrod",
+        "Name" -> "golden_rod",
         "Hex" -> "#DAA520",
         "RGB" -> { 218, 165, 32 },
         "Gray" -> 100
@@ -330,7 +330,7 @@
         "Gray" -> 59
     |>,
     <|
-        "Name" -> "greenyellow",
+        "Name" -> "green_yellow",
         "Hex" -> "#ADFF2F",
         "RGB" -> { 173, 255, 47 },
         "Gray" -> 100
@@ -390,103 +390,103 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lawngreen",
+        "Name" -> "lawn_green",
         "Hex" -> "#7CFC00",
         "RGB" -> { 124, 252, 0 },
         "Gray" -> 89
     |>,
     <|
-        "Name" -> "lemonchiffon",
+        "Name" -> "lemon_chiffon",
         "Hex" -> "#FFFACD",
         "RGB" -> { 255, 250, 205 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightblue",
+        "Name" -> "light_blue",
         "Hex" -> "#ADD8E6",
         "RGB" -> { 173, 216, 230 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightcoral",
+        "Name" -> "light_coral",
         "Hex" -> "#F08080",
         "RGB" -> { 240, 128, 128 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightcyan",
+        "Name" -> "light_cyan",
         "Hex" -> "#E0FFFF",
         "RGB" -> { 224, 255, 255 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightgoldenrodyellow",
+        "Name" -> "light_golden_rod_yellow",
         "Hex" -> "#FAFAD2",
         "RGB" -> { 250, 250, 210 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightgray",
+        "Name" -> "light_gray",
         "Hex" -> "#D3D3D3",
         "RGB" -> { 211, 211, 211 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightgreen",
+        "Name" -> "light_green",
         "Hex" -> "#90EE90",
         "RGB" -> { 144, 238, 144 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightgrey",
+        "Name" -> "light_grey",
         "Hex" -> "#D3D3D3",
         "RGB" -> { 211, 211, 211 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightpink",
+        "Name" -> "light_pink",
         "Hex" -> "#FFB6C1",
         "RGB" -> { 255, 182, 193 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightsalmon",
+        "Name" -> "light_salmon",
         "Hex" -> "#FFA07A",
         "RGB" -> { 255, 160, 122 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightseagreen",
+        "Name" -> "light_sea_green",
         "Hex" -> "#20B2AA",
         "RGB" -> { 32, 178, 170 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightskyblue",
+        "Name" -> "light_sky_blue",
         "Hex" -> "#87CEFA",
         "RGB" -> { 135, 206, 250 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightslategray",
+        "Name" -> "light_slate_gray",
         "Hex" -> "#778899",
         "RGB" -> { 119, 136, 153 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightslategrey",
+        "Name" -> "light_slate_grey",
         "Hex" -> "#778899",
         "RGB" -> { 119, 136, 153 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightsteelblue",
+        "Name" -> "light_steel_blue",
         "Hex" -> "#B0C4DE",
         "RGB" -> { 176, 196, 222 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "lightyellow",
+        "Name" -> "light_yellow",
         "Hex" -> "#FFFFE0",
         "RGB" -> { 255, 255, 224 },
         "Gray" -> 100
@@ -498,7 +498,7 @@
         "Gray" -> 59
     |>,
     <|
-        "Name" -> "limegreen",
+        "Name" -> "lime_green",
         "Hex" -> "#32CD32",
         "RGB" -> { 50, 205, 50 },
         "Gray" -> 100
@@ -522,61 +522,61 @@
         "Gray" -> 30
     |>,
     <|
-        "Name" -> "mediumaquamarine",
+        "Name" -> "medium_aqua_marine",
         "Hex" -> "#66CDAA",
         "RGB" -> { 102, 205, 170 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "mediumblue",
+        "Name" -> "medium_blue",
         "Hex" -> "#0000CD",
         "RGB" -> { 0, 0, 205 },
         "Gray" -> 11
     |>,
     <|
-        "Name" -> "mediumorchid",
+        "Name" -> "medium_orchid",
         "Hex" -> "#BA55D3",
         "RGB" -> { 186, 85, 211 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "mediumpurple",
+        "Name" -> "medium_purple",
         "Hex" -> "#9370DB",
         "RGB" -> { 147, 112, 219 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "mediumseagreen",
+        "Name" -> "medium_sea_green",
         "Hex" -> "#3CB371",
         "RGB" -> { 60, 179, 113 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "mediumslateblue",
+        "Name" -> "medium_slate_blue",
         "Hex" -> "#7B68EE",
         "RGB" -> { 123, 104, 238 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "mediumspringgreen",
+        "Name" -> "medium_spring_green",
         "Hex" -> "#00FA9A",
         "RGB" -> { 0, 250, 154 },
         "Gray" -> 70
     |>,
     <|
-        "Name" -> "mediumturquoise",
+        "Name" -> "medium_turquoise",
         "Hex" -> "#48D1CC",
         "RGB" -> { 72, 209, 204 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "mediumvioletred",
+        "Name" -> "medium_violet_red",
         "Hex" -> "#C71585",
         "RGB" -> { 199, 21, 133 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "midnightblue",
+        "Name" -> "midnight_blue",
         "Hex" -> "#191970",
         "RGB" -> { 25, 25, 112 },
         "Gray" -> 100
@@ -600,7 +600,7 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "navajowhite",
+        "Name" -> "navajo_white",
         "Hex" -> "#FFDEAD",
         "RGB" -> { 255, 222, 173 },
         "Gray" -> 100
@@ -648,25 +648,25 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "palegoldenrod",
+        "Name" -> "pale_golden_rod",
         "Hex" -> "#EEE8AA",
         "RGB" -> { 238, 232, 170 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "palegreen",
+        "Name" -> "pale_green",
         "Hex" -> "#98FB98",
         "RGB" -> { 152, 251, 152 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "paleturquoise",
+        "Name" -> "pale_turquoise",
         "Hex" -> "#AFEEEE",
         "RGB" -> { 175, 238, 238 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "palevioletred",
+        "Name" -> "pale_violet_red",
         "Hex" -> "#DB7093",
         "RGB" -> { 219, 112, 147 },
         "Gray" -> 100
@@ -702,7 +702,7 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "powderblue",
+        "Name" -> "powder_blue",
         "Hex" -> "#B0E0E6",
         "RGB" -> { 176, 224, 230 },
         "Gray" -> 100
@@ -714,7 +714,7 @@
         "Gray" -> 41
     |>,
     <|
-        "Name" -> "rebeccapurple",
+        "Name" -> "rebecca_purple",
         "Hex" -> "#663399",
         "RGB" -> { 102, 51, 153 },
         "Gray" -> 100
@@ -726,19 +726,19 @@
         "Gray" -> 30
     |>,
     <|
-        "Name" -> "rosybrown",
+        "Name" -> "rosy_brown",
         "Hex" -> "#BC8F8F",
         "RGB" -> { 188, 143, 143 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "royalblue",
+        "Name" -> "royal_blue",
         "Hex" -> "#4169E1",
         "RGB" -> { 65, 105, 225 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "saddlebrown",
+        "Name" -> "saddle_brown",
         "Hex" -> "#8B4513",
         "RGB" -> { 139, 69, 19 },
         "Gray" -> 100
@@ -750,19 +750,19 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "sandybrown",
+        "Name" -> "sandy_brown",
         "Hex" -> "#F4A460",
         "RGB" -> { 244, 164, 96 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "seagreen",
+        "Name" -> "sea_green",
         "Hex" -> "#2E8B57",
         "RGB" -> { 46, 139, 87 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "seashell",
+        "Name" -> "sea_shell",
         "Hex" -> "#FFF5EE",
         "RGB" -> { 255, 245, 238 },
         "Gray" -> 100
@@ -780,25 +780,25 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "skyblue",
+        "Name" -> "sky_blue",
         "Hex" -> "#87CEEB",
         "RGB" -> { 135, 206, 235 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "slateblue",
+        "Name" -> "slate_blue",
         "Hex" -> "#6A5ACD",
         "RGB" -> { 106, 90, 205 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "slategray",
+        "Name" -> "slate_gray",
         "Hex" -> "#708090",
         "RGB" -> { 112, 128, 144 },
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "slategrey",
+        "Name" -> "slate_grey",
         "Hex" -> "#708090",
         "RGB" -> { 112, 128, 144 },
         "Gray" -> 100
@@ -810,13 +810,13 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "springgreen",
+        "Name" -> "spring_green",
         "Hex" -> "#00FF7F",
         "RGB" -> { 0, 255, 127 },
         "Gray" -> 70
     |>,
     <|
-        "Name" -> "steelblue",
+        "Name" -> "steel_blue",
         "Hex" -> "#4682B4",
         "RGB" -> { 70, 130, 180 },
         "Gray" -> 100
@@ -870,7 +870,7 @@
         "Gray" -> 100
     |>,
     <|
-        "Name" -> "whitesmoke",
+        "Name" -> "white_smoke",
         "Hex" -> "#F5F5F5",
         "RGB" -> { 245, 245, 245 },
         "Gray" -> 100
@@ -882,7 +882,7 @@
         "Gray" -> 89
     |>,
     <|
-        "Name" -> "yellowgreen",
+        "Name" -> "yellow_green",
         "Hex" -> "#9ACD32",
         "RGB" -> { 154, 205, 50 },
         "Gray" -> 100

@@ -4,7 +4,6 @@ use std::{
     fmt::{Display, Formatter, LowerHex, UpperHex, Write},
 };
 
-use crate::StyleResolver;
 mod circle;
 mod color;
 mod disk;

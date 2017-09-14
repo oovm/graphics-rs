@@ -20,7 +20,7 @@ rand = {version = "0.8.5", optional = true}
 #path = "../graphics-shape"
 
 [dependencies.graphics-style]
-version = "0.1.*"
+version = "0.2.*"
 features = []
 path = "../graphics-style"
 

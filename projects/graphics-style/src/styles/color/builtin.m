@@ -5,9 +5,7 @@
 
 
 SetDirectory@NotebookDirectory[];
-styles = Import["../../../style-inherit.json", "RawJSON"];
-kMap[k_ , v_] := <|"super" -> k, "items" -> (Append[#, "typeSuper" -> k]& /@ v) |>;
-styles = KeyValueMap[kMap, styles];
+color = Import["color.m"];
 
 
 (* ::Section:: *)
@@ -17,43 +15,32 @@ styles = KeyValueMap[kMap, styles];
 buildHead = "use super::*;";
 
 
-getDrawXX[item_Association] := TemplateApply["\
-    /// Get default [<*\"`\"*>`typeOuter`<*\"`\"*>] when missing.
-    pub `field`: Option<`typeInner`>,\
+buildColor = TemplateApply["
+/// <*\"`\"*>`hex` = rgb(`r8` `g8` `b8`)<*\"`\"*> 
+/// 
+/// <div style=\"display: inline-block;width: 1rem;height: 1rem;border: 1px solid black;background: `hex`;\"></div>
+pub const `name`: Self = Self::new(`r`, `g`, `b`, `a`);
 ",
-    item
-];
-buildDrawXX[data_List] := TemplateApply["\
-/// Get default style when not specified.
-#[derive(Debug, Clone, Default)]
-pub struct StyleContext {`1`}
-",
-    {
-        getDrawXX /@ data // StringJoin
-    }
-];
+    <|
+    "name" -> ToUpperCase@#Name,
+            "hex" -> #Hex,
+    "r8" -> #RGB[[1]] ,
+    "g8" -> #RGB[[2]],
+        "b8" -> #RGB[[3]],
+    "r" -> #RGB[[1]] / 255.0,
+    "g" -> #RGB[[2]]/ 255.0,
+        "b" -> #RGB[[3]]/ 255.0,
+        "a" -> 1.0
+        
+    |>
+]&;
 
 
-getDrawXXStyle[item_Association] := TemplateApply["\
-    /// Set the value of [<*\"`\"*>`typeOuter`<*\"`\"*>]
-    pub fn `field`(&self) -> `typeInner` {
-        self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`typeOuter`::default().value).clone())
-    }
-",
-    item
-];
-buildDrawXXStyle[data_List] := TemplateApply["\
-impl StyleResolver {`1`}
-",
-    {
-        getDrawXXStyle /@ data // StringJoin
-    }
-];
-
-
-drawStyle = Flatten@{
+draw = Flatten@{
     buildHead,
-    buildDrawXX@Flatten[#items& /@ styles],
-    buildDrawXXStyle@Flatten[#items& /@ styles]
+    "// noinspection SpellCheckingInspection",
+    "impl RGBA {",
+    buildColor /@ color,
+       "}"
 };
-Export["content.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
+Export["builtin.rs", StringRiffle[draw,"\n\n"], "Text"]

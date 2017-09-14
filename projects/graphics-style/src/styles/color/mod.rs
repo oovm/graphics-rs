@@ -3,12 +3,19 @@ mod display;
 mod traits;
 
 use super::*;
+use palette::Srgb;
+use std::marker::PhantomData;
 
 /// A color with red, green, blue, and alpha components.
 #[derive(Debug, Copy, Clone)]
 pub struct RGBA(Srgba);
 
 impl RGBA {
+    /// Creates a new RGBA color.
+    pub const fn new(red: f32, green: f32, blue: f32, alpha: f32) -> Self {
+        Self(Srgba { color: Srgb { red, green, blue, standard: PhantomData }, alpha })
+    }
+
     /// Creates a new RGBA color.
     pub fn view(&self) -> (u8, u8, u8, u8) {
         let r = self.0.red * 255.0;

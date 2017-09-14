@@ -208,35 +208,60 @@ impl AddAssign<&LineColor> for StyleContext {
     }
 }
 
-
 impl AddAssign<Self> for PointStyle {
-    fn add_assign(&mut self, rhs: Self) {self.point_size = rhs.point_size;self.point_color = rhs.point_color;}
+    fn add_assign(&mut self, rhs: Self) {
+        self.point_size = rhs.point_size;
+        self.point_color = rhs.point_color;
+    }
 }
 
 impl AddAssign<&Self> for PointStyle {
-    fn add_assign(&mut self, rhs: &Self) {self.point_size = rhs.point_size.clone();self.point_color = rhs.point_color.clone();}
+    fn add_assign(&mut self, rhs: &Self) {
+        self.point_size = rhs.point_size.clone();
+        self.point_color = rhs.point_color.clone();
+    }
 }
 
 impl AddAssign<Self> for CircleStyle {
-    fn add_assign(&mut self, rhs: Self) {self.circle_width = rhs.circle_width;self.circle_color = rhs.circle_color;}
+    fn add_assign(&mut self, rhs: Self) {
+        self.circle_width = rhs.circle_width;
+        self.circle_color = rhs.circle_color;
+    }
 }
 
 impl AddAssign<&Self> for CircleStyle {
-    fn add_assign(&mut self, rhs: &Self) {self.circle_width = rhs.circle_width.clone();self.circle_color = rhs.circle_color.clone();}
+    fn add_assign(&mut self, rhs: &Self) {
+        self.circle_width = rhs.circle_width.clone();
+        self.circle_color = rhs.circle_color.clone();
+    }
 }
 
 impl AddAssign<Self> for DiskStyle {
-    fn add_assign(&mut self, rhs: Self) {self.disk_fill_color = rhs.disk_fill_color;self.disk_edge_width = rhs.disk_edge_width;self.disk_edge_color = rhs.disk_edge_color;}
+    fn add_assign(&mut self, rhs: Self) {
+        self.disk_fill_color = rhs.disk_fill_color;
+        self.disk_edge_width = rhs.disk_edge_width;
+        self.disk_edge_color = rhs.disk_edge_color;
+    }
 }
 
 impl AddAssign<&Self> for DiskStyle {
-    fn add_assign(&mut self, rhs: &Self) {self.disk_fill_color = rhs.disk_fill_color.clone();self.disk_edge_width = rhs.disk_edge_width.clone();self.disk_edge_color = rhs.disk_edge_color.clone();}
+    fn add_assign(&mut self, rhs: &Self) {
+        self.disk_fill_color = rhs.disk_fill_color.clone();
+        self.disk_edge_width = rhs.disk_edge_width.clone();
+        self.disk_edge_color = rhs.disk_edge_color.clone();
+    }
 }
 
 impl AddAssign<Self> for LineStyle {
-    fn add_assign(&mut self, rhs: Self) {self.line_width = rhs.line_width;self.line_color = rhs.line_color;}
+    fn add_assign(&mut self, rhs: Self) {
+        self.line_width = rhs.line_width;
+        self.line_color = rhs.line_color;
+    }
 }
 
 impl AddAssign<&Self> for LineStyle {
-    fn add_assign(&mut self, rhs: &Self) {self.line_width = rhs.line_width.clone();self.line_color = rhs.line_color.clone();}
+    fn add_assign(&mut self, rhs: &Self) {
+        self.line_width = rhs.line_width.clone();
+        self.line_color = rhs.line_color.clone();
+    }
 }
