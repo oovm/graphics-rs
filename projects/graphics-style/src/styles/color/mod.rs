@@ -3,8 +3,6 @@ mod display;
 mod traits;
 
 use super::*;
-use palette::Srgb;
-use std::marker::PhantomData;
 
 /// A color with red, green, blue, and alpha components.
 #[derive(Debug, Copy, Clone)]

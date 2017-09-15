@@ -1,10 +1,10 @@
 [package]
-name = "graphics-core"
+name = "graphics-2d"
 version = "0.0.3"
 authors = ["Aster <192607617@qq.com>"]
 description = "The representation of a circle"
 repository = "https://github.com/oovm/smallest-enclosing-ball"
-documentation = "https://docs.rs/circle"
+documentation = "https://docs.rs/graphics-2d"
 readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"

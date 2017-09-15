@@ -13,10 +13,15 @@ edition = "2021"
 text-utils = "0.4.3"
 indenter = "0.3.1"
 
-[dependencies.graphics-core]
+[dependencies.graphics-2d]
 version = "0.0.*"
 features = []
-path = "../graphics-core"
+path = "../graphics-2d"
+
+[dependencies.graphics-3d]
+version = "0.0.*"
+features = []
+path = "../graphics-3d"
 
 [dev-dependencies]
 

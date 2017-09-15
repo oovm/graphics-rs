@@ -7,10 +7,12 @@
 
 pub use self::{
     resolver::{StyleContext, StyleResolver},
-    styles::*,
+    shapes::*,
+    styles::RGBA,
     traits::GraphicsStyle,
 };
 
 mod resolver;
+mod shapes;
 mod styles;
 mod traits;

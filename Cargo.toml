@@ -1,7 +1,7 @@
 [workspace]
 members = ["projects/*"]
 default-members = [
-    "projects/graphics-core",
+    "projects/graphics-style",
 ]
 exclude = [
     "projects/.DS_Store",

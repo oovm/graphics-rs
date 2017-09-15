@@ -118,3 +118,12 @@ pub struct LineColor {
     /// Actual value for [`StyleResolver::line_color`]
     pub value: RGBA,
 }
+
+/// 1=1px on canvas.
+///
+/// The shape of the point is always round.
+#[derive(Debug, Clone, Copy, PartialEq, Default)]
+pub struct EdgeWidth {
+    /// Actual value for [`StyleResolver::edge_width`]
+    pub value: f32,
+}

@@ -18,7 +18,7 @@ buildHead = "use super::*;";
 buildColor = TemplateApply["
 /// <*\"`\"*>`hex` = rgb(`r8` `g8` `b8`)<*\"`\"*> 
 /// 
-/// <div style=\"display: inline-block;width: 1rem;height: 1rem;border: 1px solid black;background: `hex`;\"></div>
+/// <div style=\"display: inline-block;width: 16rem;height: 1rem;border: 1px solid black;background: `hex`;\"></div>
 pub const `name`: Self = Self::new(`r`, `g`, `b`, `a`);
 ",
     <|

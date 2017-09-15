@@ -1,17 +1,3 @@
-mod disk;
-mod line;
-mod pixel;
-mod polygon;
-mod rectangle;
-use graphics_style::{StyleResolver, RGBA};
-
-#[derive(Debug, Clone, Copy, PartialEq)]
-pub struct Pixel {
-    pub x: f32,
-    pub y: f32,
-    pub c: RGBA,
-}
-
 /// A 2D point.
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct Point {
@@ -21,11 +7,31 @@ pub struct Point {
     color: Option<RGBA>,
 }
 
+/// A 3D point.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Point3D {
+    x: f32,
+    y: f32,
+    z: f32,
+    size: Option<f32>,
+    color: Option<RGBA>,
+}
+
 /// A 2D point.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Circle {
     x: f32,
     y: f32,
+    radius: f32,
+    color: Option<RGBA>,
+}
+
+/// A 2D point.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Ball {
+    x: f32,
+    y: f32,
+    z: f32,
     radius: f32,
     color: Option<RGBA>,
 }

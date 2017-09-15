@@ -21,14 +21,16 @@ fn test_theme() {
 If you want to extend style directives, you just need to implement [`GraphicsStyle`].
 
 ```rust
-pub struct EdgeWidth {
-    pub value: f32,
+use graphics_style::{GraphicsStyle, RGBA, StyleContext};
+pub struct CustomLineStyle {
+    pub width: f32,
+    pub color: RGBA,
 }
 
-impl GraphicsStyle for EdgeWidth {
+impl GraphicsStyle for CustomLineStyle {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.disk_edge_width = Some(self.value);
-        state.polygon_edge_width = Some(self.value);
+        state.line_width = Some(self.width);
+        state.line_color = Some(self.color);
     }
 }
 ```
