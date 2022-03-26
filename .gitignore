@@ -4,8 +4,9 @@
 # IDE
 .vscode/
 .vs/
-.idea/*
+.idea/
 *.iml
+time-travel.*
 
 # Rust
 target/

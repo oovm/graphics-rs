@@ -1,4 +1,4 @@
-Rust Template Project
-=====================
+Rust Graphics
+=============
 
 Rust template project for monorepo

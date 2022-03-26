@@ -1,6 +1,6 @@
 [package]
 name = "graphics-style"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["Aster <192607617@qq.com>"]
 description = "The styles of all graphics elements"
 repository = "https://github.com/oovm/graphics-rs"
@@ -11,7 +11,7 @@ edition = "2021"
 exclude = ["*.m", "*.json"]
 
 [dependencies]
-palette = "0.6.0"
+serde = { version = "1.0.136", features = ["derive"] }
 
 [dev-dependencies]
 
