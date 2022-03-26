@@ -1,7 +1,7 @@
 mod color;
 pub use self::color::RGBA;
-use serde::{Deserialize, Serialize};
-use std::{
-    fmt::{Display, Formatter, LowerHex, UpperHex, Write},
-    marker::PhantomData,
+use serde::{
+    de::{MapAccess, SeqAccess, Visitor},
+    Deserialize, Deserializer, Serialize, Serializer,
 };
+use std::fmt::{Display, Formatter, LowerHex, UpperHex, Write};

@@ -1,14 +1,17 @@
+use super::*;
 mod builtin;
 mod traits;
-
-use super::*;
 
 /// A color with red, green, blue, and alpha channel.
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct RGBA {
+    /// The red channel takes a value from 0 to 255.
     pub r: u8,
+    /// The green channel takes a value from 0 to 255.
     pub g: u8,
+    /// The blue channel takes a value from 0 to 255.
     pub b: u8,
+    /// The alpha channel takes a value from 0 to 255.
     pub a: u8,
 }
 
