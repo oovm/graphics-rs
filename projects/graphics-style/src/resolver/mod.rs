@@ -1,10 +1,10 @@
 mod content;
-
 pub use self::content::StyleContext;
 use crate::*;
+use serde::{Deserialize, Serialize};
 
-/// Resolve missing style
-#[derive(Debug, Clone, Default)]
+/// Resolve when style is not specific or missing.
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct StyleResolver {
     theme: StyleContext,
     local: StyleContext,

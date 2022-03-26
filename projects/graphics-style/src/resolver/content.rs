@@ -1,7 +1,7 @@
 use super::*;
 
 /// Get default style when not specified.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
 pub struct StyleContext {
     /// Get default [`PointSize`] when missing.
     pub point_size: Option<f32>,

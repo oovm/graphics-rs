@@ -18,11 +18,11 @@ styleFlatten = Flatten[#subtype& /@ styleGrouped];
 Export["../style-inherit.m", ResourceFunction["ReadableForm"][styleGrouped], "Text"];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Resolve*)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*Content*)
 
 
@@ -37,7 +37,7 @@ getDrawXX[item_Association] := TemplateApply["
 ];
 buildDrawXX[data_List] := TemplateApply["
 /// Get default style when not specified.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
 pub struct StyleContext {`1`}
 ",
     {
@@ -72,10 +72,10 @@ Export["src/resolver/content.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 
 
 (* ::Subsection:: *)
-(*Styles*)
+(*Shapes*)
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*DrawStyle*)
 
 
@@ -86,7 +86,7 @@ getXX[item_Association] := TemplateApply["
 /// `docs`
 ///
 `details`
-#[derive(`derive`)]
+#[derive(`derive`, Serialize, Deserialize)]
 pub struct `typeOuter` {
     /// Actual value for [<*\"`\"*>StyleResolver::`field`<*\"`\"*>]
     pub value: `typeInner`,
@@ -105,7 +105,7 @@ getXXStyle[item_Association] := TemplateApply["\
 ];
 buildXXStyle[data_] := TemplateApply["
 /// `docs`
-#[derive(`derive`)]
+#[derive(`derive`, Serialize, Deserialize)]
 pub struct `type` {`record`}
 
 `subtypes`
@@ -120,11 +120,9 @@ pub struct `type` {`record`}
 
 
 drawStyle = Flatten@{
-    buildHead,
         buildXXStyle /@ styleGrouped
-
 };
-Export["src/styles/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
+Export["src/shapes/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
 
 
 (* ::Subsection:: *)

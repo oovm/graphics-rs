@@ -7,4 +7,6 @@ mod disk;
 mod lines;
 mod points;
 
+use serde::{Deserialize, Serialize};
+
 include!("shape.rs");
