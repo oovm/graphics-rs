@@ -1,11 +1,10 @@
 mod builtin;
-mod display;
 mod traits;
 
 use super::*;
 
 /// A color with red, green, blue, and alpha channel.
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct RGBA {
     pub r: u8,
     pub g: u8,
