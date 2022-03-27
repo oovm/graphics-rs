@@ -115,3 +115,55 @@ impl Into<RGBA> for LineColor {
         self.value
     }
 }
+
+
+impl PartialEq<f32> for PointSize {
+    fn eq(&self, other: &f32) -> bool {
+        self.value.eq(other)
+    }
+}
+
+impl PartialOrd<f32> for PointSize {
+    fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
+        self.value.partial_cmp(other)
+    }
+}
+
+
+impl PartialEq<f32> for CircleWidth {
+    fn eq(&self, other: &f32) -> bool {
+        self.value.eq(other)
+    }
+}
+
+impl PartialOrd<f32> for CircleWidth {
+    fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
+        self.value.partial_cmp(other)
+    }
+}
+
+
+impl PartialEq<f32> for DiskEdgeWidth {
+    fn eq(&self, other: &f32) -> bool {
+        self.value.eq(other)
+    }
+}
+
+impl PartialOrd<f32> for DiskEdgeWidth {
+    fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
+        self.value.partial_cmp(other)
+    }
+}
+
+
+impl PartialEq<f32> for LineWidth {
+    fn eq(&self, other: &f32) -> bool {
+        self.value.eq(other)
+    }
+}
+
+impl PartialOrd<f32> for LineWidth {
+    fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
+        self.value.partial_cmp(other)
+    }
+}

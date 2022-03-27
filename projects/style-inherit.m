@@ -1,6 +1,7 @@
 {
     <|
         "type" -> "PointStyle",
+        "field" -> "point_style",
         "derive" -> "Debug, Clone, Copy, PartialEq, Default",
         "docs" -> "Represent the available style of a point.",
         "subtype" ->
@@ -27,6 +28,7 @@
     |>,
     <|
         "type" -> "CircleStyle",
+        "field" -> "circle_style",
         "derive" -> "Debug, Clone, Copy, PartialEq",
         "docs" -> "",
         "subtype" ->
@@ -53,6 +55,7 @@
     |>,
     <|
         "type" -> "DiskStyle",
+        "field" -> "disk_style",
         "derive" -> "Debug, Clone, Copy, PartialEq",
         "docs" -> "",
         "subtype" ->
@@ -88,6 +91,7 @@
     |>,
     <|
         "type" -> "LineStyle",
+        "field" -> "line_style",
         "derive" -> "Debug, Clone, Copy, PartialEq",
         "docs" -> "",
         "subtype" ->

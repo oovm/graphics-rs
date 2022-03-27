@@ -2,7 +2,7 @@ mod add_assign;
 mod convert;
 mod draw_style;
 use crate::{resolver::StyleContext, *};
-use std::ops::AddAssign;
+use std::{cmp::Ordering, ops::AddAssign};
 
 /// Trait for drawing a shape with a style.
 pub trait GraphicsStyle {

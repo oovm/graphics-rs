@@ -32,11 +32,11 @@ buildHead = "use super::*;";
 getDrawXX[item_Association] := TemplateApply["
     /// Get default [<*\"`\"*>`typeOuter`<*\"`\"*>] when missing.
     #[serde(skip_serializing_if = \"Option::is_none\")]
-	pub `field`: Option<`typeInner`>,
+	pub `field`: Option<`typeOuter`>,
 ",
     item
 ];
-buildDrawXX[data_List] := TemplateApply["
+buildDrawXX[data_] := TemplateApply["
 /// Get default style when not specified.
 #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
 pub struct StyleContext {`1`}
@@ -47,36 +47,60 @@ pub struct StyleContext {`1`}
 ];
 
 
-getDrawXXStyle[item_Association] := TemplateApply["
-    /// Set the value of [<*\"`\"*>`typeOuter`<*\"`\"*>]
-    pub fn `field`(&self) -> `typeInner` {
-        self.local.`field`.unwrap_or(self.theme.`field`.unwrap_or(`typeOuter`::default().value).clone())
+getDrawXXInner[item_Association] := TemplateApply["
+    /// Get the [<*\"`\"*>`field`<*\"`\"*>] from theme and state.
+    pub fn `field`(&self) -> `typeOuter` {
+        self.once.`field`.or(self.local.`field`).or(self.theme.`field`).unwrap_or_default()
     }
 ",
     item
 ];
-buildDrawXXStyle[data_List] := TemplateApply["
-impl StyleResolver {`1`}
+buildDrawXXInner[data_] := getDrawXXInner@data;
+
+
+getDrawXXField[item_Association] := TemplateApply[
+	"`field`: Some(self.`field`()),",
+    item
+];
+getDrawXXOuter[item_Association] := TemplateApply["
+    /// Get the [<*\"`\"*>`field`<*\"`\"*>] from theme and state.
+    pub fn point_style(&self) -> `typeSuper` {
+        `typeSuper` { `FIELDS`}
+    }
+",
+    Join[
+    item, 
+    <|
+    "FIELDS"->getDrawXXField/@item["subtype"]
+    |>
+    ]
+];
+buildDrawXXOuter[data_] := TemplateApply["
+impl StyleResolver {`1` `2`}
 ",
     {
-        getDrawXXStyle /@ data // StringJoin
+        getDrawXXInner /@ data // StringJoin,
+        getDrawXXOuter @ data
     }
 ];
 
 
-drawStyle = Flatten@{
+text = Flatten@{
     buildHead,
     buildDrawXX @ styleFlatten,
-    buildDrawXXStyle @ styleFlatten
+    "impl StyleResolver {",
+    buildDrawXXInner /@ styleFlatten,
+    buildDrawXXOuter /@ styleGrouped,
+    "}"
 };
-Export["src/resolver/content.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
+Export["src/resolver/content.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
 (* ::Subsection:: *)
 (*Shapes*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*DrawStyle*)
 
 
@@ -132,7 +156,7 @@ Export["src/shapes/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
 (*Traits*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*From*)
 
 
@@ -154,12 +178,7 @@ impl Into<`typeInner`> for `typeOuter` {
 ",
     item
 ];
-buildFromXX[data_] := TemplateApply[
-    "`1`",
-    {
-        getAddXX@data
-    }
-];
+buildFromXX[data_] := getAddXX@data;
 
 
 getAddSelf[item_Association] := TemplateApply["self.`field` = rhs.`field`;", item];
@@ -180,14 +199,33 @@ impl AddAssign<&Self> for `3` {
 ];
 
 
+getEq[item_Association] := TemplateApply["\
+impl PartialEq<f32> for `typeOuter` {
+    fn eq(&self, other: &f32) -> bool {
+        self.value.eq(other)
+    }
+}
+
+impl PartialOrd<f32> for `typeOuter` {
+    fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
+        self.value.partial_cmp(other)
+    }
+}
+",
+    item
+];
+buildEq[data_] := If[data["typeInner"]==="f32",getEq@data,Nothing];
+
+
 text = Flatten@{
     buildHead,
-    buildFromXX /@ styleFlatten
+    buildFromXX /@ styleFlatten,
+    buildEq /@ styleFlatten
 };
 Export["src/traits/convert.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*AddAssign*)
 
 
@@ -197,36 +235,31 @@ buildHead = "use super::*;";
 getAddXX[item_Association] := TemplateApply["\
 impl AddAssign<`typeOuter`> for `typeSuper` {
     fn add_assign(&mut self, rhs: `typeOuter`) {
-        self.`field` = Some(rhs.value);
+        self.`field` = Some(rhs);
     }
 }
 
 impl AddAssign<&`typeOuter`> for `typeSuper` {
     fn add_assign(&mut self, rhs: &`typeOuter`) {
-        self.`field` = Some(rhs.value.clone());
+        self.`field` = Some(rhs.clone());
     }
 }
 
 impl AddAssign<`typeOuter`> for StyleContext {
     fn add_assign(&mut self, rhs: `typeOuter`) {
-        self.`field` = Some(rhs.value);
+        self.`field` = Some(rhs);
     }
 }
 
 impl AddAssign<&`typeOuter`> for StyleContext {
     fn add_assign(&mut self, rhs: &`typeOuter`) {
-        self.`field` = Some(rhs.value);
+        self.`field` = Some(rhs.clone());
     }
 }
 ",
     item
 ];
-buildAddXX[data_List] := TemplateApply[
-    "`1`",
-    {
-        getAddXX /@ data // StringJoin
-    }
-];
+buildAddXX[data_] := getAddXX@data;
 
 
 getAddSelf[item_Association] := TemplateApply["self.`field` = rhs.`field`;", item];
@@ -249,7 +282,7 @@ impl AddAssign<&Self> for `3` {
 
 upcast = Flatten@{
     buildHead,
-    buildAddXX @ styleFlatten,
+    buildAddXX /@ styleFlatten,
     buildAddSelf /@ styleGrouped
 };
 Export["src/traits/add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
