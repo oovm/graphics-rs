@@ -1,0 +1,111 @@
+# point, circle, ball, etc. ==========================================================================================
+- field: point_style
+  derive: Debug, Clone, Copy, PartialEq, Default
+  docs: Represent the available style of a point.
+  subtype:
+    - point_size
+    - point_color
+- field: disk_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a disk.
+  subtype:
+    - disk_fill_color
+    - disk_edge_width
+    - disk_edge_color
+- field: circle_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a circle.
+  details: |
+    The circle is defined by its center and its radius.
+  subtype:
+    - circle_size
+    - circle_color
+# line, arc, etc. ====================================================================================================
+- field: line_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a line.
+  subtype:
+    - line_width
+    - line_color
+- field: polyline_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a line.
+  details: |
+    The polyline is a collection of points.
+  subtype:
+    - polyline_width
+    - polyline_color
+# polygon ============================================================================================================
+- field: triangle_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a triangle.
+  subtype:
+    - triangle_fill_color
+    - triangle_edge_width
+    - triangle_edge_color
+- field: square_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a triangle.
+  subtype:
+    - square_fill_color
+    - square_edge_width
+    - square_edge_color
+- field: rectangle_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a rectangle.
+  subtype:
+    - rectangle_fill_color
+    - rectangle_edge_width
+    - rectangle_edge_color
+- field: polygon_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a polygon.
+  subtype:
+    - polygon_fill_color
+    - polygon_edge_width
+    - polygon_edge_color
+- field: text_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a text.
+  subtype:
+    - text_color
+    - text_size
+    - text_font
+- field: background_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a background.
+  subtype:
+    - background_color
+- field: edge_color
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a style.
+  subtype:
+    - disk_edge_color
+    - triangle_edge_color
+    - square_edge_color
+    - rectangle_edge_color
+    - polygon_edge_color
+- field: edge_width
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a style.
+  subtype:
+    - disk_edge_width
+    - triangle_edge_width
+    - square_edge_width
+    - rectangle_edge_width
+    - polygon_edge_width
+- field: edge_style
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a style.
+  subtype:
+    - disk_edge_width
+    - triangle_edge_color
+- field: fill_color
+  derive: Debug, Clone, Copy, PartialEq
+  docs: Represent the available style of a style.
+  subtype:
+    - disk_fill_color
+    - triangle_fill_color
+    - square_fill_color
+    - rectangle_fill_color
+    - polygon_fill_color

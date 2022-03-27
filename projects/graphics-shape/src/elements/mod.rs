@@ -1,4 +1,5 @@
 mod point;
+// mod circle;
 mod rectangle;
 
 pub use point::{Point, Point3D};
@@ -25,4 +26,11 @@ pub struct Rectangle {
     pub y: f32,
     pub width: f32,
     pub height: f32,
+}
+
+#[derive(Debug, Copy, Clone)]
+pub struct Circle {
+    pub x: f32,
+    pub y: f32,
+    pub radius: f32,
 }

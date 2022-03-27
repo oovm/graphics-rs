@@ -1,4 +1,4 @@
-use crate::{Drawable, Graphics, GraphicsShape, RawCircle};
+use crate::{raw::*, Drawable, Graphics, GraphicsShape};
 use graphics_style::{resolved, StyleResolver};
 use resolved::CircleStyle;
 
@@ -36,5 +36,5 @@ pub trait GraphicsBackend {
         }
     }
 
-    fn draw_circle(&mut self, context: &Graphics, shape: &RawCircle, style: &CircleStyle) -> Result<(), Self::Error>;
+    fn draw_circle(&mut self, context: &Graphics, shape: &Circle, style: &CircleStyle) -> Result<(), Self::Error>;
 }

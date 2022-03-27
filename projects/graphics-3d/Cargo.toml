@@ -1,6 +1,6 @@
 [package]
 name = "graphics-3d"
-version = "0.0.3"
+version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "The representation of a circle"
 repository = "https://github.com/oovm/smallest-enclosing-ball"
@@ -14,13 +14,13 @@ wolfram_wxf = {version = "0.6.0", optional = true}
 serde = {version = "1.0.136", optional = true}
 rand = {version = "0.8.5", optional = true}
 
-#[dependencies.graphics-shape]
-#version = "0.0.*"
-#features = []
-#path = "../graphics-shape"
+[dependencies.graphics-shape]
+version = "0.0.1"
+features = []
+path = "../graphics-shape"
 
 [dependencies.graphics-style]
-version = "0.2.*"
+version = "0.2.8"
 features = []
 path = "../graphics-style"
 
@@ -31,8 +31,3 @@ default = []
 
 [package.metadata.docs.rs]
 rustdoc-args = ["--html-in-header", "./src/katex.html"]
-
-[package.metadata.wee]
-t = "cargo test"
-p = "cargo publish --allow-dirty"
-

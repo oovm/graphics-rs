@@ -1,6 +1,5 @@
 mod dim2;
 mod dim3;
-use super::*;
 
 /// A 2D point.
 #[derive(Clone, Copy, Debug, PartialEq, Default)]

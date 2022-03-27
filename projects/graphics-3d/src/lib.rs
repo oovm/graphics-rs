@@ -9,19 +9,16 @@ mod traits;
 pub use canvas::*;
 pub use traits::*;
 
-pub enum GraphicsShape<'t> {
-    Circle(Cow<'t, RawCircle>, CircleStyle),
+mod raw {
+    pub use graphics_shape::{Circle, Point};
 }
 
-#[derive(Debug, Copy, Clone)]
-pub struct RawCircle {
-    pub x: f32,
-    pub y: f32,
-    pub radius: f32,
+pub enum GraphicsShape<'t> {
+    Circle(Cow<'t, crate::raw::Circle>, CircleStyle),
 }
 
 pub struct Circle {
-    shape: RawCircle,
+    shape: crate::raw::Circle,
     style: CircleStyle,
 }
 
@@ -51,7 +48,7 @@ impl Drawable for dyn GraphicsStyle {
     }
 }
 
-impl Drawable for RawCircle {
+impl Drawable for crate::raw::Circle {
     fn get_shape(&self) -> Option<GraphicsShape> {
         Some(GraphicsShape::Circle(Cow::Borrowed(self), Default::default()))
     }

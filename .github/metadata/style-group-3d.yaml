@@ -1,0 +1,7 @@
+- field: point3d_style
+  type: Point3DStyle
+  derive: Debug, Clone, Copy, PartialEq, Default
+  docs: Represent the available style of a 3d point.
+  subtype:
+    - point_size
+    - point_color
