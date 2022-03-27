@@ -1,17 +1,17 @@
 (* ::Package:: *)
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Prepare Data*)
 
 
 SetDirectory@NotebookDirectory[];
 styleRaw = Import["../meta-data.m"];
 styleGrouped = styleRaw["styleGroup"];
-styleFlatten = styleRaw["styleAtom"];
-styleSubtype = Values[Association[#field->#&/@styleFlatten][[#subtype]]]&;
+styleFlatten = DeleteDuplicatesBy[styleRaw["styleAtom"], #field&];
+styleSubtype = Values[Association[#field -> #& /@ styleFlatten][[#subtype]]]&;
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Resolve*)
 
 
@@ -48,40 +48,22 @@ getDrawXXInner[item_Association] := TemplateApply["
 ",
     item
 ];
-buildDrawXXInner[data_] := getDrawXXInner@data;
-
-
-getDrawXXField[item_Association] := TemplateApply[
-	"`field`: Some(self.`field`()),",
-    item
-];
-buildDrawXXOuter[item_Association] := TemplateApply["
-    /// Get the [<*\"`\"*>`type`<*\"`\"*>] from theme and state.
-    pub fn `field`(&self) -> `type` {
-        `type` { `FIELDS`}
-    }
-",
-    Join[
-    item, 
-    <|
-    "FIELDS"->StringJoin[getDrawXXField/@item["subtype"]]
-    |>
-    ]
-];
+buildDrawXXInner[data_] := {
+    "impl StyleResolver {",
+    getDrawXXInner /@ data,
+    "}"
+};
 
 
 text = Flatten@{
     buildHead,
     buildDrawXX @ styleFlatten,
-    "impl StyleResolver {",
-    buildDrawXXOuter /@ styleGrouped,
-    buildDrawXXInner /@ styleFlatten,
-    "}"
+    buildDrawXXInner @ styleFlatten
 };
 Export["src/resolver/content.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Resolved*)
 
 
@@ -95,27 +77,47 @@ getDrawXX[item_Association] := TemplateApply["
     item
 ];
 buildDrawXX[data_] := {
-TemplateApply["
+    TemplateApply["
 /// Get default style when not specified.
 #[derive(`derive`, Serialize, Deserialize)]
 pub struct `typeSuper` {
 ",
-    data
-],
-getDrawXX /@ styleSubtype[data]
-,
-"}"
+        data
+    ],
+    getDrawXX /@ styleSubtype[data]
+    ,
+    "}"
+};
+
+
+getDrawXXField[item_Association] := TemplateApply[
+    "`field`: style.`field`.unwrap_or(self.`field`()).value`isCopy`,",
+    item
+];
+buildFnResolve[item_Association] := {
+    TemplateApply["
+    /// Get the [<*\"`\"*>crate::`typeSuper`<*\"`\"*>] from theme and state.
+    pub fn resolve_`field`(&self, style: crate::`typeSuper`) -> `typeSuper` {
+        `typeSuper` {
+",
+        item
+    ],
+    getDrawXXField /@ styleSubtype[item] // StringJoin,
+    "}}"
 };
 
 
 text = Flatten@{
     buildHead,
-    buildDrawXX /@ styleGrouped
+    buildDrawXX /@ styleGrouped,
+    "impl StyleResolver {",
+    buildFnResolve /@ styleGrouped,
+    "}"
 };
-Export["src/resolver/resolved.rs", StringRiffle[text,"\n\n"], "Text"];
+Export["src/resolver/resolved.rs", StringRiffle[text, "\n\n"], "Text"];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Shapes*)
 
 
@@ -128,7 +130,6 @@ buildHead = "use super::*;";
 
 getXX[item_Association] := TemplateApply["
 /// `docs`
-/// 
 /// `details`
 #[derive(`derive`, Serialize, Deserialize)]
 #[serde(into = \"`typeInner`\", from = \"`typeInner`\")]
@@ -142,34 +143,33 @@ pub struct `typeOuter` {
 buildXX[data_] := getXX @ data;
 
 
-getXXStyle[item_Association] := TemplateApply["\
+getXXStyle[item_Association] := TemplateApply["
     /// `docs`, see more in [<*\"`\"*>`typeOuter`<*\"`\"*>].
 	#[serde(skip_serializing_if = \"Option::is_none\")]
     pub `field`: Option<`typeOuter`>,
 ",
     item
 ];
-buildXXStyle[data_] := TemplateApply["
+buildXXStyle[data_] := { TemplateApply["
 /// `docs`
+/// `details`
 #[derive(`derive`, Serialize, Deserialize)]
-pub struct `type` {`record`}
-
-`subtypes`
+pub struct `typeSuper` {
 ",
-    Join[
-    data,
-    <|
-    "subtypes" -> StringJoin[getXX /@ data["subtype"]],
-        "record"->StringJoin[getXXStyle /@ data["subtype"]]
-    |>]
-];
+    data
+],
+    getXXStyle /@ styleSubtype@data,
+    "}"
 
-
-drawStyle = Flatten@{
-buildHead,
-        buildXXStyle /@ styleGrouped
 };
-Export["src/shapes/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
+
+
+text = Flatten@{
+    buildHead,
+    buildXXStyle /@ styleGrouped,
+    getXX /@ styleFlatten
+};
+Export["src/shapes/shape.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
 (* ::Subsection:: *)
@@ -181,6 +181,18 @@ Export["src/shapes/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 
 
 buildHead = "use super::*;";
+
+
+getDefault[item_Association] := TemplateApply["\
+impl Default for `typeOuter` {
+    fn default() -> Self {
+        Self { value: `default` }
+    }
+}
+",
+    item
+];
+buildDefault[item_] := If[MissingQ@item["default"], "", getDefault@item];
 
 
 getAddXX[item_Association] := TemplateApply["\
@@ -212,8 +224,8 @@ impl AddAssign<&Self> for `3` {
     fn add_assign(&mut self, rhs: &Self) {`2`}
 }",
     {
-        getAddSelf /@ data["subtype"] // StringJoin,
-        getSelfClone /@ data["subtype"] // StringJoin,
+        getAddSelf /@ styleSubtype@data // StringJoin,
+        getSelfClone /@ styleSubtype@data // StringJoin,
         data["type"]
     }
 ];
@@ -234,18 +246,19 @@ impl PartialOrd<f32> for `typeOuter` {
 ",
     item
 ];
-buildEq[data_] := If[data["typeInner"]==="f32",getEq@data,Nothing];
+buildEq[data_] := If[data["typeInner"] === "f32", getEq@data, Nothing];
 
 
 text = Flatten@{
     buildHead,
+    buildDefault /@ styleFlatten,
     buildFromXX /@ styleFlatten,
     buildEq /@ styleFlatten
 };
 Export["src/traits/convert.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*AddAssign*)
 
 
@@ -293,9 +306,9 @@ impl AddAssign<&Self> for `3` {
     fn add_assign(&mut self, rhs: &Self) {`2`}
 }",
     {
-        getAddSelf /@ data["subtype"] // StringJoin,
-        getSelfClone /@ data["subtype"] // StringJoin,
-        data["type"]
+        getAddSelf /@ styleSubtype@data // StringJoin,
+        getSelfClone /@ styleSubtype@data // StringJoin,
+        data["typeSuper"]
     }
 ];
 
@@ -308,7 +321,7 @@ upcast = Flatten@{
 Export["src/traits/add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*DrawStyle*)
 
 
@@ -329,7 +342,7 @@ buildDrawXX[data_] := getDrawXX[data];
 
 
 getDrawXXStyle[item_Association] := TemplateApply[
-"state.`field` = Some(self.`field`.unwrap_or_default());",
+    "state.`field` = Some(self.`field`.unwrap_or_default());",
     item
 ];
 buildDrawXXStyle[data_] := TemplateApply["\
@@ -340,8 +353,8 @@ impl GraphicsStyle for `2` {
 }
 ",
     {
-        getDrawXXStyle /@ data["subtype"] // StringJoin,
-        data["type"]
+        getDrawXXStyle /@ styleSubtype@data // StringJoin,
+        data["typeSuper"]
     }
 ];
 

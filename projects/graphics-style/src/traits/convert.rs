@@ -1,5 +1,53 @@
 use super::*;
 
+impl Default for CircleWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for LineWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for PointSize {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for PolygonEdgeWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for PolylineWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for RectangleEdgeWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for SquareEdgeWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for TriangleEdgeWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
 impl From<RGBA> for BackgroundColor {
     fn from(value: RGBA) -> Self {
         Self { value }

@@ -331,7 +331,7 @@ pub struct PolygonEdgeColor {
 }
 
 /// Represent the with of a line, default width is 1.0
-#[derive(Clone, Copy, Default, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct PolygonEdgeWidth {
     /// Actual value for [`StyleResolver::polygon_edge_width`]
@@ -355,7 +355,7 @@ pub struct PolylineColor {
 }
 
 /// Represent the with of a line, default width is 1.0
-#[derive(Clone, Default, Copy, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct PolylineWidth {
     /// Actual value for [`StyleResolver::polyline_width`]
@@ -371,7 +371,7 @@ pub struct RectangleEdgeColor {
 }
 
 /// Represent the with of a line, default width is 1.0
-#[derive(Clone, Copy, Default, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct RectangleEdgeWidth {
     /// Actual value for [`StyleResolver::rectangle_edge_width`]
@@ -395,7 +395,7 @@ pub struct SquareEdgeColor {
 }
 
 /// Represent the with of a line, default width is 1.0
-#[derive(Clone, Copy, Default, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct SquareEdgeWidth {
     /// Actual value for [`StyleResolver::square_edge_width`]
@@ -443,7 +443,7 @@ pub struct TriangleEdgeColor {
 }
 
 /// Represent the with of a line, default width is 1.0
-#[derive(Clone, Copy, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct TriangleEdgeWidth {
     /// Actual value for [`StyleResolver::triangle_edge_width`]
