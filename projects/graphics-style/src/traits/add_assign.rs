@@ -326,20 +326,6 @@ impl AddAssign<&Self> for PointStyle {
     }
 }
 
-impl AddAssign<Self> for Point3DStyle {
-    fn add_assign(&mut self, rhs: Self) {
-        self.point_size = rhs.point_size;
-        self.point_color = rhs.point_color;
-    }
-}
-
-impl AddAssign<&Self> for Point3DStyle {
-    fn add_assign(&mut self, rhs: &Self) {
-        self.point_size = rhs.point_size.clone();
-        self.point_color = rhs.point_color.clone();
-    }
-}
-
 impl AddAssign<Self> for CircleStyle {
     fn add_assign(&mut self, rhs: Self) {
         self.circle_width = rhs.circle_width;
@@ -406,20 +392,6 @@ impl AddAssign<Self> for SquareStyle {
 }
 
 impl AddAssign<&Self> for SquareStyle {
-    fn add_assign(&mut self, rhs: &Self) {
-        self.square_edge_width = rhs.square_edge_width.clone();
-        self.square_fill_color = rhs.square_fill_color.clone();
-    }
-}
-
-impl AddAssign<Self> for RectangleStyle {
-    fn add_assign(&mut self, rhs: Self) {
-        self.square_edge_width = rhs.square_edge_width;
-        self.square_fill_color = rhs.square_fill_color;
-    }
-}
-
-impl AddAssign<&Self> for RectangleStyle {
     fn add_assign(&mut self, rhs: &Self) {
         self.square_edge_width = rhs.square_edge_width.clone();
         self.square_fill_color = rhs.square_fill_color.clone();

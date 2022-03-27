@@ -16,17 +16,21 @@ styleGroup = Flatten[{
 
 isCopyType = MemberQ[{"f32", "RGBA"}, #]&;
 CamelCase = StringJoin[Capitalize /@ StringSplit[#, "_"]]&;
-commentLines[text_] := StringRiffle[StringJoin[{"/// ", #}]& /@ StringSplit[text, "\n"], "\n"];
+commentLines[text_] := "\n" <> StringRiffle[StringJoin[{"/// ", #}]& /@ StringSplit[text, "\n"], "\n"];
 
 
 atomAddition[data_] := Association@SortBy[Normal@Join[data, atomAdditionData@data], First];
 atomAdditionData := Block[
-    {derive = {"Debug", "Clone", "PartialEq"}},
+    {
+        derive = {"Debug", "Clone", "PartialEq"},
+        isCopy = isCopyType[#typeInner]
+    },
     If[MissingQ@#["default"], AppendTo[derive, "Default"]];
+    If[isCopy, AppendTo[derive, "Copy"]];
     <|
         "details" -> If[MissingQ@#["details"], "", commentLines[#["details"]]],
         "typeOuter" -> If[MissingQ@#["typeOuter"], CamelCase[#field], #["typeOuter"]],
-        "isCopy" -> If[isCopyType[#typeInner], "", ".clone()"],
+        "isCopy" -> If[isCopy, "", ".clone()"],
         "derive" -> StringRiffle[DeleteDuplicates@Sort@derive, ", "]
     |>
 ]&;

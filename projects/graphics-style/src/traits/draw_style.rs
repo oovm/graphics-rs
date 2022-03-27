@@ -85,13 +85,6 @@ impl GraphicsStyle for PointStyle {
     }
 }
 
-impl GraphicsStyle for Point3DStyle {
-    fn draw_style(&self, state: &mut StyleContext) {
-        state.point_size = Some(self.point_size.unwrap_or_default());
-        state.point_color = Some(self.point_color.unwrap_or_default());
-    }
-}
-
 impl GraphicsStyle for CircleStyle {
     fn draw_style(&self, state: &mut StyleContext) {
         state.circle_width = Some(self.circle_width.unwrap_or_default());
@@ -125,24 +118,5 @@ impl GraphicsStyle for SquareStyle {
     fn draw_style(&self, state: &mut StyleContext) {
         state.square_edge_width = Some(self.square_edge_width.unwrap_or_default());
         state.square_fill_color = Some(self.square_fill_color.unwrap_or_default());
-    }
-}
-
-impl GraphicsStyle for RectangleStyle {
-    fn draw_style(&self, state: &mut StyleContext) {
-        state.square_edge_width = Some(self.square_edge_width.unwrap_or_default());
-        state.square_fill_color = Some(self.square_fill_color.unwrap_or_default());
-    }
-}
-
-impl Default for SquareEdgeWidth {
-    fn default() -> Self {
-        Self { value: 1.0 }
-    }
-}
-
-impl Default for TriangleEdgeWidth {
-    fn default() -> Self {
-        Self { value: 1.0 }
     }
 }

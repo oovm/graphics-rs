@@ -11,7 +11,7 @@
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
-                "details" -> "/// The circle is defined by its center and its radius.",
+                "details" -> "\n/// The circle is defined by its center and its radius.",
                 "docs" -> "Represent the available style of a circle.",
                 "field" -> "circle_style",
                 "subtype" -> { "circle_width", "circle_color" },
@@ -112,7 +112,7 @@
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
-                "details" -> "/// The polyline is a collection of points.",
+                "details" -> "\n/// The polyline is a collection of points.",
                 "docs" -> "Represent the available style of a line.",
                 "field" -> "polyline_style",
                 "subtype" -> { "polyline_width", "polyline_color" },
@@ -169,7 +169,7 @@
     "styleAtom" ->
         {
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "background_color",
@@ -178,7 +178,7 @@
                 "typeOuter" -> "BackgroundColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "circle_color",
@@ -187,8 +187,8 @@
                 "typeOuter" -> "CircleColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "circle_color",
                 "isCopy" -> "",
@@ -197,7 +197,7 @@
             |>,
             <|
                 "default" -> "1.0",
-                "derive" -> "Clone, Debug, PartialEq",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the width of a circle, default width is 1.0",
                 "field" -> "circle_width",
@@ -207,8 +207,8 @@
             |>,
             <|
                 "default" -> "1.0",
-                "derive" -> "Clone, Debug, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the width of a circle, default width is 1.0",
                 "field" -> "circle_width",
                 "isCopy" -> "",
@@ -216,7 +216,7 @@
                 "typeOuter" -> "CircleWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the edge color of a disk, default is transparent",
                 "field" -> "disk_edge_color",
@@ -225,8 +225,8 @@
                 "typeOuter" -> "DiskEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the edge color of a disk, default is transparent",
                 "field" -> "disk_edge_color",
                 "isCopy" -> "",
@@ -234,7 +234,7 @@
                 "typeOuter" -> "DiskEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the edge width of a disk, default width is 1.0",
                 "field" -> "disk_edge_width",
@@ -243,8 +243,8 @@
                 "typeOuter" -> "DiskEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the edge width of a disk, default width is 1.0",
                 "field" -> "disk_edge_width",
                 "isCopy" -> "",
@@ -252,7 +252,7 @@
                 "typeOuter" -> "DiskEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a disk, default color is black",
                 "field" -> "disk_fill_color",
@@ -261,8 +261,8 @@
                 "typeOuter" -> "DiskFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a disk, default color is black",
                 "field" -> "disk_fill_color",
                 "isCopy" -> "",
@@ -270,7 +270,7 @@
                 "typeOuter" -> "DiskFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "line_color",
@@ -279,8 +279,8 @@
                 "typeOuter" -> "LineColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "line_color",
                 "isCopy" -> "",
@@ -288,7 +288,8 @@
                 "typeOuter" -> "LineColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "default" -> "1.0",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "line_width",
@@ -297,8 +298,8 @@
                 "typeOuter" -> "LineWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "line_width",
                 "isCopy" -> "",
@@ -306,7 +307,7 @@
                 "typeOuter" -> "LineWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "point_color",
@@ -315,8 +316,8 @@
                 "typeOuter" -> "PointColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "point_color",
                 "isCopy" -> "",
@@ -325,8 +326,8 @@
             |>,
             <|
                 "default" -> "1.0",
-                "derive" -> "Clone, Debug, PartialEq",
-                "details" -> "/// The shape of the point is always round.",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
+                "details" -> "\n/// The shape of the point is always round.",
                 "docs" -> "Represent the size of a point, default size is 1.0",
                 "field" -> "point_size",
                 "isCopy" -> "",
@@ -335,8 +336,8 @@
             |>,
             <|
                 "default" -> "1.0",
-                "derive" -> "Clone, Debug, PartialEq",
-                "details" -> "/// The shape of the point is always round.",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
+                "details" -> "\n/// The shape of the point is always round.",
                 "docs" -> "Represent the size of a point, default size is 1.0",
                 "field" -> "point_size",
                 "isCopy" -> "",
@@ -344,7 +345,7 @@
                 "typeOuter" -> "PointSize"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_edge_color",
@@ -353,8 +354,8 @@
                 "typeOuter" -> "PolygonEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_edge_color",
                 "isCopy" -> "",
@@ -362,7 +363,8 @@
                 "typeOuter" -> "PolygonEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "default" -> "1.0",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "polygon_edge_width",
@@ -371,8 +373,8 @@
                 "typeOuter" -> "PolygonEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "polygon_edge_width",
                 "isCopy" -> "",
@@ -380,7 +382,7 @@
                 "typeOuter" -> "PolygonEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_fill_color",
@@ -389,8 +391,8 @@
                 "typeOuter" -> "PolygonFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_fill_color",
                 "isCopy" -> "",
@@ -398,7 +400,7 @@
                 "typeOuter" -> "PolygonFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polyline_color",
@@ -407,7 +409,8 @@
                 "typeOuter" -> "PolylineColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "default" -> "1.0",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "polyline_width",
@@ -416,7 +419,7 @@
                 "typeOuter" -> "PolylineWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_edge_color",
@@ -425,8 +428,8 @@
                 "typeOuter" -> "RectangleEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_edge_color",
                 "isCopy" -> "",
@@ -434,7 +437,8 @@
                 "typeOuter" -> "RectangleEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "default" -> "1.0",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "rectangle_edge_width",
@@ -443,8 +447,8 @@
                 "typeOuter" -> "RectangleEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "rectangle_edge_width",
                 "isCopy" -> "",
@@ -452,7 +456,7 @@
                 "typeOuter" -> "RectangleEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_fill_color",
@@ -461,8 +465,8 @@
                 "typeOuter" -> "RectangleFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_fill_color",
                 "isCopy" -> "",
@@ -470,7 +474,7 @@
                 "typeOuter" -> "RectangleFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_color",
@@ -479,7 +483,8 @@
                 "typeOuter" -> "SquareEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "default" -> "1.0",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_width",
@@ -488,8 +493,8 @@
                 "typeOuter" -> "SquareEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_width",
                 "isCopy" -> "",
@@ -497,8 +502,8 @@
                 "typeOuter" -> "SquareEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_width",
                 "isCopy" -> "",
@@ -506,7 +511,7 @@
                 "typeOuter" -> "SquareEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
@@ -515,7 +520,7 @@
                 "typeOuter" -> "SquareFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
@@ -524,8 +529,8 @@
                 "typeOuter" -> "SquareFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
                 "isCopy" -> "",
@@ -533,8 +538,8 @@
                 "typeOuter" -> "SquareFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
                 "isCopy" -> "",
@@ -542,7 +547,7 @@
                 "typeOuter" -> "SquareFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "text_color",
@@ -551,7 +556,7 @@
                 "typeOuter" -> "TextColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "text_font",
@@ -560,7 +565,7 @@
                 "typeOuter" -> "TextFont"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "text_size",
@@ -569,7 +574,7 @@
                 "typeOuter" -> "TextSize"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "triangle_edge_color",
@@ -578,7 +583,8 @@
                 "typeOuter" -> "TriangleEdgeColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "default" -> "1.0",
+                "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "triangle_edge_width",
@@ -587,8 +593,8 @@
                 "typeOuter" -> "TriangleEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "triangle_edge_width",
                 "isCopy" -> "",
@@ -596,7 +602,7 @@
                 "typeOuter" -> "TriangleEdgeWidth"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "triangle_fill_color",
@@ -605,8 +611,8 @@
                 "typeOuter" -> "TriangleFillColor"
             |>,
             <|
-                "derive" -> "Clone, Debug, Default, PartialEq",
-                "details" -> "",
+                "derive" -> "Clone, Copy, Debug, Default, PartialEq",
+                "details" -> "\n",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "triangle_fill_color",
                 "isCopy" -> "",
