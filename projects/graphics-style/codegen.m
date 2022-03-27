@@ -89,7 +89,7 @@ buildHead = "use super::*;";
 
 
 getDrawXX[item_Association] := TemplateApply["
-    /// Get default [<*\"`\"*>`super::typeOuter`<*\"`\"*>] when missing.
+    /// Get the config of [<*\"`\"*>crate::`typeOuter`<*\"`\"*>]
 	pub `field`: `typeInner`,
 ",
     item
@@ -112,7 +112,7 @@ text = Flatten@{
     buildHead,
     buildDrawXX /@ styleGrouped
 };
-Export["src/resolver/resolved.rs", StringJoin@text, "Text"];
+Export["src/resolver/resolved.rs", StringRiffle[text,"\n\n"], "Text"];
 
 
 (* ::Subsection:: *)

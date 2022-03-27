@@ -26,7 +26,7 @@ atomAdditionData := Block[
     <|
         "details" -> If[MissingQ@#["details"], "", commentLines[#["details"]]],
         "typeOuter" -> If[MissingQ@#["typeOuter"], CamelCase[#field], #["typeOuter"]],
-        "isCopy" -> isCopyType[#typeInner],
+        "isCopy" -> If[isCopyType[#typeInner], "", ".clone()"],
         "derive" -> StringRiffle[DeleteDuplicates@Sort@derive, ", "]
     |>
 ]&;

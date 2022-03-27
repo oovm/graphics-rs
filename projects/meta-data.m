@@ -18,6 +18,7 @@
                 "typeSuper" -> "CircleStyle"
             |>,
             <|
+                "bind_shape" -> { "Disk" },
                 "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the available style of a disk.",
@@ -88,6 +89,7 @@
                 "typeSuper" -> "LineStyle"
             |>,
             <|
+                "bind_shape" -> { "Point", "Point3D" },
                 "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the available style of a point.",
@@ -171,7 +173,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "background_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "BackgroundColor"
             |>,
@@ -180,7 +182,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "circle_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "CircleColor"
             |>,
@@ -189,7 +191,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "circle_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "CircleColor"
             |>,
@@ -199,7 +201,7 @@
                 "details" -> "",
                 "docs" -> "Represent the width of a circle, default width is 1.0",
                 "field" -> "circle_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "CircleWidth"
             |>,
@@ -209,7 +211,7 @@
                 "details" -> "",
                 "docs" -> "Represent the width of a circle, default width is 1.0",
                 "field" -> "circle_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "CircleWidth"
             |>,
@@ -218,7 +220,7 @@
                 "details" -> "",
                 "docs" -> "Represent the edge color of a disk, default is transparent",
                 "field" -> "disk_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "DiskEdgeColor"
             |>,
@@ -227,7 +229,7 @@
                 "details" -> "",
                 "docs" -> "Represent the edge color of a disk, default is transparent",
                 "field" -> "disk_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "DiskEdgeColor"
             |>,
@@ -236,7 +238,7 @@
                 "details" -> "",
                 "docs" -> "Represent the edge width of a disk, default width is 1.0",
                 "field" -> "disk_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "DiskEdgeWidth"
             |>,
@@ -245,7 +247,7 @@
                 "details" -> "",
                 "docs" -> "Represent the edge width of a disk, default width is 1.0",
                 "field" -> "disk_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "DiskEdgeWidth"
             |>,
@@ -254,7 +256,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a disk, default color is black",
                 "field" -> "disk_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "DiskFillColor"
             |>,
@@ -263,7 +265,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a disk, default color is black",
                 "field" -> "disk_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "DiskFillColor"
             |>,
@@ -272,7 +274,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "line_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "LineColor"
             |>,
@@ -281,7 +283,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "line_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "LineColor"
             |>,
@@ -290,7 +292,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "line_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "LineWidth"
             |>,
@@ -299,7 +301,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "line_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "LineWidth"
             |>,
@@ -308,7 +310,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "point_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "PointColor"
             |>,
@@ -317,7 +319,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "point_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "PointColor"
             |>,
@@ -327,7 +329,7 @@
                 "details" -> "/// The shape of the point is always round.",
                 "docs" -> "Represent the size of a point, default size is 1.0",
                 "field" -> "point_size",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "PointSize"
             |>,
@@ -337,7 +339,7 @@
                 "details" -> "/// The shape of the point is always round.",
                 "docs" -> "Represent the size of a point, default size is 1.0",
                 "field" -> "point_size",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "PointSize"
             |>,
@@ -346,7 +348,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "PolygonEdgeColor"
             |>,
@@ -355,7 +357,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "PolygonEdgeColor"
             |>,
@@ -364,7 +366,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "polygon_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "PolygonEdgeWidth"
             |>,
@@ -373,7 +375,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "polygon_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "PolygonEdgeWidth"
             |>,
@@ -382,7 +384,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "PolygonFillColor"
             |>,
@@ -391,7 +393,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polygon_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "PolygonFillColor"
             |>,
@@ -400,7 +402,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "polyline_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "PolylineColor"
             |>,
@@ -409,7 +411,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "polyline_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "PolylineWidth"
             |>,
@@ -418,7 +420,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "RectangleEdgeColor"
             |>,
@@ -427,7 +429,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "RectangleEdgeColor"
             |>,
@@ -436,7 +438,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "rectangle_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "RectangleEdgeWidth"
             |>,
@@ -445,7 +447,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "rectangle_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "RectangleEdgeWidth"
             |>,
@@ -454,7 +456,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "RectangleFillColor"
             |>,
@@ -463,7 +465,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "RectangleFillColor"
             |>,
@@ -472,7 +474,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "SquareEdgeColor"
             |>,
@@ -481,7 +483,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "SquareEdgeWidth"
             |>,
@@ -490,7 +492,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "SquareEdgeWidth"
             |>,
@@ -499,7 +501,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "square_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "SquareEdgeWidth"
             |>,
@@ -508,7 +510,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "SquareFillColor"
             |>,
@@ -517,7 +519,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "SquareFillColor"
             |>,
@@ -526,7 +528,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "SquareFillColor"
             |>,
@@ -535,7 +537,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "square_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "SquareFillColor"
             |>,
@@ -544,7 +546,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "text_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "TextColor"
             |>,
@@ -553,7 +555,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "text_font",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "TextFont"
             |>,
@@ -562,7 +564,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "text_size",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "TextSize"
             |>,
@@ -571,7 +573,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "triangle_edge_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "TriangleEdgeColor"
             |>,
@@ -580,7 +582,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "triangle_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "TriangleEdgeWidth"
             |>,
@@ -589,7 +591,7 @@
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
                 "field" -> "triangle_edge_width",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "f32",
                 "typeOuter" -> "TriangleEdgeWidth"
             |>,
@@ -598,7 +600,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "triangle_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "TriangleFillColor"
             |>,
@@ -607,7 +609,7 @@
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "triangle_fill_color",
-                "isCopy" -> True,
+                "isCopy" -> "",
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "TriangleFillColor"
             |>
