@@ -7,15 +7,15 @@
                 "docs" -> "Represent the available style of a background.",
                 "field" -> "background_style",
                 "subtype" -> { "background_color" },
-                "type" -> "BackgroundStyle"
+                "typeSuper" -> "BackgroundStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
                 "details" -> "/// The circle is defined by its center and its radius.",
                 "docs" -> "Represent the available style of a circle.",
                 "field" -> "circle_style",
-                "subtype" -> { "circle_size", "circle_color" },
-                "type" -> "CircleStyle"
+                "subtype" -> { "circle_width", "circle_color" },
+                "typeSuper" -> "CircleStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -24,7 +24,7 @@
                 "field" -> "disk_style",
                 "subtype" ->
                     { "disk_fill_color", "disk_edge_width", "disk_edge_color" },
-                "type" -> "DiskStyle"
+                "typeSuper" -> "DiskStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -39,7 +39,7 @@
                         "rectangle_edge_color",
                         "polygon_edge_color"
                     },
-                "type" -> "EdgeColor"
+                "typeSuper" -> "EdgeColor"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -47,7 +47,7 @@
                 "docs" -> "Represent the available style of a style.",
                 "field" -> "edge_style",
                 "subtype" -> { "disk_edge_width", "triangle_edge_color" },
-                "type" -> "EdgeStyle"
+                "typeSuper" -> "EdgeStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -62,7 +62,7 @@
                         "rectangle_edge_width",
                         "polygon_edge_width"
                     },
-                "type" -> "EdgeWidth"
+                "typeSuper" -> "EdgeWidth"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -77,7 +77,7 @@
                         "rectangle_fill_color",
                         "polygon_fill_color"
                     },
-                "type" -> "FillColor"
+                "typeSuper" -> "FillColor"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -85,7 +85,7 @@
                 "docs" -> "Represent the available style of a line.",
                 "field" -> "line_style",
                 "subtype" -> { "line_width", "line_color" },
-                "type" -> "LineStyle"
+                "typeSuper" -> "LineStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -93,7 +93,7 @@
                 "docs" -> "Represent the available style of a point.",
                 "field" -> "point_style",
                 "subtype" -> { "point_size", "point_color" },
-                "type" -> "PointStyle"
+                "typeSuper" -> "PointStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -106,7 +106,7 @@
                         "polygon_edge_width",
                         "polygon_edge_color"
                     },
-                "type" -> "PolygonStyle"
+                "typeSuper" -> "PolygonStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -114,7 +114,7 @@
                 "docs" -> "Represent the available style of a line.",
                 "field" -> "polyline_style",
                 "subtype" -> { "polyline_width", "polyline_color" },
-                "type" -> "PolylineStyle"
+                "typeSuper" -> "PolylineStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -127,7 +127,7 @@
                         "rectangle_edge_width",
                         "rectangle_edge_color"
                     },
-                "type" -> "RectangleStyle"
+                "typeSuper" -> "RectangleStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -140,7 +140,7 @@
                         "square_edge_width",
                         "square_edge_color"
                     },
-                "type" -> "SquareStyle"
+                "typeSuper" -> "SquareStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -148,7 +148,7 @@
                 "docs" -> "Represent the available style of a text.",
                 "field" -> "text_style",
                 "subtype" -> { "text_color", "text_size", "text_font" },
-                "type" -> "TextStyle"
+                "typeSuper" -> "TextStyle"
             |>,
             <|
                 "derive" -> "Clone, Copy, Debug, PartialEq",
@@ -161,7 +161,7 @@
                         "triangle_edge_width",
                         "triangle_edge_color"
                     },
-                "type" -> "TriangleStyle"
+                "typeSuper" -> "TriangleStyle"
             |>
         },
     "styleAtom" ->
@@ -169,6 +169,15 @@
             <|
                 "derive" -> "Clone, Debug, Default, PartialEq",
                 "details" -> "",
+                "docs" -> "Represent the color of a line, default color is black",
+                "field" -> "background_color",
+                "isCopy" -> True,
+                "typeInner" -> "RGBA",
+                "typeOuter" -> "BackgroundColor"
+            |>,
+            <|
+                "derive" -> "Clone, Debug, Default, PartialEq",
+                "details" -> "",
                 "docs" -> "Represent the color of a point, default color is black",
                 "field" -> "circle_color",
                 "isCopy" -> True,
@@ -390,6 +399,24 @@
                 "derive" -> "Clone, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the color of a line, default color is black",
+                "field" -> "polyline_color",
+                "isCopy" -> True,
+                "typeInner" -> "RGBA",
+                "typeOuter" -> "PolylineColor"
+            |>,
+            <|
+                "derive" -> "Clone, Debug, Default, PartialEq",
+                "details" -> "",
+                "docs" -> "Represent the with of a line, default width is 1.0",
+                "field" -> "polyline_width",
+                "isCopy" -> True,
+                "typeInner" -> "f32",
+                "typeOuter" -> "PolylineWidth"
+            |>,
+            <|
+                "derive" -> "Clone, Debug, Default, PartialEq",
+                "details" -> "",
+                "docs" -> "Represent the color of a line, default color is black",
                 "field" -> "rectangle_edge_color",
                 "isCopy" -> True,
                 "typeInner" -> "RGBA",
@@ -444,10 +471,10 @@
                 "derive" -> "Clone, Debug, Default, PartialEq",
                 "details" -> "",
                 "docs" -> "Represent the with of a line, default width is 1.0",
-                "field" -> "square_edge_width",
+                "field" -> "square_edge_color",
                 "isCopy" -> True,
-                "typeInner" -> "f32",
-                "typeOuter" -> "SquareEdgeWidth"
+                "typeInner" -> "RGBA",
+                "typeOuter" -> "SquareEdgeColor"
             |>,
             <|
                 "derive" -> "Clone, Debug, Default, PartialEq",
@@ -511,6 +538,42 @@
                 "isCopy" -> True,
                 "typeInner" -> "RGBA",
                 "typeOuter" -> "SquareFillColor"
+            |>,
+            <|
+                "derive" -> "Clone, Debug, Default, PartialEq",
+                "details" -> "",
+                "docs" -> "Represent the color of a line, default color is black",
+                "field" -> "text_color",
+                "isCopy" -> True,
+                "typeInner" -> "RGBA",
+                "typeOuter" -> "TextColor"
+            |>,
+            <|
+                "derive" -> "Clone, Debug, Default, PartialEq",
+                "details" -> "",
+                "docs" -> "Represent the color of a line, default color is black",
+                "field" -> "text_font",
+                "isCopy" -> True,
+                "typeInner" -> "f32",
+                "typeOuter" -> "TextFont"
+            |>,
+            <|
+                "derive" -> "Clone, Debug, Default, PartialEq",
+                "details" -> "",
+                "docs" -> "Represent the with of a line, default width is 1.0",
+                "field" -> "text_size",
+                "isCopy" -> True,
+                "typeInner" -> "f32",
+                "typeOuter" -> "TextSize"
+            |>,
+            <|
+                "derive" -> "Clone, Debug, Default, PartialEq",
+                "details" -> "",
+                "docs" -> "Represent the color of a line, default color is black",
+                "field" -> "triangle_edge_color",
+                "isCopy" -> True,
+                "typeInner" -> "RGBA",
+                "typeOuter" -> "TriangleEdgeColor"
             |>,
             <|
                 "derive" -> "Clone, Debug, Default, PartialEq",

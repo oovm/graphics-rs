@@ -5,24 +5,17 @@
 
 
 SetDirectory@NotebookDirectory[];
-styleRaw = reMap /@ Import["../style-inherit.json", "RawJSON"];
-CamelCase = StringJoin[Capitalize /@ StringSplit[#, "_"]]&;
-reMap[data_Association] := Block[
-    {typeSuper, subtype},
-    typeSuper = CamelCase[data["field"]];
-    subtype = Join[#, <|"typeSuper" -> typeSuper, "typeOuter" -> CamelCase[#field]|>]& /@ data["subtype"];
-    Join[data, <|"type"->typeSuper,"subtype" -> subtype|>]
-];
-styleGrouped = reMap /@ styleRaw;
-styleFlatten = DeleteDuplicatesBy[Flatten[#subtype& /@ styleGrouped],#field&];
-Export["../style-inherit.m", ResourceFunction["ReadableForm"][styleGrouped], "Text"];
+styleRaw = Import["../meta-data.m"];
+styleGrouped = styleRaw["styleGroup"];
+styleFlatten = styleRaw["styleAtom"];
+styleSubtype = Values[Association[#field->#&/@styleFlatten][[#subtype]]]&;
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Resolve*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Content*)
 
 
@@ -88,11 +81,45 @@ text = Flatten@{
 Export["src/resolver/content.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
+(* ::Subsubsection:: *)
+(*Resolved*)
+
+
+buildHead = "use super::*;";
+
+
+getDrawXX[item_Association] := TemplateApply["
+    /// Get default [<*\"`\"*>`super::typeOuter`<*\"`\"*>] when missing.
+	pub `field`: `typeInner`,
+",
+    item
+];
+buildDrawXX[data_] := {
+TemplateApply["
+/// Get default style when not specified.
+#[derive(`derive`, Serialize, Deserialize)]
+pub struct `typeSuper` {
+",
+    data
+],
+getDrawXX /@ styleSubtype[data]
+,
+"}"
+};
+
+
+text = Flatten@{
+    buildHead,
+    buildDrawXX /@ styleGrouped
+};
+Export["src/resolver/resolved.rs", StringJoin@text, "Text"];
+
+
 (* ::Subsection:: *)
 (*Shapes*)
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*Shape*)
 
 
@@ -281,7 +308,7 @@ upcast = Flatten@{
 Export["src/traits/add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*DrawStyle*)
 
 

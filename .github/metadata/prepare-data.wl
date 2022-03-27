@@ -40,7 +40,7 @@ groupAdditionData := Block[
     AppendTo[derive, "PartialEq"];
     <|
         "details" -> If[MissingQ@#["details"], "", commentLines[#["details"]]],
-        "type" -> If[MissingQ@#["type"], CamelCase[#field], #["type"]],
+        "typeSuper" -> If[MissingQ@#["typeSuper"], CamelCase[#field], #["typeSuper"]],
         "derive" -> StringRiffle[DeleteDuplicates@Sort@derive, ", "]
     |>
 ]&;

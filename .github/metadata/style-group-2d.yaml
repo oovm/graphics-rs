@@ -5,6 +5,9 @@
   subtype:
     - point_size
     - point_color
+  bind_shape:
+    - Point
+    - Point3D
 - field: disk_style
   derive: Copy
   docs: Represent the available style of a disk.
@@ -12,13 +15,15 @@
     - disk_fill_color
     - disk_edge_width
     - disk_edge_color
+  bind_shape:
+    - Disk
 - field: circle_style
   derive: Copy
   docs: Represent the available style of a circle.
   details: |
     The circle is defined by its center and its radius.
   subtype:
-    - circle_size
+    - circle_width
     - circle_color
 # line, arc, etc. ====================================================================================================
 - field: line_style
