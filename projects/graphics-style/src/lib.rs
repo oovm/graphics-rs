@@ -6,7 +6,7 @@
 #![doc(html_favicon_url = "https://avatars.githubusercontent.com/u/11549616")]
 
 pub use self::{
-    resolver::{StyleContext, StyleResolver},
+    resolver::{resolved, StyleContext, StyleResolver},
     shapes::*,
     styles::RGBA,
     traits::GraphicsStyle,

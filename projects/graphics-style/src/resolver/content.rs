@@ -68,8 +68,11 @@ impl StyleResolver {
     }
 
     /// Get the [`CircleStyle`] from theme and state.
-    pub fn circle_style(&self) -> CircleStyle {
-        CircleStyle { circle_width: Some(self.circle_width()), circle_color: Some(self.circle_color()) }
+    pub fn resolve_circle_style(&self, style: CircleStyle) -> resolved::CircleStyle {
+        resolved::CircleStyle {
+            circle_width: style.circle_width.unwrap_or(self.circle_width()).value.clone(),
+            circle_color: style.circle_color.unwrap_or(self.circle_color()).value.clone(),
+        }
     }
 
     /// Get the [`DiskStyle`] from theme and state.

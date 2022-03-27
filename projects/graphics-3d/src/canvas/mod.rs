@@ -2,9 +2,8 @@ use crate::{Drawable, GraphicsBackend};
 use graphics_style::{StyleContext, StyleResolver};
 use std::fmt::Debug;
 
-#[derive(Debug, Default)]
 pub struct Graphics {
-    pub graphic: Vec<Drawable>,
+    pub graphic: Vec<Box<dyn Drawable>>,
     pub setting: GraphicsSetting,
     pub style: StyleResolver,
 }
@@ -18,9 +17,9 @@ pub struct GraphicsSetting {
 impl Graphics {
     pub fn push<T>(&mut self, drawable: T)
     where
-        T: Into<Drawable>,
+        T: Drawable + 'static,
     {
-        self.graphic.push(drawable.into());
+        self.graphic.push(Box::new(drawable));
     }
 }
 
@@ -39,7 +38,7 @@ impl Graphics {
         let mut state = self.style.clone();
         backend.on_start(self, &mut state)?;
         for drawable in &self.graphic {
-            backend.draw(self, &mut state, drawable)?;
+            backend.draw(self, &mut state, &**drawable)?;
         }
         backend.on_finish(self, &mut state)?;
         backend.get_output(self)
