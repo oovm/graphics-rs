@@ -1,8 +1,9 @@
 /// A 2D point.
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 pub struct Point {
     x: f32,
     y: f32,
+    #[serde(skip_serializing_if = "Option::is_none")]
     size: Option<f32>,
     color: Option<RGBA>,
 }

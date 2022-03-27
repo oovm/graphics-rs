@@ -8,6 +8,7 @@ use serde::{Deserialize, Serialize};
 pub struct StyleResolver {
     theme: StyleContext,
     local: StyleContext,
+    once: StyleContext,
 }
 
 impl StyleResolver {
@@ -21,7 +22,7 @@ impl StyleResolver {
     }
     /// Set the style of the given element.
     pub fn with_theme_style(theme: StyleContext) -> Self {
-        Self { theme, local: Default::default() }
+        Self { theme, local: Default::default(), once: Default::default() }
     }
     /// Set the style of the given element.
     pub fn get_local_style(&self) -> &StyleContext {

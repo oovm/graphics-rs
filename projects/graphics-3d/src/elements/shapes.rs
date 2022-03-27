@@ -1,12 +1,3 @@
-/// A 2D point.
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
-pub struct Point {
-    x: f32,
-    y: f32,
-    size: Option<f32>,
-    color: Option<RGBA>,
-}
-
 /// A 3D point.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct Point3D {
@@ -14,15 +5,6 @@ pub struct Point3D {
     y: f32,
     z: f32,
     size: Option<f32>,
-    color: Option<RGBA>,
-}
-
-/// A 2D point.
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct Circle {
-    x: f32,
-    y: f32,
-    radius: f32,
     color: Option<RGBA>,
 }
 

@@ -2,7 +2,7 @@ use super::*;
 
 impl GraphicsStyle for PointSize {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.point_size = Some(self.value.clone());
+        state.point_size = Some(self.clone());
     }
 }
 
@@ -56,7 +56,7 @@ impl GraphicsStyle for LineColor {
 
 impl GraphicsStyle for PointStyle {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.point_size = Some(self.point_size.unwrap_or(PointSize::default().value).clone());
+        state.point_size = self.point_size.clone();
         state.point_color = Some(self.point_color.unwrap_or(PointColor::default().value).clone());
     }
 }

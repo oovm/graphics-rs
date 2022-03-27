@@ -2,25 +2,25 @@ use super::*;
 
 impl AddAssign<PointSize> for PointStyle {
     fn add_assign(&mut self, rhs: PointSize) {
-        self.point_size = Some(rhs.value);
+        self.point_size = Some(rhs);
     }
 }
 
 impl AddAssign<&PointSize> for PointStyle {
     fn add_assign(&mut self, rhs: &PointSize) {
-        self.point_size = Some(rhs.value.clone());
+        self.point_size = Some(rhs.clone());
     }
 }
 
 impl AddAssign<PointSize> for StyleContext {
     fn add_assign(&mut self, rhs: PointSize) {
-        self.point_size = Some(rhs.value);
+        self.point_size = Some(rhs);
     }
 }
 
 impl AddAssign<&PointSize> for StyleContext {
     fn add_assign(&mut self, rhs: &PointSize) {
-        self.point_size = Some(rhs.value);
+        self.point_size = Some(rhs.clone());
     }
 }
 impl AddAssign<PointColor> for PointStyle {

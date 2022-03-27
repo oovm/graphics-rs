@@ -4,37 +4,47 @@ use super::*;
 #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
 pub struct StyleContext {
     /// Get default [`PointSize`] when missing.
-    pub point_size: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub point_size: Option<PointSize>,
 
     /// Get default [`PointColor`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub point_color: Option<RGBA>,
 
     /// Get default [`CircleWidth`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub circle_width: Option<f32>,
 
     /// Get default [`CircleColor`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub circle_color: Option<RGBA>,
 
     /// Get default [`DiskFillColor`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub disk_fill_color: Option<RGBA>,
 
     /// Get default [`DiskEdgeWidth`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub disk_edge_width: Option<f32>,
 
     /// Get default [`DiskEdgeColor`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub disk_edge_color: Option<RGBA>,
 
     /// Get default [`LineWidth`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub line_width: Option<f32>,
 
     /// Get default [`LineColor`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub line_color: Option<RGBA>,
 }
 
 impl StyleResolver {
     /// Set the value of [`PointSize`]
-    pub fn point_size(&self) -> f32 {
-        self.local.point_size.unwrap_or(self.theme.point_size.unwrap_or(PointSize::default().value).clone())
+    pub fn point_size(&self) -> PointSize {
+        let a = self.once.point_size.or(self.local.point_size).or(self.theme.point_size);
+        a.unwrap_or_default()
     }
 
     /// Set the value of [`PointColor`]

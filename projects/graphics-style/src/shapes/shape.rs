@@ -2,7 +2,7 @@
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 pub struct PointStyle {
     /// Represent the size of a point, see more in [`PointSize`].
-    pub point_size: Option<f32>,
+    pub point_size: Option<PointSize>,
     /// , see more in [`PointColor`].
     pub point_color: Option<RGBA>,
 }
@@ -13,9 +13,16 @@ pub struct PointStyle {
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+#[serde(into = "f32", from = "f32")]
 pub struct PointSize {
     /// Actual value for [`StyleResolver::point_size`]
     pub value: f32,
+}
+
+impl Into<f32> for PointSize {
+    fn into(self) -> f32 {
+        self.value
+    }
 }
 
 /// 1=1px on canvas.

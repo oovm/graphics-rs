@@ -18,7 +18,7 @@ styleFlatten = Flatten[#subtype& /@ styleGrouped];
 Export["../style-inherit.m", ResourceFunction["ReadableForm"][styleGrouped], "Text"];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Resolve*)
 
 
@@ -31,7 +31,8 @@ buildHead = "use super::*;";
 
 getDrawXX[item_Association] := TemplateApply["
     /// Get default [<*\"`\"*>`typeOuter`<*\"`\"*>] when missing.
-    pub `field`: Option<`typeInner`>,
+    #[serde(skip_serializing_if = \"Option::is_none\")]
+	pub `field`: Option<`typeInner`>,
 ",
     item
 ];
@@ -71,7 +72,7 @@ drawStyle = Flatten@{
 Export["src/resolver/content.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Shapes*)
 
 
