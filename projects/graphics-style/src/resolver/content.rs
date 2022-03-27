@@ -63,7 +63,7 @@ impl StyleResolver {
     }
 
     /// Get the [`Point3DStyle`] from theme and state.
-    pub fn point3D_style(&self) -> Point3DStyle {
+    pub fn point3d_style(&self) -> Point3DStyle {
         Point3DStyle { point_size: Some(self.point_size()), point_color: Some(self.point_color()) }
     }
 

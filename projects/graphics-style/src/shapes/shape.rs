@@ -41,7 +41,7 @@ pub struct Point3DStyle {
 }
 
 /// Represent the available style of a circle.
-#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 pub struct CircleStyle {
     /// Represent the width of a circle, default width is 1.0, see more in [`CircleWidth`].
     #[serde(skip_serializing_if = "Option::is_none")]

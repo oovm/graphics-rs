@@ -29,25 +29,7 @@ impl StyleResolver {
         &self.local
     }
     /// Set the style of the given element.
-    pub fn set_local_style<T>(&mut self, style: &[T])
-    where
-        T: GraphicsStyle,
-    {
-        for i in style {
-            i.draw_style(&mut self.local);
-        }
-    }
-    /// Set the style of the given element.
-    pub fn set_once_style<T>(&mut self, style: &[T])
-    where
-        T: GraphicsStyle,
-    {
-        for i in style {
-            i.draw_style(&mut self.local);
-        }
-    }
-    /// Set the style of the given element.
-    pub fn clean_once_style(&mut self) {
-        self.once = Default::default();
+    pub fn set_local_style(&mut self, style: &dyn GraphicsStyle) {
+        style.draw_style(&mut self.local);
     }
 }

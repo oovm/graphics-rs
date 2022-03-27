@@ -31,4 +31,12 @@ pub trait GraphicsStyle {
     /// }
     /// ```
     fn draw_style(&self, state: &mut StyleContext);
+    /// Draws a shape with a style.
+    fn skip(&self) -> bool {
+        false
+    }
+}
+
+impl GraphicsStyle for () {
+    fn draw_style(&self, _: &mut StyleContext) {}
 }
