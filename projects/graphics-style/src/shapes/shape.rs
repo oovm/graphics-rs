@@ -22,7 +22,6 @@ pub struct PointSize {
 }
 
 /// Represent the color of a point, default color is black
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct PointColor {
@@ -41,25 +40,6 @@ pub struct Point3DStyle {
     pub point_color: Option<PointColor>,
 }
 
-/// Represent the size of a point, default size is 1.0
-///
-/// The shape of the point is always round.
-#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
-#[serde(into = "f32", from = "f32")]
-pub struct PointSize {
-    /// Actual value for [`StyleResolver::point_size`]
-    pub value: f32,
-}
-
-/// Represent the color of a point, default color is black
-///
-#[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
-#[serde(into = "RGBA", from = "RGBA")]
-pub struct PointColor {
-    /// Actual value for [`StyleResolver::point_color`]
-    pub value: RGBA,
-}
-
 /// Represent the available style of a circle.
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct CircleStyle {
@@ -72,7 +52,6 @@ pub struct CircleStyle {
 }
 
 /// Represent the width of a circle, default width is 1.0
-///
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct CircleWidth {
@@ -81,7 +60,6 @@ pub struct CircleWidth {
 }
 
 /// Represent the color of a point, default color is black
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct CircleColor {
@@ -104,7 +82,6 @@ pub struct DiskStyle {
 }
 
 /// Represent the color of a disk, default color is black
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskFillColor {
@@ -113,7 +90,6 @@ pub struct DiskFillColor {
 }
 
 /// Represent the edge width of a disk, default width is 1.0
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct DiskEdgeWidth {
@@ -122,7 +98,6 @@ pub struct DiskEdgeWidth {
 }
 
 /// Represent the edge color of a disk, default is transparent
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskEdgeColor {
@@ -142,7 +117,6 @@ pub struct LineStyle {
 }
 
 /// Represent the with of a line, default width is 1.0
-///
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct LineWidth {
@@ -151,7 +125,6 @@ pub struct LineWidth {
 }
 
 /// Represent the color of a line, default color is black
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct LineColor {
@@ -171,7 +144,6 @@ pub struct TriangleStyle {
 }
 
 /// Represent the with of a line, default width is 1.0
-///
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct TriangleEdgeWidth {
@@ -180,7 +152,6 @@ pub struct TriangleEdgeWidth {
 }
 
 /// Represent the color of a line, default color is black
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct TriangleFillColor {
@@ -200,7 +171,6 @@ pub struct SquareStyle {
 }
 
 /// Represent the with of a line, default width is 1.0
-///
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct SquareEdgeWidth {
@@ -209,7 +179,6 @@ pub struct SquareEdgeWidth {
 }
 
 /// Represent the color of a line, default color is black
-///
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct SquareFillColor {
@@ -226,22 +195,4 @@ pub struct RectangleStyle {
     /// Represent the color of a line, default color is black, see more in [`SquareFillColor`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub square_fill_color: Option<SquareFillColor>,
-}
-
-/// Represent the with of a line, default width is 1.0
-///
-#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
-#[serde(into = "f32", from = "f32")]
-pub struct SquareEdgeWidth {
-    /// Actual value for [`StyleResolver::square_edge_width`]
-    pub value: f32,
-}
-
-/// Represent the color of a line, default color is black
-///
-#[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
-#[serde(into = "RGBA", from = "RGBA")]
-pub struct SquareFillColor {
-    /// Actual value for [`StyleResolver::square_fill_color`]
-    pub value: RGBA,
 }

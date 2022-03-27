@@ -1,6 +1,6 @@
 [package]
 name = "graphics-style"
-version = "0.2.6"
+version = "0.2.7"
 authors = ["Aster <192607617@qq.com>"]
 description = "The styles of all graphics elements"
 repository = "https://github.com/oovm/graphics-rs"

@@ -134,3 +134,15 @@ impl GraphicsStyle for RectangleStyle {
         state.square_fill_color = Some(self.square_fill_color.unwrap_or_default());
     }
 }
+
+impl Default for SquareEdgeWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
+
+impl Default for TriangleEdgeWidth {
+    fn default() -> Self {
+        Self { value: 1.0 }
+    }
+}
