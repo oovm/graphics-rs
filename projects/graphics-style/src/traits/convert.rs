@@ -12,7 +12,6 @@ impl Into<f32> for PointSize {
     }
 }
 
-
 impl From<RGBA> for PointColor {
     fn from(value: RGBA) -> Self {
         Self { value }
@@ -24,7 +23,6 @@ impl Into<RGBA> for PointColor {
         self.value
     }
 }
-
 
 impl From<f32> for CircleWidth {
     fn from(value: f32) -> Self {
@@ -38,7 +36,6 @@ impl Into<f32> for CircleWidth {
     }
 }
 
-
 impl From<RGBA> for CircleColor {
     fn from(value: RGBA) -> Self {
         Self { value }
@@ -50,7 +47,6 @@ impl Into<RGBA> for CircleColor {
         self.value
     }
 }
-
 
 impl From<RGBA> for DiskFillColor {
     fn from(value: RGBA) -> Self {
@@ -64,7 +60,6 @@ impl Into<RGBA> for DiskFillColor {
     }
 }
 
-
 impl From<f32> for DiskEdgeWidth {
     fn from(value: f32) -> Self {
         Self { value }
@@ -76,7 +71,6 @@ impl Into<f32> for DiskEdgeWidth {
         self.value
     }
 }
-
 
 impl From<RGBA> for DiskEdgeColor {
     fn from(value: RGBA) -> Self {
@@ -90,7 +84,6 @@ impl Into<RGBA> for DiskEdgeColor {
     }
 }
 
-
 impl From<f32> for LineWidth {
     fn from(value: f32) -> Self {
         Self { value }
@@ -102,7 +95,6 @@ impl Into<f32> for LineWidth {
         self.value
     }
 }
-
 
 impl From<RGBA> for LineColor {
     fn from(value: RGBA) -> Self {
@@ -116,7 +108,6 @@ impl Into<RGBA> for LineColor {
     }
 }
 
-
 impl PartialEq<f32> for PointSize {
     fn eq(&self, other: &f32) -> bool {
         self.value.eq(other)
@@ -128,7 +119,6 @@ impl PartialOrd<f32> for PointSize {
         self.value.partial_cmp(other)
     }
 }
-
 
 impl PartialEq<f32> for CircleWidth {
     fn eq(&self, other: &f32) -> bool {
@@ -142,7 +132,6 @@ impl PartialOrd<f32> for CircleWidth {
     }
 }
 
-
 impl PartialEq<f32> for DiskEdgeWidth {
     fn eq(&self, other: &f32) -> bool {
         self.value.eq(other)
@@ -154,7 +143,6 @@ impl PartialOrd<f32> for DiskEdgeWidth {
         self.value.partial_cmp(other)
     }
 }
-
 
 impl PartialEq<f32> for LineWidth {
     fn eq(&self, other: &f32) -> bool {

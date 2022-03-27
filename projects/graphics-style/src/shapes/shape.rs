@@ -1,17 +1,15 @@
 /// Represent the available style of a point.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 pub struct PointStyle {
-    /// Represent the size of a point, see more in [`PointSize`].
+    /// Represent the size of a point, default size is 1.0, see more in [`PointSize`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub point_size: Option<PointSize>,
-    /// , see more in [`PointColor`].
+    /// Represent the color of a point, default color is black, see more in [`PointColor`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub point_color: Option<PointColor>,
 }
 
-/// Represent the size of a point
-///
-/// 1=1px on canvas.
+/// Represent the size of a point, default size is 1.0
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
@@ -21,9 +19,7 @@ pub struct PointSize {
     pub value: f32,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the color of a point, default color is black
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct PointColor {
@@ -34,17 +30,15 @@ pub struct PointColor {
 ///
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct CircleStyle {
-    /// , see more in [`CircleWidth`].
+    /// Represent the width of a circle, default width is 1.0, see more in [`CircleWidth`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub circle_width: Option<CircleWidth>,
-    /// , see more in [`CircleColor`].
+    /// Represent the color of a point, default color is black, see more in [`CircleColor`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub circle_color: Option<CircleColor>,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the width of a circle, default width is 1.0
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct CircleWidth {
@@ -52,9 +46,7 @@ pub struct CircleWidth {
     pub value: f32,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the color of a point, default color is black
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct CircleColor {
@@ -65,20 +57,18 @@ pub struct CircleColor {
 ///
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct DiskStyle {
-    /// , see more in [`DiskFillColor`].
+    /// Represent the color of a disk, default color is black, see more in [`DiskFillColor`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub disk_fill_color: Option<DiskFillColor>,
-    /// , see more in [`DiskEdgeWidth`].
+    /// Represent the edge width of a disk, default width is 1.0, see more in [`DiskEdgeWidth`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub disk_edge_width: Option<DiskEdgeWidth>,
-    /// , see more in [`DiskEdgeColor`].
+    /// Represent the edge color of a disk, default is transparent, see more in [`DiskEdgeColor`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub disk_edge_color: Option<DiskEdgeColor>,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the color of a disk, default color is black
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskFillColor {
@@ -86,9 +76,7 @@ pub struct DiskFillColor {
     pub value: RGBA,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the edge width of a disk, default width is 1.0
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct DiskEdgeWidth {
@@ -96,9 +84,7 @@ pub struct DiskEdgeWidth {
     pub value: f32,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the edge color of a disk, default is transparent
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskEdgeColor {
@@ -109,17 +95,15 @@ pub struct DiskEdgeColor {
 ///
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct LineStyle {
-    /// , see more in [`LineWidth`].
+    /// Represent the with of a line, default width is 1.0, see more in [`LineWidth`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub line_width: Option<LineWidth>,
-    /// , see more in [`LineColor`].
+    /// Represent the color of a line, default color is black, see more in [`LineColor`].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub line_color: Option<LineColor>,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the with of a line, default width is 1.0
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 #[serde(into = "f32", from = "f32")]
 pub struct LineWidth {
@@ -127,9 +111,7 @@ pub struct LineWidth {
     pub value: f32,
 }
 
-/// 1=1px on canvas.
-///
-/// The shape of the point is always round.
+/// Represent the color of a line, default color is black
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct LineColor {
