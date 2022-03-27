@@ -8,7 +8,7 @@ SetDirectory@NotebookDirectory[];
 styleRaw = Import["../meta-data.m"];
 styleGrouped = styleRaw["styleGroup"];
 styleFlatten = DeleteDuplicatesBy[styleRaw["styleAtom"], #field&];
-styleSubtype = Values[Association[#field -> #& /@ styleFlatten][[#subtype]]]&;
+styleSubtype = Values[Association[(#field -> #)& /@ styleFlatten][[#subtype]]]&;
 
 
 (* ::Subsection::Closed:: *)
@@ -265,7 +265,7 @@ Export["src/traits/convert.rs", StringRiffle[text , "\n\n"], "Text"];
 buildHead = "use super::*;";
 
 
-getAddXX[item_Association] := TemplateApply["\
+getAddSuper[item_Association] := TemplateApply["
 impl AddAssign<`typeOuter`> for `typeSuper` {
     fn add_assign(&mut self, rhs: `typeOuter`) {
         self.`field` = Some(rhs);
@@ -277,7 +277,13 @@ impl AddAssign<&`typeOuter`> for `typeSuper` {
         self.`field` = Some(rhs.clone());
     }
 }
+",
+    item
+];
+buildSuper[data_] := getAddSuper@data;
 
+
+getAddXX[item_Association] := TemplateApply["
 impl AddAssign<`typeOuter`> for StyleContext {
     fn add_assign(&mut self, rhs: `typeOuter`) {
         self.`field` = Some(rhs);
