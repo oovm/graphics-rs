@@ -72,7 +72,7 @@ drawStyle = Flatten@{
 Export["src/resolver/content.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Shapes*)
 
 
@@ -88,6 +88,7 @@ getXX[item_Association] := TemplateApply["
 ///
 `details`
 #[derive(`derive`, Serialize, Deserialize)]
+#[serde(into = \"`typeInner`\", from = \"`typeInner`\")]
 pub struct `typeOuter` {
     /// Actual value for [<*\"`\"*>StyleResolver::`field`<*\"`\"*>]
     pub value: `typeInner`,
@@ -95,12 +96,13 @@ pub struct `typeOuter` {
 ",
     item
 ];
-buildXX[data_] := getXX[data];
+buildXX[data_] := getXX @ data;
 
 
 getXXStyle[item_Association] := TemplateApply["\
     /// `docs`, see more in [<*\"`\"*>`typeOuter`<*\"`\"*>].
-    pub `field`: Option<`typeInner`>,
+	#[serde(skip_serializing_if = \"Option::is_none\")]
+    pub `field`: Option<`typeOuter`>,
 ",
     item
 ];
@@ -128,6 +130,61 @@ Export["src/shapes/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
 
 (* ::Subsection:: *)
 (*Traits*)
+
+
+(* ::Subsubsection:: *)
+(*From*)
+
+
+buildHead = "use super::*;";
+
+
+getAddXX[item_Association] := TemplateApply["\
+impl From<`typeInner`> for `typeOuter` {
+    fn from(value: `typeInner`) -> Self {
+        Self { value }
+    }
+}
+
+impl Into<`typeInner`> for `typeOuter` {
+    fn into(self) -> `typeInner` {
+        self.value
+    }
+}
+",
+    item
+];
+buildFromXX[data_] := TemplateApply[
+    "`1`",
+    {
+        getAddXX@data
+    }
+];
+
+
+getAddSelf[item_Association] := TemplateApply["self.`field` = rhs.`field`;", item];
+getSelfClone[item_Association] := TemplateApply["self.`field` = rhs.`field`.clone();", item];
+buildAddSelf[data_Association] := TemplateApply["\
+impl AddAssign<Self> for `3` {
+    fn add_assign(&mut self, rhs: Self) {`1`}
+}
+
+impl AddAssign<&Self> for `3` {
+    fn add_assign(&mut self, rhs: &Self) {`2`}
+}",
+    {
+        getAddSelf /@ data["subtype"] // StringJoin,
+        getSelfClone /@ data["subtype"] // StringJoin,
+        data["type"]
+    }
+];
+
+
+text = Flatten@{
+    buildHead,
+    buildFromXX /@ styleFlatten
+};
+Export["src/traits/convert.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
 (* ::Subsubsection::Closed:: *)

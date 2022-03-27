@@ -2,9 +2,11 @@
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
 pub struct PointStyle {
     /// Represent the size of a point, see more in [`PointSize`].
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub point_size: Option<PointSize>,
     /// , see more in [`PointColor`].
-    pub point_color: Option<RGBA>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub point_color: Option<PointColor>,
 }
 
 /// Represent the size of a point
@@ -19,16 +21,11 @@ pub struct PointSize {
     pub value: f32,
 }
 
-impl Into<f32> for PointSize {
-    fn into(self) -> f32 {
-        self.value
-    }
-}
-
 /// 1=1px on canvas.
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
+#[serde(into = "RGBA", from = "RGBA")]
 pub struct PointColor {
     /// Actual value for [`StyleResolver::point_color`]
     pub value: RGBA,
@@ -38,15 +35,18 @@ pub struct PointColor {
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct CircleStyle {
     /// , see more in [`CircleWidth`].
-    pub circle_width: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub circle_width: Option<CircleWidth>,
     /// , see more in [`CircleColor`].
-    pub circle_color: Option<RGBA>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub circle_color: Option<CircleColor>,
 }
 
 /// 1=1px on canvas.
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+#[serde(into = "f32", from = "f32")]
 pub struct CircleWidth {
     /// Actual value for [`StyleResolver::circle_width`]
     pub value: f32,
@@ -56,6 +56,7 @@ pub struct CircleWidth {
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
+#[serde(into = "RGBA", from = "RGBA")]
 pub struct CircleColor {
     /// Actual value for [`StyleResolver::circle_color`]
     pub value: RGBA,
@@ -65,17 +66,21 @@ pub struct CircleColor {
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct DiskStyle {
     /// , see more in [`DiskFillColor`].
-    pub disk_fill_color: Option<RGBA>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub disk_fill_color: Option<DiskFillColor>,
     /// , see more in [`DiskEdgeWidth`].
-    pub disk_edge_width: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub disk_edge_width: Option<DiskEdgeWidth>,
     /// , see more in [`DiskEdgeColor`].
-    pub disk_edge_color: Option<RGBA>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub disk_edge_color: Option<DiskEdgeColor>,
 }
 
 /// 1=1px on canvas.
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
+#[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskFillColor {
     /// Actual value for [`StyleResolver::disk_fill_color`]
     pub value: RGBA,
@@ -85,6 +90,7 @@ pub struct DiskFillColor {
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
+#[serde(into = "f32", from = "f32")]
 pub struct DiskEdgeWidth {
     /// Actual value for [`StyleResolver::disk_edge_width`]
     pub value: f32,
@@ -94,6 +100,7 @@ pub struct DiskEdgeWidth {
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
+#[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskEdgeColor {
     /// Actual value for [`StyleResolver::disk_edge_color`]
     pub value: RGBA,
@@ -103,15 +110,18 @@ pub struct DiskEdgeColor {
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub struct LineStyle {
     /// , see more in [`LineWidth`].
-    pub line_width: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub line_width: Option<LineWidth>,
     /// , see more in [`LineColor`].
-    pub line_color: Option<RGBA>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub line_color: Option<LineColor>,
 }
 
 /// 1=1px on canvas.
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+#[serde(into = "f32", from = "f32")]
 pub struct LineWidth {
     /// Actual value for [`StyleResolver::line_width`]
     pub value: f32,
@@ -121,6 +131,7 @@ pub struct LineWidth {
 ///
 /// The shape of the point is always round.
 #[derive(Debug, Clone, Copy, PartialEq, Default, Serialize, Deserialize)]
+#[serde(into = "RGBA", from = "RGBA")]
 pub struct LineColor {
     /// Actual value for [`StyleResolver::line_color`]
     pub value: RGBA,

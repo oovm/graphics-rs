@@ -12,12 +12,6 @@ impl PartialOrd<f32> for LineWidth {
     }
 }
 
-impl From<f32> for LineWidth {
-    fn from(value: f32) -> Self {
-        Self { value }
-    }
-}
-
 impl From<i32> for LineWidth {
     fn from(v: i32) -> Self {
         Self { value: v as f32 }
