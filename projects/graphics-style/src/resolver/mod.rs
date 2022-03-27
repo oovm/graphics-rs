@@ -25,14 +25,29 @@ impl StyleResolver {
         Self { theme, local: Default::default(), once: Default::default() }
     }
     /// Set the style of the given element.
-    pub fn get_local_style(&self) -> &StyleContext {
+    pub fn view_local_style(&self) -> &StyleContext {
         &self.local
     }
     /// Set the style of the given element.
-    pub fn set_local_style<T>(&mut self, style: T)
+    pub fn set_local_style<T>(&mut self, style: &[T])
     where
         T: GraphicsStyle,
     {
-        style.draw_style(&mut self.local);
+        for i in style {
+            i.draw_style(&mut self.local);
+        }
+    }
+    /// Set the style of the given element.
+    pub fn set_once_style<T>(&mut self, style: &[T])
+    where
+        T: GraphicsStyle,
+    {
+        for i in style {
+            i.draw_style(&mut self.local);
+        }
+    }
+    /// Set the style of the given element.
+    pub fn clean_once_style(&mut self) {
+        self.once = Default::default();
     }
 }

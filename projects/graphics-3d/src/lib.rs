@@ -5,8 +5,8 @@
 use graphics_style::{GraphicsStyle, PointStyle, StyleResolver};
 
 #[derive(Debug, Default)]
-pub struct Graphics {
-    pub graphic: Vec<Box<dyn Drawable2D>>,
+pub struct Graphics<'g> {
+    pub graphic: Vec<&'g dyn Drawable>,
     pub setting: GraphicsSetting,
     pub style: StyleResolver,
 }
@@ -14,62 +14,57 @@ pub struct Graphics {
 pub struct GraphicsSetting {}
 
 pub enum GraphicsShape {
-    Point(Point),
+    Circle(Circle),
 }
 
-pub struct Point {
+#[derive(Debug, Copy, Clone)]
+pub struct Circle {
     pub x: f32,
     pub y: f32,
+    pub radius: f32,
 }
 
-pub struct StyledPoint {
-    pub point: Point,
+pub struct StyledCircle {
+    pub shape: Circle,
     pub style: PointStyle,
 }
 
-pub trait Drawable2D {
+pub trait Drawable {
     fn get_shape(&self) -> Option<GraphicsShape>;
-    fn get_style_effect(&self) -> Vec<&dyn GraphicsStyle> {
+    fn changed_style(&self) -> Vec<&dyn GraphicsStyle> {
         vec![]
     }
-    fn get_style_once(&self) -> Vec<&dyn GraphicsStyle> {
-        vec![]
-    }
+    fn change_style_once(&self) -> Vec<&dyn GraphicsStyle>;
 }
 
-impl Drawable2D for dyn GraphicsStyle {
+impl Drawable for &dyn GraphicsStyle {
     fn get_shape(&self) -> Option<GraphicsShape> {
         None
     }
-    fn get_style_effect(&self) -> Vec<&dyn GraphicsStyle> {
+    fn changed_style(&self) -> Vec<&dyn GraphicsStyle> {
         vec![self]
     }
-    fn get_style_once(&self) -> Vec<&dyn GraphicsStyle> {
+
+    fn change_style_once(&self) -> Vec<&dyn GraphicsStyle> {
         vec![]
     }
 }
 
-impl Drawable2D for StyledPoint {
+impl Drawable for Circle {
     fn get_shape(&self) -> Option<GraphicsShape> {
-        Some(GraphicsShape::Point(self.point))
+        Some(GraphicsShape::Circle(*self))
     }
-    fn get_style_effect(&self) -> Vec<&dyn GraphicsStyle> {
-        vec![&self.style]
-    }
-    fn get_style_once(&self) -> Vec<&dyn GraphicsStyle> {
-        vec![&self.style]
+    fn change_style_once(&self) -> Vec<&dyn GraphicsStyle> {
+        vec![]
     }
 }
 
-impl Drawable2D for Point {
+impl Drawable for StyledCircle {
     fn get_shape(&self) -> Option<GraphicsShape> {
-        Some(GraphicsShape::Point(*self))
+        Some(GraphicsShape::Circle(self.shape))
     }
-    fn get_style_effect(&self) -> Vec<&dyn GraphicsStyle> {
-        vec![]
-    }
-    fn get_style_once(&self) -> Vec<&dyn GraphicsStyle> {
-        vec![]
+    fn change_style_once(&self) -> Vec<&dyn GraphicsStyle> {
+        vec![&self.style]
     }
 }
 
@@ -88,7 +83,17 @@ pub trait GraphicsBackend {
         Ok(())
     }
 
-    fn draw(&mut self, context: &Graphics, state: &mut StyleResolver, drawable: &Drawable) -> Result<(), Self::Error> {
+    fn draw(&mut self, context: &Graphics, state: &mut StyleResolver, drawable: &dyn Drawable) -> Result<(), Self::Error> {
+        state.set_local_style(&drawable.changed_style());
+        state.set_once_style(&drawable.changed_style());
+
+        let shape = match drawable.get_shape() {
+            Some(GraphicsShape::Circle(s)) => {
+                self.draw_circle(context, state, s.x, s.y, 1.0)?;
+            }
+            None => {}
+        };
+
         match drawable {
             Drawable::Style(inner) => Ok(state.set_local_style(inner.clone())),
             Drawable::Shape(inner) if inner.is_empty(state) => Ok(()),
@@ -100,6 +105,8 @@ pub trait GraphicsBackend {
                 GraphicsShape::Polygon(s) => self.draw_rectangle(context, state, s),
             },
         }
+
+        Ok(state.clean_once_style())
     }
     fn draw_pixel(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error>;
     fn draw_line(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error>;

@@ -14,7 +14,7 @@ reMap[data_Association] := Block[
     Join[data, <|"type"->typeSuper,"subtype" -> subtype|>]
 ];
 styleGrouped = reMap /@ styleRaw;
-styleFlatten = Flatten[#subtype& /@ styleGrouped];
+styleFlatten = DeleteDuplicatesBy[Flatten[#subtype& /@ styleGrouped],#field&];
 Export["../style-inherit.m", ResourceFunction["ReadableForm"][styleGrouped], "Text"];
 
 

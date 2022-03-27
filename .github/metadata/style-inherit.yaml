@@ -1,23 +1,18 @@
 group:
+  # point, circle, ball, etc. ==========================================================================================
   - field: point_style
     derive: Debug, Clone, Copy, PartialEq, Default
     docs: Represent the available style of a point.
     subtype:
       - point_size
       - point_color
-  - type: Point3DStyle
-    field: point3d_style
+  - field: point3d_style
+    type: Point3DStyle
     derive: Debug, Clone, Copy, PartialEq, Default
-    docs: Represent the available style of a point.
+    docs: Represent the available style of a 3d point.
     subtype:
       - point_size
       - point_color
-  - field: circle_style
-    derive: Debug, Clone, Copy, PartialEq
-    docs: Represent the available style of a circle.
-    subtype:
-      - circle_size
-      - circle_color
   - field: disk_style
     derive: Debug, Clone, Copy, PartialEq
     docs: Represent the available style of a disk.
@@ -25,12 +20,44 @@ group:
       - disk_fill_color
       - disk_edge_width
       - disk_edge_color
+  - field: ball_style
+    derive: Debug, Clone, Copy, PartialEq
+    docs: Represent the available style of a disk.
+    subtype:
+      - ball_fill_color
+      - ball_edge_width
+      - ball_edge_color
+  - field: circle_style
+    derive: Debug, Clone, Copy, PartialEq
+    docs: Represent the available style of a circle.
+    details: |
+      The circle is defined by its center and its radius.
+    subtype:
+      - circle_size
+      - circle_color
+  # line, arc, etc. ====================================================================================================
   - field: line_style
     derive: Debug, Clone, Copy, PartialEq
     docs: Represent the available style of a line.
     subtype:
       - line_width
       - line_color
+  - field: line3d_style
+    type: Line3DStyle
+    derive: Debug, Clone, Copy, PartialEq
+    docs: Represent the available style of a line.
+    subtype:
+      - line_width
+      - line_color
+  - field: polyline_style
+    derive: Debug, Clone, Copy, PartialEq
+    docs: Represent the available style of a line.
+    details: |
+      The polyline is a collection of points.
+    subtype:
+      - polyline_width
+      - polyline_color
+  # polygon ============================================================================================================
   - field: triangle_style
     derive: Debug, Clone, Copy, PartialEq
     docs: Represent the available style of a triangle.
@@ -105,11 +132,13 @@ group:
       - rectangle_fill_color
       - polygon_fill_color
 atom:
+  # point, circle, ball, etc. ==========================================================================================
   - field: point_size
     typeInner: f32
     default: '1.0'
     docs: Represent the size of a point, default size is 1.0
-    details: The shape of the point is always round.
+    details: |
+      The shape of the point is always round.
     derive: Debug, Clone, Copy, PartialEq
   - field: point_color
     typeInner: RGBA
@@ -117,6 +146,7 @@ atom:
     docs: Represent the color of a point, default color is black
     details: ''
     derive: Debug, Clone, Copy, PartialEq, Default
+  # point, circle, ball, etc. ==========================================================================================
   - field: circle_width
     typeInner: f32
     default: '1.0'
@@ -128,6 +158,7 @@ atom:
     docs: Represent the color of a point, default color is black
     details: ''
     derive: Debug, Clone, Copy, PartialEq, Default
+  # point, circle, ball, etc. ==========================================================================================
   - field: triangle_edge_width
     typeInner: f32
     docs: Represent the with of a line, default width is 1.0
