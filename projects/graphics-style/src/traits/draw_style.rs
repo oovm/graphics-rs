@@ -54,7 +54,38 @@ impl GraphicsStyle for LineColor {
     }
 }
 
+impl GraphicsStyle for TriangleEdgeWidth {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.triangle_edge_width = Some(self.clone());
+    }
+}
+
+impl GraphicsStyle for TriangleFillColor {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.triangle_fill_color = Some(self.clone());
+    }
+}
+
+impl GraphicsStyle for SquareEdgeWidth {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.square_edge_width = Some(self.clone());
+    }
+}
+
+impl GraphicsStyle for SquareFillColor {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.square_fill_color = Some(self.clone());
+    }
+}
+
 impl GraphicsStyle for PointStyle {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.point_size = Some(self.point_size.unwrap_or_default());
+        state.point_color = Some(self.point_color.unwrap_or_default());
+    }
+}
+
+impl GraphicsStyle for Point3DStyle {
     fn draw_style(&self, state: &mut StyleContext) {
         state.point_size = Some(self.point_size.unwrap_or_default());
         state.point_color = Some(self.point_color.unwrap_or_default());
@@ -80,5 +111,26 @@ impl GraphicsStyle for LineStyle {
     fn draw_style(&self, state: &mut StyleContext) {
         state.line_width = Some(self.line_width.unwrap_or_default());
         state.line_color = Some(self.line_color.unwrap_or_default());
+    }
+}
+
+impl GraphicsStyle for TriangleStyle {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.triangle_edge_width = Some(self.triangle_edge_width.unwrap_or_default());
+        state.triangle_fill_color = Some(self.triangle_fill_color.unwrap_or_default());
+    }
+}
+
+impl GraphicsStyle for SquareStyle {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.square_edge_width = Some(self.square_edge_width.unwrap_or_default());
+        state.square_fill_color = Some(self.square_fill_color.unwrap_or_default());
+    }
+}
+
+impl GraphicsStyle for RectangleStyle {
+    fn draw_style(&self, state: &mut StyleContext) {
+        state.square_edge_width = Some(self.square_edge_width.unwrap_or_default());
+        state.square_fill_color = Some(self.square_fill_color.unwrap_or_default());
     }
 }

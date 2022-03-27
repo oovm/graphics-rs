@@ -216,6 +216,102 @@ impl AddAssign<&LineColor> for StyleContext {
     }
 }
 
+impl AddAssign<TriangleEdgeWidth> for TriangleStyle {
+    fn add_assign(&mut self, rhs: TriangleEdgeWidth) {
+        self.triangle_edge_width = Some(rhs);
+    }
+}
+
+impl AddAssign<&TriangleEdgeWidth> for TriangleStyle {
+    fn add_assign(&mut self, rhs: &TriangleEdgeWidth) {
+        self.triangle_edge_width = Some(rhs.clone());
+    }
+}
+
+impl AddAssign<TriangleEdgeWidth> for StyleContext {
+    fn add_assign(&mut self, rhs: TriangleEdgeWidth) {
+        self.triangle_edge_width = Some(rhs);
+    }
+}
+
+impl AddAssign<&TriangleEdgeWidth> for StyleContext {
+    fn add_assign(&mut self, rhs: &TriangleEdgeWidth) {
+        self.triangle_edge_width = Some(rhs.clone());
+    }
+}
+
+impl AddAssign<TriangleFillColor> for TriangleStyle {
+    fn add_assign(&mut self, rhs: TriangleFillColor) {
+        self.triangle_fill_color = Some(rhs);
+    }
+}
+
+impl AddAssign<&TriangleFillColor> for TriangleStyle {
+    fn add_assign(&mut self, rhs: &TriangleFillColor) {
+        self.triangle_fill_color = Some(rhs.clone());
+    }
+}
+
+impl AddAssign<TriangleFillColor> for StyleContext {
+    fn add_assign(&mut self, rhs: TriangleFillColor) {
+        self.triangle_fill_color = Some(rhs);
+    }
+}
+
+impl AddAssign<&TriangleFillColor> for StyleContext {
+    fn add_assign(&mut self, rhs: &TriangleFillColor) {
+        self.triangle_fill_color = Some(rhs.clone());
+    }
+}
+
+impl AddAssign<SquareEdgeWidth> for SquareStyle {
+    fn add_assign(&mut self, rhs: SquareEdgeWidth) {
+        self.square_edge_width = Some(rhs);
+    }
+}
+
+impl AddAssign<&SquareEdgeWidth> for SquareStyle {
+    fn add_assign(&mut self, rhs: &SquareEdgeWidth) {
+        self.square_edge_width = Some(rhs.clone());
+    }
+}
+
+impl AddAssign<SquareEdgeWidth> for StyleContext {
+    fn add_assign(&mut self, rhs: SquareEdgeWidth) {
+        self.square_edge_width = Some(rhs);
+    }
+}
+
+impl AddAssign<&SquareEdgeWidth> for StyleContext {
+    fn add_assign(&mut self, rhs: &SquareEdgeWidth) {
+        self.square_edge_width = Some(rhs.clone());
+    }
+}
+
+impl AddAssign<SquareFillColor> for SquareStyle {
+    fn add_assign(&mut self, rhs: SquareFillColor) {
+        self.square_fill_color = Some(rhs);
+    }
+}
+
+impl AddAssign<&SquareFillColor> for SquareStyle {
+    fn add_assign(&mut self, rhs: &SquareFillColor) {
+        self.square_fill_color = Some(rhs.clone());
+    }
+}
+
+impl AddAssign<SquareFillColor> for StyleContext {
+    fn add_assign(&mut self, rhs: SquareFillColor) {
+        self.square_fill_color = Some(rhs);
+    }
+}
+
+impl AddAssign<&SquareFillColor> for StyleContext {
+    fn add_assign(&mut self, rhs: &SquareFillColor) {
+        self.square_fill_color = Some(rhs.clone());
+    }
+}
+
 impl AddAssign<Self> for PointStyle {
     fn add_assign(&mut self, rhs: Self) {
         self.point_size = rhs.point_size;
@@ -224,6 +320,20 @@ impl AddAssign<Self> for PointStyle {
 }
 
 impl AddAssign<&Self> for PointStyle {
+    fn add_assign(&mut self, rhs: &Self) {
+        self.point_size = rhs.point_size.clone();
+        self.point_color = rhs.point_color.clone();
+    }
+}
+
+impl AddAssign<Self> for Point3DStyle {
+    fn add_assign(&mut self, rhs: Self) {
+        self.point_size = rhs.point_size;
+        self.point_color = rhs.point_color;
+    }
+}
+
+impl AddAssign<&Self> for Point3DStyle {
     fn add_assign(&mut self, rhs: &Self) {
         self.point_size = rhs.point_size.clone();
         self.point_color = rhs.point_color.clone();
@@ -271,5 +381,47 @@ impl AddAssign<&Self> for LineStyle {
     fn add_assign(&mut self, rhs: &Self) {
         self.line_width = rhs.line_width.clone();
         self.line_color = rhs.line_color.clone();
+    }
+}
+
+impl AddAssign<Self> for TriangleStyle {
+    fn add_assign(&mut self, rhs: Self) {
+        self.triangle_edge_width = rhs.triangle_edge_width;
+        self.triangle_fill_color = rhs.triangle_fill_color;
+    }
+}
+
+impl AddAssign<&Self> for TriangleStyle {
+    fn add_assign(&mut self, rhs: &Self) {
+        self.triangle_edge_width = rhs.triangle_edge_width.clone();
+        self.triangle_fill_color = rhs.triangle_fill_color.clone();
+    }
+}
+
+impl AddAssign<Self> for SquareStyle {
+    fn add_assign(&mut self, rhs: Self) {
+        self.square_edge_width = rhs.square_edge_width;
+        self.square_fill_color = rhs.square_fill_color;
+    }
+}
+
+impl AddAssign<&Self> for SquareStyle {
+    fn add_assign(&mut self, rhs: &Self) {
+        self.square_edge_width = rhs.square_edge_width.clone();
+        self.square_fill_color = rhs.square_fill_color.clone();
+    }
+}
+
+impl AddAssign<Self> for RectangleStyle {
+    fn add_assign(&mut self, rhs: Self) {
+        self.square_edge_width = rhs.square_edge_width;
+        self.square_fill_color = rhs.square_fill_color;
+    }
+}
+
+impl AddAssign<&Self> for RectangleStyle {
+    fn add_assign(&mut self, rhs: &Self) {
+        self.square_edge_width = rhs.square_edge_width.clone();
+        self.square_fill_color = rhs.square_fill_color.clone();
     }
 }

@@ -108,6 +108,54 @@ impl Into<RGBA> for LineColor {
     }
 }
 
+impl From<f32> for TriangleEdgeWidth {
+    fn from(value: f32) -> Self {
+        Self { value }
+    }
+}
+
+impl Into<f32> for TriangleEdgeWidth {
+    fn into(self) -> f32 {
+        self.value
+    }
+}
+
+impl From<RGBA> for TriangleFillColor {
+    fn from(value: RGBA) -> Self {
+        Self { value }
+    }
+}
+
+impl Into<RGBA> for TriangleFillColor {
+    fn into(self) -> RGBA {
+        self.value
+    }
+}
+
+impl From<f32> for SquareEdgeWidth {
+    fn from(value: f32) -> Self {
+        Self { value }
+    }
+}
+
+impl Into<f32> for SquareEdgeWidth {
+    fn into(self) -> f32 {
+        self.value
+    }
+}
+
+impl From<RGBA> for SquareFillColor {
+    fn from(value: RGBA) -> Self {
+        Self { value }
+    }
+}
+
+impl Into<RGBA> for SquareFillColor {
+    fn into(self) -> RGBA {
+        self.value
+    }
+}
+
 impl PartialEq<f32> for PointSize {
     fn eq(&self, other: &f32) -> bool {
         self.value.eq(other)
@@ -151,6 +199,30 @@ impl PartialEq<f32> for LineWidth {
 }
 
 impl PartialOrd<f32> for LineWidth {
+    fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
+        self.value.partial_cmp(other)
+    }
+}
+
+impl PartialEq<f32> for TriangleEdgeWidth {
+    fn eq(&self, other: &f32) -> bool {
+        self.value.eq(other)
+    }
+}
+
+impl PartialOrd<f32> for TriangleEdgeWidth {
+    fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
+        self.value.partial_cmp(other)
+    }
+}
+
+impl PartialEq<f32> for SquareEdgeWidth {
+    fn eq(&self, other: &f32) -> bool {
+        self.value.eq(other)
+    }
+}
+
+impl PartialOrd<f32> for SquareEdgeWidth {
     fn partial_cmp(&self, other: &f32) -> Option<Ordering> {
         self.value.partial_cmp(other)
     }

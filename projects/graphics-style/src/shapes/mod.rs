@@ -1,12 +1,11 @@
-use crate::RGBA;
-
 mod circle;
-mod disk;
 mod lines;
 mod points;
+mod shape;
 
 #[allow(unused_imports)]
 use crate::StyleResolver;
+use crate::RGBA;
 use serde::{Deserialize, Serialize};
 
-include!("shape.rs");
+pub use shape::*;

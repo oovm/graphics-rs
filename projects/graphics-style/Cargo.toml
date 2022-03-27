@@ -1,6 +1,6 @@
 [package]
 name = "graphics-style"
-version = "0.2.5"
+version = "0.2.6"
 authors = ["Aster <192607617@qq.com>"]
 description = "The styles of all graphics elements"
 repository = "https://github.com/oovm/graphics-rs"
@@ -8,7 +8,7 @@ documentation = "https://docs.rs/graphics-style"
 readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"
-exclude = ["*.m", "*.json"]
+exclude = ["*.m", "*.json", "test/"]
 
 [dependencies]
 serde = { version = "1.0.136", features = ["derive"] }

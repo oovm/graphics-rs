@@ -1,24 +1,24 @@
 (* ::Package:: *)
 
-(* ::Subsection::Closed:: *)
+(* ::Subsection:: *)
 (*Prepare Data*)
 
 
 SetDirectory@NotebookDirectory[];
 styleRaw = reMap /@ Import["../style-inherit.json", "RawJSON"];
+CamelCase = StringJoin[Capitalize /@ StringSplit[#, "_"]]&;
 reMap[data_Association] := Block[
-    {typeOuter, typeSuper, subtype},
-    typeOuter = StringJoin[Capitalize /@ StringSplit[#field, "_"]]&;
-    typeSuper = data["type"];
-    subtype = Join[#, <|"typeSuper" -> typeSuper, "typeOuter" -> typeOuter[#]|>]& /@ data["subtype"];
-    Join[data, <|"subtype" -> subtype|>]
+    {typeSuper, subtype},
+    typeSuper = CamelCase[data["field"]];
+    subtype = Join[#, <|"typeSuper" -> typeSuper, "typeOuter" -> CamelCase[#field]|>]& /@ data["subtype"];
+    Join[data, <|"type"->typeSuper,"subtype" -> subtype|>]
 ];
 styleGrouped = reMap /@ styleRaw;
 styleFlatten = Flatten[#subtype& /@ styleGrouped];
 Export["../style-inherit.m", ResourceFunction["ReadableForm"][styleGrouped], "Text"];
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Resolve*)
 
 
@@ -48,7 +48,7 @@ pub struct StyleContext {`1`}
 
 
 getDrawXXInner[item_Association] := TemplateApply["
-    /// Get the [<*\"`\"*>`field`<*\"`\"*>] from theme and state.
+    /// Get the [<*\"`\"*>`typeOuter`<*\"`\"*>] from theme and state.
     pub fn `field`(&self) -> `typeOuter` {
         self.once.`field`.or(self.local.`field`).or(self.theme.`field`).unwrap_or_default()
     }
@@ -62,26 +62,18 @@ getDrawXXField[item_Association] := TemplateApply[
 	"`field`: Some(self.`field`()),",
     item
 ];
-getDrawXXOuter[item_Association] := TemplateApply["
-    /// Get the [<*\"`\"*>`field`<*\"`\"*>] from theme and state.
-    pub fn point_style(&self) -> `typeSuper` {
-        `typeSuper` { `FIELDS`}
+buildDrawXXOuter[item_Association] := TemplateApply["
+    /// Get the [<*\"`\"*>`type`<*\"`\"*>] from theme and state.
+    pub fn `field`(&self) -> `type` {
+        `type` { `FIELDS`}
     }
 ",
     Join[
     item, 
     <|
-    "FIELDS"->getDrawXXField/@item["subtype"]
+    "FIELDS"->StringJoin[getDrawXXField/@item["subtype"]]
     |>
     ]
-];
-buildDrawXXOuter[data_] := TemplateApply["
-impl StyleResolver {`1` `2`}
-",
-    {
-        getDrawXXInner /@ data // StringJoin,
-        getDrawXXOuter @ data
-    }
 ];
 
 
@@ -89,8 +81,8 @@ text = Flatten@{
     buildHead,
     buildDrawXX @ styleFlatten,
     "impl StyleResolver {",
-    buildDrawXXInner /@ styleFlatten,
     buildDrawXXOuter /@ styleGrouped,
+    buildDrawXXInner /@ styleFlatten,
     "}"
 };
 Export["src/resolver/content.rs", StringRiffle[text , "\n\n"], "Text"];
@@ -100,8 +92,8 @@ Export["src/resolver/content.rs", StringRiffle[text , "\n\n"], "Text"];
 (*Shapes*)
 
 
-(* ::Subsubsection::Closed:: *)
-(*DrawStyle*)
+(* ::Subsubsection:: *)
+(*Shape*)
 
 
 buildHead = "use super::*;";
@@ -109,8 +101,8 @@ buildHead = "use super::*;";
 
 getXX[item_Association] := TemplateApply["
 /// `docs`
-///
-`details`
+/// 
+/// `details`
 #[derive(`derive`, Serialize, Deserialize)]
 #[serde(into = \"`typeInner`\", from = \"`typeInner`\")]
 pub struct `typeOuter` {
@@ -147,9 +139,10 @@ pub struct `type` {`record`}
 
 
 drawStyle = Flatten@{
+buildHead,
         buildXXStyle /@ styleGrouped
 };
-Export["src/shapes/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"]
+Export["src/shapes/shape.rs", StringRiffle[drawStyle , "\n\n"], "Text"];
 
 
 (* ::Subsection:: *)
@@ -225,7 +218,7 @@ text = Flatten@{
 Export["src/traits/convert.rs", StringRiffle[text , "\n\n"], "Text"];
 
 
-(* ::Subsubsection:: *)
+(* ::Subsubsection::Closed:: *)
 (*AddAssign*)
 
 
@@ -288,7 +281,7 @@ upcast = Flatten@{
 Export["src/traits/add_assign.rs", StringRiffle[upcast , "\n\n"], "Text"];
 
 
-(* ::Subsubsection::Closed:: *)
+(* ::Subsubsection:: *)
 (*DrawStyle*)
 
 
@@ -298,7 +291,7 @@ buildHead = "use super::*;";
 getDrawXX[item_Association] := TemplateApply["\
 impl GraphicsStyle for `typeOuter` {
     fn draw_style(&self, state: &mut StyleContext) {
-        state.`field` = Some(self.value.clone());
+        state.`field` = Some(self.clone());
     }
 }
 
@@ -308,9 +301,8 @@ impl GraphicsStyle for `typeOuter` {
 buildDrawXX[data_] := getDrawXX[data];
 
 
-getDrawXXStyle[item_Association] := TemplateApply["\
-state.`field` = Some(self.`field`.unwrap_or(`typeOuter`::default().value).clone());\
-",
+getDrawXXStyle[item_Association] := TemplateApply[
+"state.`field` = Some(self.`field`.unwrap_or_default());",
     item
 ];
 buildDrawXXStyle[data_] := TemplateApply["\

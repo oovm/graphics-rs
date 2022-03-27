@@ -38,12 +38,33 @@ pub struct StyleContext {
     /// Get default [`LineColor`] when missing.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub line_color: Option<LineColor>,
+
+    /// Get default [`TriangleEdgeWidth`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub triangle_edge_width: Option<TriangleEdgeWidth>,
+
+    /// Get default [`TriangleFillColor`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub triangle_fill_color: Option<TriangleFillColor>,
+
+    /// Get default [`SquareEdgeWidth`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub square_edge_width: Option<SquareEdgeWidth>,
+
+    /// Get default [`SquareFillColor`] when missing.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub square_fill_color: Option<SquareFillColor>,
 }
 
 impl StyleResolver {
     /// Get the [`PointStyle`] from theme and state.
     pub fn point_style(&self) -> PointStyle {
         PointStyle { point_size: Some(self.point_size()), point_color: Some(self.point_color()) }
+    }
+
+    /// Get the [`Point3DStyle`] from theme and state.
+    pub fn point3D_style(&self) -> Point3DStyle {
+        Point3DStyle { point_size: Some(self.point_size()), point_color: Some(self.point_color()) }
     }
 
     /// Get the [`CircleStyle`] from theme and state.
@@ -63,6 +84,24 @@ impl StyleResolver {
     /// Get the [`LineStyle`] from theme and state.
     pub fn line_style(&self) -> LineStyle {
         LineStyle { line_width: Some(self.line_width()), line_color: Some(self.line_color()) }
+    }
+
+    /// Get the [`TriangleStyle`] from theme and state.
+    pub fn triangle_style(&self) -> TriangleStyle {
+        TriangleStyle {
+            triangle_edge_width: Some(self.triangle_edge_width()),
+            triangle_fill_color: Some(self.triangle_fill_color()),
+        }
+    }
+
+    /// Get the [`SquareStyle`] from theme and state.
+    pub fn square_style(&self) -> SquareStyle {
+        SquareStyle { square_edge_width: Some(self.square_edge_width()), square_fill_color: Some(self.square_fill_color()) }
+    }
+
+    /// Get the [`RectangleStyle`] from theme and state.
+    pub fn rectangle_style(&self) -> RectangleStyle {
+        RectangleStyle { square_edge_width: Some(self.square_edge_width()), square_fill_color: Some(self.square_fill_color()) }
     }
 
     /// Get the [`PointSize`] from theme and state.
@@ -108,5 +147,25 @@ impl StyleResolver {
     /// Get the [`LineColor`] from theme and state.
     pub fn line_color(&self) -> LineColor {
         self.once.line_color.or(self.local.line_color).or(self.theme.line_color).unwrap_or_default()
+    }
+
+    /// Get the [`TriangleEdgeWidth`] from theme and state.
+    pub fn triangle_edge_width(&self) -> TriangleEdgeWidth {
+        self.once.triangle_edge_width.or(self.local.triangle_edge_width).or(self.theme.triangle_edge_width).unwrap_or_default()
+    }
+
+    /// Get the [`TriangleFillColor`] from theme and state.
+    pub fn triangle_fill_color(&self) -> TriangleFillColor {
+        self.once.triangle_fill_color.or(self.local.triangle_fill_color).or(self.theme.triangle_fill_color).unwrap_or_default()
+    }
+
+    /// Get the [`SquareEdgeWidth`] from theme and state.
+    pub fn square_edge_width(&self) -> SquareEdgeWidth {
+        self.once.square_edge_width.or(self.local.square_edge_width).or(self.theme.square_edge_width).unwrap_or_default()
+    }
+
+    /// Get the [`SquareFillColor`] from theme and state.
+    pub fn square_fill_color(&self) -> SquareFillColor {
+        self.once.square_fill_color.or(self.local.square_fill_color).or(self.theme.square_fill_color).unwrap_or_default()
     }
 }
