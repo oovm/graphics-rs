@@ -10,7 +10,7 @@
   typeInner: RGBA
   docs: Represent the color of a point, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 # point, circle, ball, etc. ==========================================================================================
 - field: circle_width
   typeInner: f32
@@ -22,7 +22,7 @@
   typeInner: RGBA
   docs: Represent the color of a point, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 # point, circle, ball, etc. ==========================================================================================
 - field: triangle_edge_width
   typeInner: f32
@@ -33,22 +33,22 @@
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: disk_fill_color
   typeInner: RGBA
   docs: Represent the color of a disk, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: disk_edge_width
   typeInner: f32
   docs: Represent the edge width of a disk, default width is 1.0
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: disk_edge_color
   typeInner: RGBA
   docs: Represent the edge color of a disk, default is transparent
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: line_width
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
@@ -58,7 +58,7 @@
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: square_edge_width
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
@@ -68,7 +68,7 @@
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: square_edge_width
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
@@ -78,12 +78,12 @@
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: rectangle_fill_color
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: rectangle_edge_width
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
@@ -93,12 +93,12 @@
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: polygon_fill_color
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
 - field: polygon_edge_width
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
@@ -108,4 +108,4 @@
   typeInner: RGBA
   docs: Represent the color of a line, default color is black
   details: ''
-  derive: Debug, Clone, Copy, PartialEq, Default
+  derive: Debug, Clone, Copy, PartialEq
