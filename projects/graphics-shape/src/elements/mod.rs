@@ -1,15 +1,10 @@
 mod point;
-// mod circle;
+mod line;
 mod rectangle;
 
 pub use point::{Point, Point3D};
+pub use line::{Line, Line3D};
 
-/// A circle.
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
-pub struct Line {
-    pub start: Point,
-    pub end: Point,
-}
 
 /// A rectangle.
 #[derive(Clone, Copy, Debug, PartialEq)]

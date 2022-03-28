@@ -1,16 +1,20 @@
 mod traits;
+mod dim2;
+mod dim3;
 use super::*;
 
-impl Line {
-    pub fn from_2_points(start: &Point, end: &Point) -> Self {
-        Self { start: *start, end: *end, ..Default::default() }
-    }
+
+
+/// A circle.
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct Line<T> {
+    pub start: Point<T>,
+    pub end: Point<T>,
 }
 
-impl Line {
-    pub fn is_empty(&self, ctx: &StyleResolver) -> bool {
-        let length = || self.start == self.end;
-        let width = || self.width.unwrap_or(ctx.line_width()) <= 0.0;
-        length() || width()
-    }
+/// A circle.
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct Line3D<T> {
+    pub start: Point3D<T>,
+    pub end: Point3D<T>,
 }

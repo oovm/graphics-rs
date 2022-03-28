@@ -13,10 +13,10 @@ edition = "2021"
 wolfram_wxf = "0.6.0"
 serde = "1.0.136"
 
-#[dependencies.graphics-shape]
-#version = "0.0.*"
-#features = []
-#path = "../graphics-shape"
+[dependencies.graphics-shape]
+version = "0.0.*"
+features = []
+path = "../graphics-shape"
 
 [dependencies.graphics-style]
 version = "0.2.*"
