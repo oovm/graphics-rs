@@ -1,10 +1,11 @@
-mod point;
 mod line;
+mod point;
 mod rectangle;
+mod triangle;
 
-pub use point::{Point, Point3D};
 pub use line::{Line, Line3D};
-
+pub use point::{Point, Point3D};
+pub use triangle::Triangle;
 
 /// A rectangle.
 #[derive(Clone, Copy, Debug, PartialEq)]
