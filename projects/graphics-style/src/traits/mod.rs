@@ -7,6 +7,10 @@ use std::{cmp::Ordering, ops::AddAssign};
 /// Trait for drawing a shape with a style.
 pub trait GraphicsStyle {
     /// Draws a shape with a style.
+    fn skip(&self) -> bool {
+        false
+    }
+    /// Draws a shape with a style.
     ///
     /// # Arguments
     ///
@@ -24,19 +28,15 @@ pub trait GraphicsStyle {
     /// }
     ///
     /// impl GraphicsStyle for CustomLineStyle {
-    ///     fn draw_style(&self, state: &mut StyleContext) {
+    ///     fn change_style(&self, state: &mut StyleContext) {
     ///         state.line_width = Some(self.width);
     ///         state.line_color = Some(self.color);
     ///     }
     /// }
     /// ```
-    fn draw_style(&self, state: &mut StyleContext);
-    /// Draws a shape with a style.
-    fn skip(&self) -> bool {
-        false
-    }
+    fn change_style(&self, state: &mut StyleContext);
 }
 
 impl GraphicsStyle for () {
-    fn draw_style(&self, _: &mut StyleContext) {}
+    fn change_style(&self, _: &mut StyleContext) {}
 }

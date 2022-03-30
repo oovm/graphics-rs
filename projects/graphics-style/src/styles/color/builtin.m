@@ -22,13 +22,12 @@ buildColor = TemplateApply["
 pub const `name`: Self = Self::new(`r`, `g`, `b`, `a`);
 ",
     <|
-    "name" -> ToUpperCase@#Name,
-            "hex" -> #Hex,
-    "r" -> #RGB[[1]] ,
-    "g" -> #RGB[[2]],
+        "name" -> ToUpperCase@#Name,
+        "hex" -> #Hex,
+        "r" -> #RGB[[1]] ,
+        "g" -> #RGB[[2]],
         "b" -> #RGB[[3]],
         "a" -> 255
-        
     |>
 ]&;
 
@@ -38,6 +37,6 @@ draw = Flatten@{
     "// noinspection SpellCheckingInspection",
     "impl RGBA {",
     buildColor /@ color,
-       "}"
+    "}"
 };
-Export["builtin.rs", StringRiffle[draw,"\n\n"], "Text"]
+Export["builtin.rs", StringRiffle[draw, "\n\n"], "Text"]

@@ -1,16 +1,13 @@
 (* ::Package:: *)
 
 SetDirectory@NotebookDirectory[];
-RunProcess[{"wex", "style-atom-2d.yaml", "-c"}];
-RunProcess[{"wex", "style-atom-3d.yaml", "-c"}];
-RunProcess[{"wex", "style-group-2d.yaml", "-c"}];
-RunProcess[{"wex", "style-group-2d.yaml", "-c"}];
+<<ImportX`;
 styleAtom = Flatten[{
-    Import["style-atom-2d.yaml.mx"],
-    Import["style-atom-3d.yaml.mx"]
+    Import["style-atom-2d.yaml","YAML"],
+    Import["style-atom-3d.yaml","YAML"]
 }];
 styleGroup = Flatten[{
-    Import["style-group-2d.yaml.mx"]
+    Import["style-group-2d.yaml","YAML"]
 }];
 
 

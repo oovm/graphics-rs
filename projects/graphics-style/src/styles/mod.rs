@@ -1,4 +1,5 @@
 mod color;
+mod texture;
 pub use self::color::RGBA;
 use serde::{
     de::{MapAccess, SeqAccess, Visitor},
