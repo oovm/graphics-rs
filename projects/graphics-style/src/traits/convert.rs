@@ -60,13 +60,13 @@ impl Into<Color> for BackgroundColor {
     }
 }
 
-impl From<Color> for CircleColor {
+impl From<Color> for CircleTexture {
     fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<Color> for CircleColor {
+impl Into<Color> for CircleTexture {
     fn into(self) -> Color {
         self.value
     }

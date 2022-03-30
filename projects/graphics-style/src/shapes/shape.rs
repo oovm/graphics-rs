@@ -1,4 +1,5 @@
 use super::*;
+use crate::Texture;
 
 /// Represent the available style of a background.
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
@@ -19,7 +20,7 @@ pub struct CircleStyle {
 
     /// Represent the color of a point, default color is black, see more in [`CircleColor`].
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub circle_color: Option<CircleColor>,
+    pub circle_texture: Option<CircleTexture>,
 }
 
 /// Represent the available style of a disk.
@@ -251,9 +252,9 @@ pub struct BackgroundColor {
 /// Represent the color of a point, default color is black
 #[derive(Clone, Copy, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(into = "RGBA", from = "RGBA")]
-pub struct CircleColor {
+pub struct CircleTexture {
     /// Actual value for [`StyleResolver::circle_color`]
-    pub value: Color,
+    pub value: Texture,
 }
 
 /// Represent the width of a circle, default width is 1.0

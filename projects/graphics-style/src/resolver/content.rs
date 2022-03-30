@@ -9,7 +9,7 @@ pub struct StyleContext {
 
     /// Get default [`CircleColor`] when missing.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub circle_color: Option<CircleColor>,
+    pub circle_color: Option<CircleTexture>,
 
     /// Get default [`CircleWidth`] when missing.
     #[serde(skip_serializing_if = "Option::is_none")]

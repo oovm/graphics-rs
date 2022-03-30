@@ -6,7 +6,7 @@
   details: |-
     The shape of the point is always round.
 - field: point_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a point, default color is black
 # point, circle, ball, etc. ==========================================================================================
 - field: circle_width
@@ -14,7 +14,7 @@
   default: '1.0'
   docs: Represent the width of a circle, default width is 1.0
 - field: circle_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a point, default color is black
 # point, circle, ball, etc. ==========================================================================================
 - field: triangle_edge_width
@@ -22,20 +22,20 @@
   default: '1.0'
   docs: Represent the with of a line, default width is 1.0
 - field: triangle_edge_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: triangle_fill_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 # point, circle, ball, etc. ==========================================================================================
 - field: disk_fill_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a disk, default color is black
 - field: disk_edge_width
   typeInner: f32
   docs: Represent the edge width of a disk, default width is 1.0
 - field: disk_edge_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the edge color of a disk, default is transparent
 # square, rectangle, etc. ==========================================================================================
 - field: line_width
@@ -43,14 +43,14 @@
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
 - field: line_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: polyline_width
   default: '1.0'
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
 - field: polyline_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 # square, rectangle, etc. ==========================================================================================
 - field: square_edge_width
@@ -58,45 +58,45 @@
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
 - field: square_fill_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: square_edge_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the with of a line, default width is 1.0
 - field: square_fill_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: rectangle_fill_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: rectangle_edge_width
   default: '1.0'
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
 - field: rectangle_edge_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: polygon_fill_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: polygon_edge_width
   default: '1.0'
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
 - field: polygon_edge_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 # point, circle, ball, etc. ==========================================================================================
 - field: text_size
   typeInner: f32
   docs: Represent the with of a line, default width is 1.0
 - field: text_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black
 - field: text_font
   typeInner: f32
   docs: Represent the color of a line, default color is black
 # point, circle, ball, etc. ==========================================================================================
 - field: background_color
-  typeInner: RGBA
+  typeInner: Color
   docs: Represent the color of a line, default color is black

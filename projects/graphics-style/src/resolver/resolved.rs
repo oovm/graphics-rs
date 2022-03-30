@@ -1,4 +1,6 @@
 use super::*;
+use crate::styles::{Gradient, Image};
+use std::ops::AddAssign;
 
 /// Get default style when not specified.
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
@@ -14,7 +16,7 @@ pub struct CircleStyle {
     pub circle_width: f32,
 
     /// Get the config of [`crate::CircleColor`]
-    pub circle_color: Color,
+    pub circle_texture: Texture,
 }
 
 /// Get default style when not specified.
@@ -202,7 +204,7 @@ impl StyleContext {
     pub fn resolve_circle_style(&self, style: crate::CircleStyle) -> CircleStyle {
         CircleStyle {
             circle_width: style.circle_width.unwrap_or(self.circle_width()).value,
-            circle_color: style.circle_color.unwrap_or(self.circle_color()).value,
+            circle_color: style.circle_texture.unwrap_or(self.circle_color()).value,
         }
     }
 

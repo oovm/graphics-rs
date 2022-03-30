@@ -6,7 +6,7 @@ impl GraphicsStyle for BackgroundColor {
     }
 }
 
-impl GraphicsStyle for CircleColor {
+impl GraphicsStyle for CircleTexture {
     fn change_style(&self, state: &mut StyleContext) {
         state.circle_color = Some(self.clone());
     }
@@ -171,7 +171,7 @@ impl GraphicsStyle for BackgroundStyle {
 impl GraphicsStyle for CircleStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.circle_width = Some(self.circle_width.unwrap_or_default());
-        state.circle_color = Some(self.circle_color.unwrap_or_default());
+        state.circle_color = Some(self.circle_texture.unwrap_or_default());
     }
 }
 
