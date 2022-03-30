@@ -2,7 +2,7 @@
 // #![deny(missing_debug_implementations)]
 #![doc = include_str!("../Readme.md")]
 
-use graphics_style::{GraphicsStyle, TextureKind};
+use graphics_style::{GraphicsStyle, Texture};
 use std::borrow::Cow;
 mod canvas;
 mod styles;
@@ -26,7 +26,7 @@ pub struct Circle {
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CircleStyle {
     pub circle_width: f64,
-    pub disk_texture: TextureKind,
+    pub disk_texture: Texture,
 }
 
 pub trait Drawable {

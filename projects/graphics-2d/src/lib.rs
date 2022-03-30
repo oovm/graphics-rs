@@ -55,7 +55,7 @@ impl<'s> Drawable<'s> {
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CircleInfo {
     pub circle_width: f32,
-    pub circle_texture: graphics_style::TextureKind,
+    pub circle_texture: graphics_style::Texture,
     pub life_rest: Option<f32>,
 }
 

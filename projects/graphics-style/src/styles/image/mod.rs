@@ -1,6 +1,8 @@
 use image::{ImageBuffer, RgbaImage};
 use std::sync::Arc;
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+
 pub struct Image {
     /// A reference to the image in srgb space.
     shared: Arc<RgbaImage>,

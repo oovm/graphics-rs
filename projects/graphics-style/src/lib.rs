@@ -8,7 +8,7 @@
 pub use self::{
     resolver::{resolved, StyleContext},
     shapes::*,
-    styles::{Color, TextureKind},
+    styles::{Color, Texture},
     traits::GraphicsStyle,
 };
 
