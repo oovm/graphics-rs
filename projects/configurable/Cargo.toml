@@ -1,43 +1,18 @@
 [package]
 name = "setting"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "The styles of all graphics elements"
 repository = "https://github.com/oovm/graphics-rs"
-documentation = "https://docs.rs/graphics"
+documentation = "https://docs.rs/setting"
 readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"
 
-[dependencies]
-#graphics-svg = "0.0.0"
-
-[dependencies.graphics-style]
-version = "0.2.*"
-features = []
-path = "../graphics-style"
-
-[dependencies.graphics-2d]
-version = "0.0.*"
+[dependencies.serde]
 optional = true
-features = []
-path = "../graphics-2d"
+version = "1.0.136"
 
-[dependencies.graphics-3d]
-version = "0.0.*"
-optional = true
-features = []
-path = "../graphics-3d"
 
 [features]
-default = ["2d", "svg"]
-2d = ["graphics-2d"]
-3d = ["graphics-3d"]
-svg = []
-bitmap = []
-canvas = []
-
-[package.metadata.wee]
-t = "cargo test"
-p = "cargo publish --allow-dirty"
-
+default = []
