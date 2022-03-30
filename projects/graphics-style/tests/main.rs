@@ -1,4 +1,4 @@
-use graphics_style::{PointColor, PointSize, StyleContext, StyleResolver, RGBA};
+use graphics_style::{Color, PointColor, PointSize, StyleContext, StyleResolver};
 
 #[test]
 fn ready() {
@@ -9,7 +9,7 @@ fn ready() {
 fn test_theme() {
     let mut my_theme = StyleContext::default();
     my_theme += PointSize { value: 1.0 };
-    my_theme += PointColor { value: RGBA::AZURE };
+    my_theme += PointColor { value: Color::AZURE };
 
     let resolver = StyleResolver::with_theme_style(my_theme);
     let out = serde_json::to_string(&resolver).unwrap();

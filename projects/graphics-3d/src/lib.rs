@@ -2,9 +2,10 @@
 // #![deny(missing_debug_implementations)]
 #![doc = include_str!("../Readme.md")]
 
-use graphics_style::{CircleStyle, GraphicsStyle};
+use graphics_style::{GraphicsStyle, Texture};
 use std::borrow::Cow;
 mod canvas;
+mod styles;
 mod traits;
 pub use canvas::*;
 pub use traits::*;
@@ -22,15 +23,21 @@ pub struct Circle {
     style: CircleStyle,
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
+pub struct CircleStyle {
+    pub circle_width: f64,
+    pub disk_texture: Texture,
+}
+
 pub trait Drawable {
+    fn skip(&self) -> bool {
+        false
+    }
     /// Draw the object
     fn get_shape(&self) -> Option<GraphicsShape>;
     /// Change default style perming to change the style of the shape
     fn changed_style(&self) -> Vec<&dyn GraphicsStyle> {
         vec![]
-    }
-    fn skip(&self) -> bool {
-        false
     }
 }
 

@@ -48,26 +48,26 @@ impl Default for TriangleEdgeWidth {
     }
 }
 
-impl From<RGBA> for BackgroundColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for BackgroundColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for BackgroundColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for BackgroundColor {
+    fn into(self) -> Color {
         self.value
     }
 }
 
-impl From<RGBA> for CircleColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for CircleColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for CircleColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for CircleColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -84,14 +84,14 @@ impl Into<f32> for CircleWidth {
     }
 }
 
-impl From<RGBA> for DiskEdgeColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for DiskEdgeColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for DiskEdgeColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for DiskEdgeColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -108,26 +108,26 @@ impl Into<f32> for DiskEdgeWidth {
     }
 }
 
-impl From<RGBA> for DiskFillColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for DiskFillColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for DiskFillColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for DiskFillColor {
+    fn into(self) -> Color {
         self.value
     }
 }
 
-impl From<RGBA> for LineColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for LineColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for LineColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for LineColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -144,14 +144,14 @@ impl Into<f32> for LineWidth {
     }
 }
 
-impl From<RGBA> for PointColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for PointColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for PointColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for PointColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -168,14 +168,14 @@ impl Into<f32> for PointSize {
     }
 }
 
-impl From<RGBA> for PolygonEdgeColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for PolygonEdgeColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for PolygonEdgeColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for PolygonEdgeColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -192,26 +192,26 @@ impl Into<f32> for PolygonEdgeWidth {
     }
 }
 
-impl From<RGBA> for PolygonFillColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for PolygonFillColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for PolygonFillColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for PolygonFillColor {
+    fn into(self) -> Color {
         self.value
     }
 }
 
-impl From<RGBA> for PolylineColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for PolylineColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for PolylineColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for PolylineColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -228,14 +228,14 @@ impl Into<f32> for PolylineWidth {
     }
 }
 
-impl From<RGBA> for RectangleEdgeColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for RectangleEdgeColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for RectangleEdgeColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for RectangleEdgeColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -252,26 +252,26 @@ impl Into<f32> for RectangleEdgeWidth {
     }
 }
 
-impl From<RGBA> for RectangleFillColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for RectangleFillColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for RectangleFillColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for RectangleFillColor {
+    fn into(self) -> Color {
         self.value
     }
 }
 
-impl From<RGBA> for SquareEdgeColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for SquareEdgeColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for SquareEdgeColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for SquareEdgeColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -288,26 +288,26 @@ impl Into<f32> for SquareEdgeWidth {
     }
 }
 
-impl From<RGBA> for SquareFillColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for SquareFillColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for SquareFillColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for SquareFillColor {
+    fn into(self) -> Color {
         self.value
     }
 }
 
-impl From<RGBA> for TextColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for TextColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for TextColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for TextColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -336,14 +336,14 @@ impl Into<f32> for TextSize {
     }
 }
 
-impl From<RGBA> for TriangleEdgeColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for TriangleEdgeColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for TriangleEdgeColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for TriangleEdgeColor {
+    fn into(self) -> Color {
         self.value
     }
 }
@@ -360,14 +360,14 @@ impl Into<f32> for TriangleEdgeWidth {
     }
 }
 
-impl From<RGBA> for TriangleFillColor {
-    fn from(value: RGBA) -> Self {
+impl From<Color> for TriangleFillColor {
+    fn from(value: Color) -> Self {
         Self { value }
     }
 }
 
-impl Into<RGBA> for TriangleFillColor {
-    fn into(self) -> RGBA {
+impl Into<Color> for TriangleFillColor {
+    fn into(self) -> Color {
         self.value
     }
 }

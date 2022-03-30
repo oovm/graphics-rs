@@ -245,7 +245,7 @@ pub struct TriangleStyle {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct BackgroundColor {
     /// Actual value for [`StyleResolver::background_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the color of a point, default color is black
@@ -253,7 +253,7 @@ pub struct BackgroundColor {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct CircleColor {
     /// Actual value for [`StyleResolver::circle_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the width of a circle, default width is 1.0
@@ -269,7 +269,7 @@ pub struct CircleWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskEdgeColor {
     /// Actual value for [`StyleResolver::disk_edge_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the edge width of a disk, default width is 1.0
@@ -285,7 +285,7 @@ pub struct DiskEdgeWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct DiskFillColor {
     /// Actual value for [`StyleResolver::disk_fill_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the color of a line, default color is black
@@ -293,7 +293,7 @@ pub struct DiskFillColor {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct LineColor {
     /// Actual value for [`StyleResolver::line_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the with of a line, default width is 1.0
@@ -309,7 +309,7 @@ pub struct LineWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct PointColor {
     /// Actual value for [`StyleResolver::point_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the size of a point, default size is 1.0
@@ -327,7 +327,7 @@ pub struct PointSize {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct PolygonEdgeColor {
     /// Actual value for [`StyleResolver::polygon_edge_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the with of a line, default width is 1.0
@@ -343,7 +343,7 @@ pub struct PolygonEdgeWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct PolygonFillColor {
     /// Actual value for [`StyleResolver::polygon_fill_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the color of a line, default color is black
@@ -351,7 +351,7 @@ pub struct PolygonFillColor {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct PolylineColor {
     /// Actual value for [`StyleResolver::polyline_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the with of a line, default width is 1.0
@@ -367,7 +367,7 @@ pub struct PolylineWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct RectangleEdgeColor {
     /// Actual value for [`StyleResolver::rectangle_edge_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the with of a line, default width is 1.0
@@ -383,7 +383,7 @@ pub struct RectangleEdgeWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct RectangleFillColor {
     /// Actual value for [`StyleResolver::rectangle_fill_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the with of a line, default width is 1.0
@@ -391,7 +391,7 @@ pub struct RectangleFillColor {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct SquareEdgeColor {
     /// Actual value for [`StyleResolver::square_edge_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the with of a line, default width is 1.0
@@ -407,7 +407,7 @@ pub struct SquareEdgeWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct SquareFillColor {
     /// Actual value for [`StyleResolver::square_fill_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the color of a line, default color is black
@@ -415,7 +415,7 @@ pub struct SquareFillColor {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct TextColor {
     /// Actual value for [`StyleResolver::text_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the color of a line, default color is black
@@ -439,7 +439,7 @@ pub struct TextSize {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct TriangleEdgeColor {
     /// Actual value for [`StyleResolver::triangle_edge_color`]
-    pub value: RGBA,
+    pub value: Color,
 }
 
 /// Represent the with of a line, default width is 1.0
@@ -455,5 +455,5 @@ pub struct TriangleEdgeWidth {
 #[serde(into = "RGBA", from = "RGBA")]
 pub struct TriangleFillColor {
     /// Actual value for [`StyleResolver::triangle_fill_color`]
-    pub value: RGBA,
+    pub value: Color,
 }

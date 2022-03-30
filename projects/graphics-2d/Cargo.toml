@@ -10,8 +10,7 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-wolfram_wxf = "0.6.0"
-serde = "1.0.136"
+serde = { version = "1.0.136", features = ["derive"] }
 projective = "0.2.2"
 
 [dependencies.graphics-shape]

@@ -4,19 +4,19 @@ use serde::de::Error;
 include!("serde.rs");
 include!("convert.rs");
 
-impl Default for RGBA {
+impl Default for Color {
     fn default() -> Self {
         Self { r: 0, g: 0, b: 0, a: 255 }
     }
 }
 
-impl Display for RGBA {
+impl Display for Color {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "rgba({}, {}, {}, {})", self.r, self.g, self.b, self.a)
     }
 }
 
-impl UpperHex for RGBA {
+impl UpperHex for Color {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if f.alternate() {
             f.write_char('#')?;
@@ -25,7 +25,7 @@ impl UpperHex for RGBA {
     }
 }
 
-impl LowerHex for RGBA {
+impl LowerHex for Color {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         if f.alternate() {
             f.write_char('#')?;

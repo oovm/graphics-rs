@@ -1,4 +1,4 @@
-impl Serialize for RGBA {
+impl Serialize for Color {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
@@ -49,7 +49,7 @@ impl<'de> Deserialize<'de> for RGBAField {
 }
 
 impl<'de> Visitor<'de> for RGBAVisitor {
-    type Value = RGBA;
+    type Value = Color;
 
     fn expecting(&self, formatter: &mut Formatter) -> std::fmt::Result {
         formatter.write_str("a hex string or a tuple of three or four integer between 0-255.")
@@ -59,7 +59,7 @@ impl<'de> Visitor<'de> for RGBAVisitor {
     where
         E: Error,
     {
-        Ok(RGBA::from(v))
+        Ok(Color::from(v))
     }
 
     /// used for json
@@ -67,20 +67,20 @@ impl<'de> Visitor<'de> for RGBAVisitor {
     where
         E: Error,
     {
-        Ok(RGBA::from(v as u32))
+        Ok(Color::from(v as u32))
     }
     fn visit_u32<E>(self, v: u32) -> Result<Self::Value, E>
     where
         E: Error,
     {
-        Ok(RGBA::from(v))
+        Ok(Color::from(v))
     }
 
     fn visit_u64<E>(self, v: u64) -> Result<Self::Value, E>
     where
         E: Error,
     {
-        Ok(RGBA::from(v as u32))
+        Ok(Color::from(v as u32))
     }
 
     fn visit_str<E>(self, v: &str) -> Result<Self::Value, E>
@@ -103,25 +103,25 @@ impl<'de> Visitor<'de> for RGBAVisitor {
             }
         }
         let this = match &v[1..].as_bytes() {
-            [r, g, b] => RGBA::from([
+            [r, g, b] => Color::from([
                 //
                 hex_digit(r)? * 17,
                 hex_digit(g)? * 17,
                 hex_digit(b)? * 17,
             ]),
-            [r, g, b, a] => RGBA::from([
+            [r, g, b, a] => Color::from([
                 //
                 hex_digit(r)? * 17,
                 hex_digit(g)? * 17,
                 hex_digit(b)? * 17,
                 hex_digit(a)? * 17,
             ]),
-            [r1, r2, g1, g2, b1, b2] => RGBA::from([
+            [r1, r2, g1, g2, b1, b2] => Color::from([
                 hex_digit(r1)? * 16 + hex_digit(r2)?,
                 hex_digit(g1)? * 16 + hex_digit(g2)?,
                 hex_digit(b1)? * 16 + hex_digit(b2)?,
             ]),
-            [r1, r2, g1, g2, b1, b2, a1, a2] => RGBA::from([
+            [r1, r2, g1, g2, b1, b2, a1, a2] => Color::from([
                 hex_digit(r1)? * 16 + hex_digit(r2)?,
                 hex_digit(g1)? * 16 + hex_digit(g2)?,
                 hex_digit(b1)? * 16 + hex_digit(b2)?,
@@ -137,8 +137,8 @@ impl<'de> Visitor<'de> for RGBAVisitor {
         E: Error,
     {
         match v {
-            [r, g, b] => Ok(RGBA::new(*r, *g, *b, 255)),
-            [r, g, b, a] => Ok(RGBA::new(*r, *g, *b, *a)),
+            [r, g, b] => Ok(Color::new(*r, *g, *b, 255)),
+            [r, g, b, a] => Ok(Color::new(*r, *g, *b, *a)),
             _ => Err(Error::custom(format!("RGBA must be a tuple of three or four integer between 0-255"))),
         }
     }
@@ -168,7 +168,7 @@ impl<'de> Visitor<'de> for RGBAVisitor {
     }
 }
 
-impl<'de> Deserialize<'de> for RGBA {
+impl<'de> Deserialize<'de> for Color {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,

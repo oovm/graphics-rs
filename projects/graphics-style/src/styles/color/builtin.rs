@@ -1,7 +1,7 @@
 use super::*;
 
 // noinspection SpellCheckingInspection
-impl RGBA {
+impl Color {
     /// `#F0F8FF = rgb(240 248 255)`
     ///
     /// <div style="display: inline-block;width: 16rem;height: 1rem;border: 1px solid black;background: #F0F8FF;"></div>

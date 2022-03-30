@@ -21,10 +21,10 @@ pub trait GraphicsStyle {
     /// # Examples
     ///
     /// ```rust
-    /// use graphics_style::{GraphicsStyle, StyleContext, RGBA};
+    /// use graphics_style::{Color, GraphicsStyle, StyleContext};
     /// pub struct CustomLineStyle {
     ///     pub width: f32,
-    ///     pub color: RGBA,
+    ///     pub color: Color,
     /// }
     ///
     /// impl GraphicsStyle for CustomLineStyle {
