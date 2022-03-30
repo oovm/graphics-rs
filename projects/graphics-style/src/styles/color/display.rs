@@ -1,8 +1,4 @@
 use super::*;
-use serde::de::Error;
-
-include!("serde.rs");
-include!("convert.rs");
 
 impl Default for Color {
     fn default() -> Self {

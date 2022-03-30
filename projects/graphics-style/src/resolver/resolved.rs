@@ -4,7 +4,7 @@ use super::*;
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BackgroundStyle {
     /// Get the config of [`crate::BackgroundColor`]
-    pub background_texture: Texture,
+    pub background_texture: TextureKind,
 }
 
 /// Get default style when not specified.

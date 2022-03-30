@@ -2,7 +2,9 @@ use super::*;
 use palette::{Srgb, Srgba};
 use std::marker::PhantomData;
 mod builtin;
-mod traits;
+mod convert;
+mod display;
+mod serder;
 
 /// A color with red, green, blue, and alpha channel.
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]

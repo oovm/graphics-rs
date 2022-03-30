@@ -1,4 +1,6 @@
-use std::str::FromStr;
+use super::*;
+use serde::de::Error;
+use std::result::Result;
 
 impl Serialize for Color {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
@@ -89,22 +91,7 @@ impl<'de> Visitor<'de> for RGBAVisitor {
     where
         E: Error,
     {
-        let error = Err(Error::custom(format!("{} does not a valid hex color string", v)));
-        if !v.starts_with("#") {
-            return error;
-        }
-        fn hex_digit<E>(c: &u8) -> Result<u8, E>
-        where
-            E: Error,
-        {
-            match c {
-                b'0'..=b'9' => Ok(c - b'0'),
-                b'A'..=b'F' => Ok(c - b'A' + 10),
-                b'a'..=b'f' => Ok(c - b'a' + 10),
-                _ => Err(Error::custom(format!("{} does not a valid hex character", c))),
-            }
-        }
-        Ok(this)
+        Color::from_str(v).map_err(|e| Error::custom(e))
     }
 
     fn visit_bytes<E>(self, v: &[u8]) -> Result<Self::Value, E>

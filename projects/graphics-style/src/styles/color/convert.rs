@@ -1,6 +1,4 @@
-use std::char::ParseCharError;
-use std::num::ParseIntError;
-use std::string::ParseError;
+use super::*;
 
 impl From<(u8, u8, u8)> for Color {
     fn from(c: (u8, u8, u8)) -> Self {
@@ -52,38 +50,55 @@ impl From<u32> for Color {
     }
 }
 
-impl FromStr for Color {
-    type Err = Error;
+fn hex_digit(c: &u8) -> Result<u8> {
+    match c {
+        b'0'..=b'9' => Ok(c - b'0'),
+        b'A'..=b'F' => Ok(c - b'A' + 10),
+        b'a'..=b'f' => Ok(c - b'a' + 10),
+        _ => parse_error!("{} does not a valid hex character", c),
+    }
+}
 
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        Srgb::from_str()
+impl FromStr for Color {
+    type Err = GraphicsError;
+
+    fn from_str(s: &str) -> Result<Self> {
+        if !s.starts_with("#") {
+            return parse_error!("{} does not a valid hex color string", s);
+        }
         let this = match &s[1..].as_bytes() {
-            [r, g, b] => Color::from([
+            [c1, c2] => {
+                let c = hex_digit(c1)? * 16 + hex_digit(c2)?;
+                Color::new(c, c, c, 255)
+            }
+            [r, g, b] => Color::new(
                 //
                 hex_digit(r)? * 17,
                 hex_digit(g)? * 17,
                 hex_digit(b)? * 17,
-            ]),
-            [r, g, b, a] => Color::from([
+                255,
+            ),
+            [r, g, b, a] => Color::new(
                 //
                 hex_digit(r)? * 17,
                 hex_digit(g)? * 17,
                 hex_digit(b)? * 17,
                 hex_digit(a)? * 17,
-            ]),
-            [r1, r2, g1, g2, b1, b2] => Color::from([
+            ),
+            [r1, r2, g1, g2, b1, b2] => Color::new(
                 hex_digit(r1)? * 16 + hex_digit(r2)?,
                 hex_digit(g1)? * 16 + hex_digit(g2)?,
                 hex_digit(b1)? * 16 + hex_digit(b2)?,
-            ]),
-            [r1, r2, g1, g2, b1, b2, a1, a2] => Color::from([
+                255,
+            ),
+            [r1, r2, g1, g2, b1, b2, a1, a2] => Color::new(
                 hex_digit(r1)? * 16 + hex_digit(r2)?,
                 hex_digit(g1)? * 16 + hex_digit(g2)?,
                 hex_digit(b1)? * 16 + hex_digit(b2)?,
                 hex_digit(a1)? * 16 + hex_digit(a2)?,
-            ]),
-            _ => return error,
+            ),
+            _ => return parse_error!("Hex color string length must be 2, 3, 4, 6, 8."),
         };
-
+        Ok(this)
     }
 }
