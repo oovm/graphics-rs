@@ -6,13 +6,14 @@ include!("convert.rs");
 
 impl Default for Color {
     fn default() -> Self {
-        Self { r: 0, g: 0, b: 0, a: 255 }
+        Self::new(0, 0, 0, 255)
     }
 }
 
 impl Display for Color {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "rgba({}, {}, {}, {})", self.r, self.g, self.b, self.a)
+        let (r, g, b, a) = self.view();
+        write!(f, "rgba({}, {}, {}, {})", r, g, b, a)
     }
 }
 
@@ -21,7 +22,8 @@ impl UpperHex for Color {
         if f.alternate() {
             f.write_char('#')?;
         }
-        write!(f, "{:02X}{:02X}{:02X}{:02X}", self.r, self.g, self.b, self.a)
+        let (r, g, b, a) = self.view();
+        write!(f, "{:02X}{:02X}{:02X}{:02X}", r, g, b, a)
     }
 }
 
@@ -30,6 +32,7 @@ impl LowerHex for Color {
         if f.alternate() {
             f.write_char('#')?;
         }
-        write!(f, "{:02x}{:02x}{:02x}{:02x}", self.r, self.g, self.b, self.a)
+        let (r, g, b, a) = self.view();
+        write!(f, "{:02x}{:02x}{:02x}{:02x}", r, g, b, a)
     }
 }

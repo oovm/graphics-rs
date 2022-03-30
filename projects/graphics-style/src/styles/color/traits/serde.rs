@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 impl Serialize for Color {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
@@ -102,33 +104,6 @@ impl<'de> Visitor<'de> for RGBAVisitor {
                 _ => Err(Error::custom(format!("{} does not a valid hex character", c))),
             }
         }
-        let this = match &v[1..].as_bytes() {
-            [r, g, b] => Color::from([
-                //
-                hex_digit(r)? * 17,
-                hex_digit(g)? * 17,
-                hex_digit(b)? * 17,
-            ]),
-            [r, g, b, a] => Color::from([
-                //
-                hex_digit(r)? * 17,
-                hex_digit(g)? * 17,
-                hex_digit(b)? * 17,
-                hex_digit(a)? * 17,
-            ]),
-            [r1, r2, g1, g2, b1, b2] => Color::from([
-                hex_digit(r1)? * 16 + hex_digit(r2)?,
-                hex_digit(g1)? * 16 + hex_digit(g2)?,
-                hex_digit(b1)? * 16 + hex_digit(b2)?,
-            ]),
-            [r1, r2, g1, g2, b1, b2, a1, a2] => Color::from([
-                hex_digit(r1)? * 16 + hex_digit(r2)?,
-                hex_digit(g1)? * 16 + hex_digit(g2)?,
-                hex_digit(b1)? * 16 + hex_digit(b2)?,
-                hex_digit(a1)? * 16 + hex_digit(a2)?,
-            ]),
-            _ => return error,
-        };
         Ok(this)
     }
 
