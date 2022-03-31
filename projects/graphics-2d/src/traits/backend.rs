@@ -1,3 +1,10 @@
+use super::*;
+use graphics_shape::Ellipse;
+use graphics_style::{
+    resolved::{LineStyle, PolygonStyle, RectangleStyle},
+    StyleContext,
+};
+
 #[allow(unused_variables)]
 pub trait GraphicsBackend {
     type Output;
@@ -5,32 +12,21 @@ pub trait GraphicsBackend {
 
     fn get_output(&mut self, context: &Graphics) -> Result<Self::Output, Self::Error>;
 
-    fn on_start(&mut self, context: &Graphics, state: &mut StyleResolver) -> Result<(), Self::Error> {
+    fn on_start(&mut self, context: &Graphics, state: &mut StyleContext) -> Result<(), Self::Error> {
         Ok(())
     }
 
-    fn on_finish(&mut self, context: &Graphics, state: &mut StyleResolver) -> Result<(), Self::Error> {
+    fn on_finish(&mut self, context: &Graphics, state: &mut StyleContext) -> Result<(), Self::Error> {
         Ok(())
     }
 
-    fn draw(&mut self, context: &Graphics, state: &mut StyleResolver, drawable: &Drawable) -> Result<(), Self::Error> {
-        match drawable {
-            Drawable::Style(inner) => Ok(state.set_local_style(inner.clone())),
-            Drawable::Shape(inner) if inner.is_empty(state) => Ok(()),
-            Drawable::Shape(inner) => match inner {
-                GraphicsShape::Pixel(s) => self.draw_pixel(context, state, s),
-                GraphicsShape::Line(s) => self.draw_line(context, state, s),
-                GraphicsShape::Circle(s) => self.draw_rectangle(context, state, s),
-                GraphicsShape::Rectangle(s) => self.draw_rectangle(context, state, s),
-                GraphicsShape::Polygon(s) => self.draw_rectangle(context, state, s),
-            },
-        }
+    fn draw_rectangle(&mut self, context: &Graphics, shape: &Rectangle, style: RectangleStyle) -> Result<(), Self::Error> {
+        Ok(())
     }
-    fn draw_pixel(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error>;
-    fn draw_line(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error>;
-    fn draw_circle(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Line) -> Result<(), Self::Error>;
-    fn draw_rectangle(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Rectangle) -> Result<(), Self::Error> {
-        self.draw_polygon(context, state, &Polygon::from(shape))
-    }
-    fn draw_polygon(&mut self, context: &Graphics, state: &mut StyleResolver, shape: &Polygon) -> Result<(), Self::Error>;
+
+    fn draw_ellipse(&mut self, context: &Graphics, shape: &Ellipse, style: &EllipseStyle) -> Result<(), Self::Error>;
+
+    fn draw_polyline(&mut self, context: &Graphics, shape: &Line, style: &LineStyle) -> Result<(), Self::Error>;
+    /// Draws any polygon like triangle .
+    fn draw_polygon(&mut self, context: &Graphics, shape: &Polygon, style: &PolygonStyle) -> Result<(), Self::Error>;
 }

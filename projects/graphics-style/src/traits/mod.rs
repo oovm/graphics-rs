@@ -35,7 +35,7 @@ pub trait GraphicsStyle {
     ///     }
     /// }
     /// ```
-    fn change_style(&self, state: &mut StyleContext);
+    fn change_style(&mut self, state: &mut StyleContext);
 }
 
 impl GraphicsStyle for () {

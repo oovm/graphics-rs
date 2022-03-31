@@ -1,30 +1,30 @@
-// #![feature(generic_associated_types)]
-// // #![deny(missing_docs)]
-// #![deny(missing_debug_implementations)]
-// #![doc = include_str!("../Readme.md")]
-//
-// mod canvas;
-// mod elements;
-// mod macros;
-// mod traits;
-//
-// pub use crate::{canvas::*, elements::*, macros::*, traits::*};
-// pub use graphics_style::{GraphicsStyle, StyleResolver};
-// pub use traits::GraphicsBackend;
-//
-// #[derive(Debug)]
-// pub enum Drawable {
-//     Shape(GraphicsShape),
-//     Style(Box<dyn GraphicsStyle>),
-// }
-//
-// impl Clone for Drawable {
-//     fn clone(&self) -> Self {
-//         todo!()
-//     }
-// }
+#![feature(generic_associated_types)]
+// #![deny(missing_docs)]
+#![deny(missing_debug_implementations)]
+#![doc = include_str!("../Readme.md")]
 
-use graphics_style::GraphicsStyle;
+mod canvas;
+mod elements;
+mod macros;
+mod traits;
+
+pub use crate::{canvas::*, elements::*, macros::*, traits::*};
+pub use graphics_style::{GraphicsStyle, StyleResolver};
+pub use traits::GraphicsBackend;
+
+#[derive(Debug)]
+pub enum Drawable {
+    Shape(GraphicsShape),
+    Style(Box<dyn GraphicsStyle>),
+}
+
+impl Clone for Drawable {
+    fn clone(&self) -> Self {
+        todo!()
+    }
+}
+
+use graphics_style::{GraphicsStyle, StyleContext};
 use std::borrow::Cow;
 
 pub struct CircleWidth {}
@@ -41,6 +41,10 @@ pub struct Circle {
 pub enum Drawable<'s> {
     StyleChange { style: &'s dyn GraphicsStyle },
     Circle { shape: Cow<'s, crate::raw::Circle>, info: CircleInfo },
+}
+
+impl Drawable {
+    pub fn change_style(&self) {}
 }
 
 impl<'s> Drawable<'s> {
@@ -60,13 +64,13 @@ pub struct CircleInfo {
 }
 
 #[derive(Debug, Default)]
-pub struct GraphicsStateMachine<'a> {
+pub struct Graphics<'a> {
     pub graphic: Vec<Drawable<'a>>,
     pub setting: GraphicsSetting,
     pub style: StyleResolver,
 }
 
-impl GraphicsStateMachine {
+impl Graphics {
     pub fn gc(&mut self) {
         // drain_filter
         let mut next_frame = Vec::with_capacity(self.graphic.len());

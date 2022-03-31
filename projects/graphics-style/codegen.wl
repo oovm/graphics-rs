@@ -5,7 +5,7 @@
 
 
 SetDirectory@NotebookDirectory[];
-styleRaw = Import["../meta-data.m"];
+styleRaw = Import["../meta-data.wl"];
 styleGrouped = styleRaw["styleGroup"];
 styleFlatten = DeleteDuplicatesBy[styleRaw["styleAtom"], #field&];
 styleSubtype = Values[Association[(#field -> #)& /@ styleFlatten][[#subtype]]]&;

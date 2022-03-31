@@ -2,20 +2,20 @@ use super::*;
 
 impl GraphicsStyle for CircleStyle {
     fn change_style(&self, state: &mut StyleContext) {
-        state.circle_width += self.circle_width;
-        state.circle_color += self.circle_texture;
+        state.circle_edge_width += self.circle_width;
+        state.circle_fill_texture += self.circle_texture;
     }
 }
 
 impl GraphicsStyle for CircleTexture {
     fn change_style(&self, state: &mut StyleContext) {
-        state.circle_color = Some(self.clone());
+        state.circle_fill_texture = Some(self.clone());
     }
 }
 
 impl GraphicsStyle for CircleWidth {
     fn change_style(&self, state: &mut StyleContext) {
-        state.circle_width = Some(self.clone());
+        state.circle_edge_width = Some(self.clone());
     }
 }
 
@@ -165,7 +165,7 @@ impl GraphicsStyle for TriangleFillColor {
 
 impl GraphicsStyle for BackgroundStyle {
     fn change_style(&self, state: &mut StyleContext) {
-        state.background_color += self.background_color;
+        state.background_texture += self.background_color;
     }
 }
 

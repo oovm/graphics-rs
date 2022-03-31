@@ -14,7 +14,7 @@ exclude = ["*.m", "*.json", "test/"]
 serde = { version = "1.0.136", features = ["derive", "rc"] }
 image = { version = "0.24.1" }
 palette = "0.6.0"
-setting = {version = "0.2.0", features = ["serde"]}
+setting = {version = "0.2.2", features = ["serde"]}
 projective = "0.2.5"
 
 [dependencies.graphics-error]

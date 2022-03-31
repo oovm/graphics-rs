@@ -1,3 +1,4 @@
+mod backend;
 mod convert;
 mod proj;
 #[cfg(feature = "wolfram_wxf")]
@@ -9,5 +10,3 @@ pub trait Distance {
     type Other;
     fn distance(&self, other: &Self::Other) -> f32;
 }
-
-include!("backend.rs");
