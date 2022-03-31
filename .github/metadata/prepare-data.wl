@@ -51,4 +51,4 @@ metaData = ResourceFunction["ReadableForm"]@<|
     "styleGroup" -> SortBy[groupAddition /@ styleGroup, #field&],
     "styleAtom" -> SortBy[atomAddition /@ styleAtom, #field&]
 |>;
-Export["../../projects/meta-data.m", metaData, "Text"]
+Export["../../projects/meta-data.wl", metaData, "Text"]

@@ -11,7 +11,7 @@ pub use self::{
     styles::{Color, Texture},
     traits::GraphicsStyle,
 };
-
+pub use setting::Setting;
 mod resolver;
 mod shapes;
 mod styles;

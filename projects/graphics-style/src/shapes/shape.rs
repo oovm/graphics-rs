@@ -4,8 +4,8 @@ use super::*;
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BackgroundStyle {
     /// Represent the color of a line, default color is black, see more in [`BackgroundColor`].
-    #[serde(skip_serializing_if = "Setting::is_default")]
-    pub background_color: Setting<BackgroundColor>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub background_color: Option<BackgroundColor>,
 }
 
 /// Represent the available style of a circle.

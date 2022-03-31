@@ -1,8 +1,11 @@
-# plotters-svg - The SVG backend for Plotters
+Setting Value
+=============
 
-This is a part of plotters project. For more details, please check the following links:
+A setting value is a value that can be set by the user.
 
-- For high-level intro of Plotters, see: [Plotters on crates.io](https://crates.io/crates/plotters)
-- Check the main repo at [Plotters repo](https://github.com/38/plotters.git)
-- For detailed documentation about this crate, check [plotters-backend on docs.rs](https://docs.rs/plotters-backend/)
-- You can also visit Plotters [Homepage](https://plotters-rs.github.io)
+The value obey the 3-state logic.
+
+* `Initial`: the value is not set by the user
+* `Unset`: unset the current value
+* `Some(T)`: the value is set to given value
+

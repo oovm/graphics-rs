@@ -9,11 +9,11 @@ pub struct StyleContext {
 
     /// Get default [`CircleColor`] when missing.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub circle_color: Option<CircleTexture>,
+    pub circle_color: Setting<CircleTexture>,
 
     /// Get default [`CircleWidth`] when missing.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub circle_width: Option<CircleWidth>,
+    pub circle_width: Setting<CircleWidth>,
 
     /// Get default [`DiskEdgeColor`] when missing.
     #[serde(skip_serializing_if = "Option::is_none")]

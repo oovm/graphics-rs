@@ -1,8 +1,9 @@
 use super::*;
 
-impl GraphicsStyle for BackgroundColor {
+impl GraphicsStyle for CircleStyle {
     fn change_style(&self, state: &mut StyleContext) {
-        state.background_color = Some(self.clone());
+        state.circle_width += self.circle_width;
+        state.circle_color += self.circle_texture;
     }
 }
 
@@ -164,14 +165,7 @@ impl GraphicsStyle for TriangleFillColor {
 
 impl GraphicsStyle for BackgroundStyle {
     fn change_style(&self, state: &mut StyleContext) {
-        state.background_color = Some(self.background_color.unwrap_or_default());
-    }
-}
-
-impl GraphicsStyle for CircleStyle {
-    fn change_style(&self, state: &mut StyleContext) {
-        state.circle_width = Some(self.circle_width.unwrap_or_default());
-        state.circle_color = Some(self.circle_texture.unwrap_or_default());
+        state.background_color += self.background_color;
     }
 }
 
