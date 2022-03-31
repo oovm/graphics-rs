@@ -1,7 +1,9 @@
 [package]
 name = "setting"
-version = "0.1.0"
+version = "0.2.2"
 authors = ["Aster <192607617@qq.com>"]
+categories = ["data-structures"]
+keywords = ["config", "setting"]
 description = "The styles of all graphics elements"
 repository = "https://github.com/oovm/graphics-rs"
 documentation = "https://docs.rs/setting"
@@ -12,7 +14,10 @@ edition = "2021"
 [dependencies.serde]
 optional = true
 version = "1.0.136"
-
+features = ["derive"]
 
 [features]
 default = []
+
+[package.metadata.docs.rs]
+all-features = true

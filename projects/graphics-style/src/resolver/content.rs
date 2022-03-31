@@ -4,8 +4,8 @@ use super::*;
 #[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize)]
 pub struct StyleContext {
     /// Get default [`BackgroundColor`] when missing.
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub background_color: Option<BackgroundColor>,
+    #[serde(skip_serializing_if = "Setting::is_default")]
+    pub background_color: Setting<BackgroundColor>,
 
     /// Get default [`CircleColor`] when missing.
     #[serde(skip_serializing_if = "Option::is_none")]

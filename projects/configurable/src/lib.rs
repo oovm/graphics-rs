@@ -1,8 +1,13 @@
+#![deny(rustdoc::missing_crate_level_docs)]
+#![deny(missing_docs)]
+#![deny(missing_debug_implementations)]
+#![doc = include_str ! ("../Readme.md")]
+
 mod methods;
 mod traits;
 
-/// A configurable field follows tri-state logic.
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+/// A configurable field follows 3-state logic.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum Setting<T>
 where

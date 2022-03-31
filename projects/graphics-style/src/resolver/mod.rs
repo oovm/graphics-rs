@@ -4,3 +4,4 @@ use crate::*;
 use serde::{Deserialize, Serialize};
 #[doc=include_str!("readme.md")]
 pub mod resolved;
+use setting::Setting;
