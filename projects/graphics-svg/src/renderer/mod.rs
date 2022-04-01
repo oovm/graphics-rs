@@ -1,5 +1,9 @@
 use crate::SVG;
-use graphics_2d::GraphicsBackend;
+use graphics_2d::{
+    shapes::{Ellipse, Line, Polygon},
+    styles::{EdgeStyle, EllipseStyle, PolygonStyle},
+    Graphics, GraphicsBackend, GraphicsSetting,
+};
 use std::mem::take;
 
 pub struct SvgRenderer {
@@ -28,48 +32,15 @@ impl GraphicsBackend for SvgRenderer {
         Ok(SVG::new("svg", attributes, take(&mut self.buffer)))
     }
 
-    fn on_start(&mut self, context: &Graphics, _: &mut StyleResolver) -> Result<(), Self::Error> {
-        self.width = context.setting.width;
-        self.height = context.setting.height;
-        Ok(())
+    fn draw_ellipse(&mut self, context: &GraphicsSetting, shape: &Ellipse, style: &EllipseStyle) -> Result<(), Self::Error> {
+        todo!()
     }
 
-    fn draw_pixel(&mut self, _: &Graphics, _: &mut StyleResolver, shape: &Pixel) -> Result<(), Self::Error> {
-        let attributes = &[
-            ("x", format!("{}", shape.x)),
-            ("y", format!("{}", shape.y)),
-            ("width", format!("{}", 1)),
-            ("height", format!("{}", 1)),
-            // ("fill", format!("{:#X}", shape.get_color(state))),
-        ];
-        let svg = SVG::new("rect", attributes, vec![]);
-        Ok(self.buffer.push(svg))
+    fn draw_polyline(&mut self, context: &GraphicsSetting, shape: &Line, style: &EdgeStyle) -> Result<(), Self::Error> {
+        todo!()
     }
 
-    fn draw_point(&mut self, _: &Graphics, state: &mut StyleResolver, shape: &Point) -> Result<(), Self::Error> {
-        let attributes = &[
-            ("cx", format!("{}", shape.get_x())),
-            ("cy", format!("{}", shape.get_y())),
-            ("r", format!("{}", shape.get_size(state))),
-            ("fill", format!("{:#X}", shape.get_color(state))),
-        ];
-        let svg = SVG::new("circle", attributes, vec![]);
-        Ok(self.buffer.push(svg))
-    }
-
-    fn draw_line(&mut self, _: &Graphics, _: &mut StyleResolver, _: &Line) -> Result<(), Self::Error> {
-        return Ok(());
-    }
-
-    fn draw_rectangle(&mut self, _: &Graphics, state: &mut StyleResolver, shape: &Rectangle) -> Result<(), Self::Error> {
-        let attributes = &[
-            ("x", format!("{}", shape.get_x())),
-            ("y", format!("{}", shape.get_y())),
-            ("width", format!("{}", shape.get_width())),
-            ("height", format!("{}", shape.get_height())),
-            ("fill", format!("{:#X}", shape.get_color(state))),
-        ];
-        let svg = SVG::new("rect", attributes, vec![]);
-        Ok(self.buffer.push(svg))
+    fn draw_polygon(&mut self, context: &GraphicsSetting, shape: &Polygon, style: &PolygonStyle) -> Result<(), Self::Error> {
+        todo!()
     }
 }

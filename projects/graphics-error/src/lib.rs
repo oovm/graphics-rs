@@ -18,4 +18,5 @@ pub struct GraphicsError {
 #[derive(Debug)]
 enum GraphicsErrorKind {
     ParseError(String),
+    IOError(std::io::Error),
 }

@@ -10,7 +10,17 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-#graphics-svg = "0.0.0"
+wolfram-library-link = { version = "0.2.3", optional = true }
+
+[dependencies.graphics-shape]
+version = "0.0.*"
+features = []
+path = "../graphics-shape"
+
+[dependencies.graphics-style]
+version = "0.2.*"
+features = []
+path = "../graphics-style"
 
 [dependencies.graphics-2d]
 version = "0.0.*"
@@ -24,13 +34,26 @@ optional = true
 features = []
 path = "../graphics-3d"
 
+[dependencies.graphics-svg]
+version = "0.0.*"
+optional = true
+features = []
+path = "../graphics-svg"
+
+[dependencies.graphics-wolfram]
+version = "0.0.*"
+optional = true
+features = []
+path = "../graphics-wolfram"
+
 [features]
 default = ["2d", "svg"]
 2d = ["graphics-2d"]
 3d = ["graphics-3d"]
-svg = []
+svg = ["graphics-svg"]
 bitmap = []
 canvas = []
+wolfram = ["graphics-wolfram"]
 
 [package.metadata.wee]
 t = "cargo test"

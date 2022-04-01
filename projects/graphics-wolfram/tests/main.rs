@@ -1,5 +1,4 @@
-use graphics_2d::Graphics;
-use graphics_shape::Point;
+use graphics_core::{Graphics, Point, Rectangle};
 use graphics_svg::SvgRenderer;
 
 #[test]

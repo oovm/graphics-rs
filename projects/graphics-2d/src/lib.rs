@@ -9,3 +9,11 @@ mod macros;
 mod traits;
 
 pub use crate::{canvas::*, elements::*, macros::*, traits::*};
+
+pub mod shapes {
+    pub use graphics_shape::*;
+}
+
+pub mod styles {
+    pub use graphics_style::*;
+}

@@ -1,6 +1,9 @@
-use crate::{canvas::Graphics, GraphicsSetting};
-use graphics_shape::{Ellipse, Line, Polygon, Rectangle};
-use graphics_style::{EdgeStyle, EllipseStyle, PolygonStyle, RectangleStyle};
+use crate::{
+    canvas::Graphics,
+    shapes::{Ellipse, Line, Polygon, Rectangle},
+    styles::{EdgeStyle, EllipseStyle, PolygonStyle, RectangleStyle},
+    GraphicsSetting,
+};
 
 #[allow(unused_variables)]
 pub trait GraphicsBackend {

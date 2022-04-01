@@ -1,3 +1,4 @@
+mod from_std;
 use crate::{GraphicsError, GraphicsErrorKind};
 use std::panic::Location;
 

@@ -14,8 +14,8 @@ exclude = ["*.m", "*.json", "test/"]
 serde = { version = "1.0.136", features = ["derive", "rc"] }
 image = { version = "0.24.1" }
 palette = "0.6.0"
-setting = {version = "0.2.2", features = ["serde"]}
-projective = "0.2.5"
+setting = { version = "0.2.2", features = ["serde"] }
+wolfram-library-link = { version = "0.2.3" , optional = true}
 
 [dependencies.graphics-error]
 version = "0.0.0"
@@ -26,6 +26,7 @@ serde_json = "1.0.79"
 
 [features]
 default = []
+wolfram = ["wolfram-library-link"]
 
 [package.metadata.wee]
 t = "cargo test"

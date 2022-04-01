@@ -1,5 +1,4 @@
 use super::*;
-use projective::{Projective, Projective3D};
 
 /// ```rust
 /// text.transform(|t| t.scale(0.5, 0.5)).transform(|t| t.translate(0.5, 0.5)).finish();
@@ -39,21 +38,6 @@ pub enum TextureWrap {
 pub enum TextureFilter {
     Nearest,
     Linear,
-}
-
-impl Projective<f32> for TextureTransform {
-    fn transform(&self, matrix: &[&f32; 9]) -> Self {
-        let _ = matrix;
-        todo!()
-    }
-}
-
-impl Projective3D<f32> for TextureTransform {
-    fn transform(&self, matrix: &[&f32; 16]) -> Self {
-        let _ = matrix;
-
-        todo!()
-    }
 }
 
 impl Default for TextureWrap {
