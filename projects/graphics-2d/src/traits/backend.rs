@@ -1,6 +1,6 @@
 use crate::canvas::Graphics;
 use graphics_shape::{Ellipse, Line, Polygon, Rectangle};
-use graphics_style::StyleContext;
+use graphics_style::{EllipseStyle, LineStyle, PolygonStyle, RectangleStyle, StyleContext};
 
 #[allow(unused_variables)]
 pub trait GraphicsBackend {
@@ -18,7 +18,8 @@ pub trait GraphicsBackend {
     }
 
     fn draw_rectangle(&mut self, context: &Graphics, shape: &Rectangle, style: &RectangleStyle) -> Result<(), Self::Error> {
-        Ok(())
+        todo!()
+        // self.draw_polygon(context, &Polygon::from(shape), &PolygonStyle::from(style))
     }
 
     fn draw_ellipse(&mut self, context: &Graphics, shape: &Ellipse, style: &EllipseStyle) -> Result<(), Self::Error>;

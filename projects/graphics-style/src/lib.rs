@@ -8,7 +8,9 @@
 mod resolver;
 mod shapes;
 mod styles;
+mod traits;
 
 pub use resolver::*;
 pub use shapes::*;
 pub use styles::*;
+pub use traits::*;

@@ -3,8 +3,8 @@ use graphics_style::StyleContext;
 use std::fmt::Debug;
 
 #[derive(Debug, Default)]
-pub struct Graphics<'a> {
-    pub graphic: Vec<Drawable<'a>>,
+pub struct Graphics {
+    pub graphic: Vec<Drawable>,
     pub setting: GraphicsSetting,
     pub style: StyleContext,
 }
@@ -33,13 +33,14 @@ impl Graphics {
     where
         T: GraphicsBackend,
     {
-        let mut state = self.style.clone();
-        backend.on_start(self, &mut state)?;
-        for drawable in &self.graphic {
-            backend.draw(self, &mut state, drawable)?;
-        }
-        backend.on_finish(self, &mut state)?;
-        backend.get_output(self)
+        todo!()
+        // let mut state = self.style.clone();
+        // backend.on_start(self, &mut state)?;
+        // for drawable in &self.graphic {
+        //     backend.draw(self, &mut state, drawable)?;
+        // }
+        // backend.on_finish(self, &mut state)?;
+        // backend.get_output(self)
     }
     pub fn clear(&mut self) {
         self.graphic.clear();

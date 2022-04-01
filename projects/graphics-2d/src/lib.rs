@@ -16,17 +16,13 @@ impl Clone for Drawable {
     }
 }
 
-use graphics_style::Color;
+use graphics_shape::Circle;
+use graphics_style::{CircleStyle, Color, GraphicsStyle};
 use std::borrow::Cow;
 
-pub struct CircleStyle {
-    edge_color: Color,
-    edge_width: f32,
-    fill_color: Color,
-}
-
-pub enum Drawable<'s> {
-    StyleChange { style: &'s dyn GraphicsStyle, finish: bool },
+#[derive(Debug)]
+pub enum Drawable {
+    StyleChange { style: Box<dyn GraphicsStyle>, finish: bool },
     Circle { shape: Circle, style: CircleStyle, finish: bool },
 }
 
@@ -34,7 +30,7 @@ impl Drawable {
     pub fn change_style(&self) {}
 }
 
-impl<'s> Drawable<'s> {
+impl Drawable {
     pub fn should_remove(&self) -> bool {
         *match self {
             Self::StyleChange { finish, .. } => finish,
@@ -46,11 +42,11 @@ impl<'s> Drawable<'s> {
 impl Graphics {
     pub fn gc(&mut self) {
         // drain_filter
-        let mut next_frame = Vec::with_capacity(self.graphic.len());
-        for i in self.graphic.into_iter() {
-            if !i.should_remove() {
-                next_frame.push(i);
-            }
-        }
+        // let mut next_frame = Vec::with_capacity(self.graphic.len());
+        // for i in self.graphic.into_iter() {
+        //     if !i.should_remove() {
+        //         next_frame.push(i);
+        //     }
+        // }
     }
 }

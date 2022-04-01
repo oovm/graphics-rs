@@ -1,12 +1,9 @@
-mod add_assign;
-mod convert;
-mod draw_style;
-use crate::{resolver::StyleContext, *};
-use std::{cmp::Ordering, ops::AddAssign};
+use crate::StyleContext;
+use std::fmt::{Debug, Formatter};
 
 /// Trait for drawing a shape with a style.
 #[allow(unused_variables)]
-pub trait GraphicsStyle3D {
+pub trait GraphicsStyle {
     /// Draws a shape with a style.
     fn skip(&self) -> bool {
         false
@@ -38,6 +35,8 @@ pub trait GraphicsStyle3D {
     fn change_style(&mut self, state: &mut StyleContext);
 }
 
-impl GraphicsStyle3D for () {
-    fn change_style(&self, _: &mut StyleContext) {}
+impl Debug for dyn GraphicsStyle {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "GraphicsStyle")
+    }
 }

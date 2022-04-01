@@ -1,4 +1,4 @@
-pub struct RectangleStyle {
-    pub fill: Fill,
-    pub stroke: Stroke,
-}
+use crate::{Color, Texture};
+
+mod shape;
+pub use shape::*;
