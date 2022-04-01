@@ -19,9 +19,4 @@ impl Color {
     pub const fn view(&self) -> (u8, u8, u8, u8) {
         (self.0.color.red, self.0.color.green, self.0.color.blue, self.0.alpha)
     }
-
-    /// Check if the color is opaque.
-    pub fn is_empty(&self) -> bool {
-        self.0.alpha == 0
-    }
 }

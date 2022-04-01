@@ -1,4 +1,5 @@
-use crate::StyleContext;
+use crate::*;
+mod convert;
 use std::fmt::{Debug, Formatter};
 
 /// Trait for drawing a shape with a style.

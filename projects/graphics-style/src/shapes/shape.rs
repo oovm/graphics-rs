@@ -3,27 +3,27 @@ use super::*;
 #[derive(Debug, Clone)]
 pub struct PolygonStyle {
     pub fill: FillStyle,
-    pub edge: LineStyle,
+    pub edge: EdgeStyle,
 }
 
 #[derive(Debug, Clone)]
 pub struct RectangleStyle {
     pub fill: FillStyle,
-    pub edge: LineStyle,
+    pub edge: EdgeStyle,
 }
 
 #[derive(Debug, Clone)]
 
 pub struct EllipseStyle {
     pub fill: FillStyle,
-    pub edge: LineStyle,
+    pub edge: EdgeStyle,
 }
 
 #[derive(Debug, Clone)]
 
 pub struct CircleStyle {
     pub fill: FillStyle,
-    pub edge: LineStyle,
+    pub edge: EdgeStyle,
 }
 #[derive(Debug, Clone)]
 
@@ -36,6 +36,13 @@ pub struct CircleColor {}
 
 pub struct FillStyle {
     pub texture: Texture,
+}
+
+#[derive(Debug, Clone)]
+
+pub struct EdgeStyle {
+    pub texture: Texture,
+    pub width: f32,
 }
 
 #[derive(Debug, Clone)]
