@@ -30,7 +30,8 @@ impl Texture {
 
 impl Color {
     /// Check if the color is opaque.
+    #[inline(always)]
     pub fn is_empty(&self) -> bool {
-        self.0.alpha == 0
+        self.view().3 == 0
     }
 }

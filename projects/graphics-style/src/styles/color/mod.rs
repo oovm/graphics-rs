@@ -16,6 +16,7 @@ impl Color {
         Self(Srgba { color: Srgb { red, green, blue, standard: PhantomData }, alpha })
     }
     /// Creates a new RGBA color.
+    #[inline(always)]
     pub const fn view(&self) -> (u8, u8, u8, u8) {
         (self.0.color.red, self.0.color.green, self.0.color.blue, self.0.alpha)
     }

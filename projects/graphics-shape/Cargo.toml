@@ -1,6 +1,6 @@
 [package]
 name = "graphics-shape"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Aster <192607617@qq.com>"]
 description = "The representation of a circle"
 repository = "https://github.com/oovm/smallest-enclosing-ball"
@@ -10,13 +10,11 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies.shape-core]
-version = "0.0.3"
+version = "0.0.4"
+features = []
 
 [dev-dependencies]
 
 [features]
 default = []
 wolfram = []
-
-[package.metadata.docs.rs]
-rustdoc-args = ["--html-in-header", "./src/katex.html"]

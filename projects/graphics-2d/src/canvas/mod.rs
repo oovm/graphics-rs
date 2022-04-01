@@ -1,24 +1,27 @@
-use crate::{Drawable, GraphicsBackend};
-use graphics_style::StyleContext;
+mod setting;
+pub use self::setting::GraphicsSetting;
+use crate::{GraphicEffect, GraphicsBackend};
+use graphics_shape::Ellipse;
+use graphics_style::{EdgeStyle, EllipseStyle, FillStyle, StyleContext};
 use std::fmt::Debug;
 
 #[derive(Debug, Default)]
 pub struct Graphics {
-    pub graphic: Vec<Drawable>,
-    pub setting: GraphicsSetting,
+    pub graphic: Vec<GraphicEffect>,
     pub style: StyleContext,
+    pub setting: GraphicsSetting,
 }
 
-#[derive(Debug)]
-pub struct GraphicsSetting {
-    pub width: f32,
-    pub height: f32,
+impl Clone for GraphicEffect {
+    fn clone(&self) -> Self {
+        todo!()
+    }
 }
 
 impl Graphics {
     pub fn push<T>(&mut self, drawable: T)
     where
-        T: Into<Drawable>,
+        T: Into<GraphicEffect>,
     {
         self.graphic.push(drawable.into());
     }
@@ -29,19 +32,20 @@ impl Graphics {
         Self { graphic: Vec::new(), setting: config.unwrap_or_default(), style: theme.unwrap_or_default() }
     }
 
-    pub fn render_with<T>(&self, backend: &mut T) -> Result<<T as GraphicsBackend>::Output, <T as GraphicsBackend>::Error>
+    pub fn render_with<T>(&mut self, backend: &mut T) -> Result<<T as GraphicsBackend>::Output, <T as GraphicsBackend>::Error>
     where
         T: GraphicsBackend,
     {
-        todo!()
-        // let mut state = self.style.clone();
-        // backend.on_start(self, &mut state)?;
-        // for drawable in &self.graphic {
-        //     backend.draw(self, &mut state, drawable)?;
-        // }
-        // backend.on_finish(self, &mut state)?;
-        // backend.get_output(self)
+        backend.on_start(self)?;
+        let setting = &self.setting;
+        let style = &mut self.style;
+        for drawable in &mut self.graphic {
+            render_dispatch(setting, style, drawable, backend)?;
+        }
+        backend.on_finish(self)?;
+        backend.get_output(self)
     }
+
     pub fn clear(&mut self) {
         self.graphic.clear();
     }
@@ -50,5 +54,34 @@ impl Graphics {
 impl Default for GraphicsSetting {
     fn default() -> Self {
         Self { width: 100.0, height: 100.0 }
+    }
+}
+
+fn render_dispatch<T>(
+    setting: &GraphicsSetting,
+    context: &mut StyleContext,
+    drawable: &mut GraphicEffect,
+    backend: &mut T,
+) -> Result<(), <T as GraphicsBackend>::Error>
+where
+    T: GraphicsBackend,
+{
+    match drawable {
+        GraphicEffect::StyleChange { style, finish } => {
+            style.change_style(context);
+            *finish = true;
+            Ok(())
+        }
+        GraphicEffect::Point { shape, style, state: _ } => {
+            let shape = Ellipse::new(*shape, (style.size, style.size), 0.0);
+            let style = EllipseStyle { fill: FillStyle::from(style.color), edge: EdgeStyle::empty() };
+            backend.draw_ellipse(setting, &shape, &style)
+        }
+        GraphicEffect::Circle { shape, style, state: _ } => {
+            let shape = Ellipse::new(shape.center, (shape.radius, shape.radius), 0.0);
+            let style = EllipseStyle::from(style.clone());
+            backend.draw_ellipse(setting, &shape, &style)
+        }
+        GraphicEffect::Ellipse { shape, style, state: _ } => backend.draw_ellipse(setting, shape, style),
     }
 }

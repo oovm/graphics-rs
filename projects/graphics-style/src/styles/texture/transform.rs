@@ -48,6 +48,14 @@ impl Projective<f32> for TextureTransform {
     }
 }
 
+impl Projective3D<f32> for TextureTransform {
+    fn transform(&self, matrix: &[&f32; 16]) -> Self {
+        let _ = matrix;
+
+        todo!()
+    }
+}
+
 impl Default for TextureWrap {
     fn default() -> Self {
         Self::Repeat

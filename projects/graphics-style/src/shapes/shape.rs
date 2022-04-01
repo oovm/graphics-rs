@@ -1,6 +1,12 @@
 use super::*;
 
 #[derive(Debug, Clone)]
+pub struct PointStyle {
+    pub color: Color,
+    pub size: f32,
+}
+
+#[derive(Debug, Clone)]
 pub struct PolygonStyle {
     pub fill: FillStyle,
     pub edge: EdgeStyle,

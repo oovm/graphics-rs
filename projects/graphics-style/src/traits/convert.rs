@@ -1,6 +1,13 @@
 use super::*;
-impl From<&PolygonStyle> for RectangleStyle {
-    fn from(style: &PolygonStyle) -> Self {
+
+impl From<&RectangleStyle> for PolygonStyle {
+    fn from(style: &RectangleStyle) -> Self {
         Self { fill: style.fill.clone(), edge: style.edge.clone() }
+    }
+}
+
+impl From<CircleStyle> for EllipseStyle {
+    fn from(style: CircleStyle) -> Self {
+        Self { fill: style.fill, edge: style.edge }
     }
 }

@@ -1,4 +1,5 @@
 use super::*;
+use image::EncodableLayout;
 use std::result::Result;
 
 impl Serialize for Image {
@@ -6,7 +7,7 @@ impl Serialize for Image {
     where
         S: Serializer,
     {
-        todo!()
+        serializer.serialize_bytes(self.shared.as_bytes())
     }
 }
 
