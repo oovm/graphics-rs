@@ -2,7 +2,7 @@
 // #![deny(missing_debug_implementations)]
 #![doc = include_str!("../Readme.md")]
 
-use graphics_style::{GraphicsStyle, Texture};
+use graphics_style::{GraphicsStyle3D, Texture};
 use std::borrow::Cow;
 mod canvas;
 mod styles;
@@ -36,17 +36,17 @@ pub trait Drawable {
     /// Draw the object
     fn get_shape(&self) -> Option<GraphicsShape>;
     /// Change default style perming to change the style of the shape
-    fn changed_style(&self) -> Vec<&dyn GraphicsStyle> {
+    fn changed_style(&self) -> Vec<&dyn GraphicsStyle3D> {
         vec![]
     }
 }
 
-impl Drawable for dyn GraphicsStyle {
+impl Drawable for dyn GraphicsStyle3D {
     fn get_shape(&self) -> Option<GraphicsShape> {
         None
     }
     /// It was always skipped because [Drawable::skip] is always false
-    fn changed_style(&self) -> Vec<&dyn GraphicsStyle> {
+    fn changed_style(&self) -> Vec<&dyn GraphicsStyle3D> {
         vec![self]
     }
     /// no need to draw, always skip

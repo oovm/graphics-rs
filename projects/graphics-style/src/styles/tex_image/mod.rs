@@ -1,6 +1,8 @@
+mod serder;
 use super::*;
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
+///
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Image {
     /// A reference to the image in srgb space.
     shared: Arc<RgbaImage>,

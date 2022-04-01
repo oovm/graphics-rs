@@ -1,175 +1,175 @@
 use super::*;
 
-impl GraphicsStyle for CircleStyle {
+impl GraphicsStyle3D for CircleStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.circle_edge_width += self.circle_width;
         state.circle_fill_texture += self.circle_texture;
     }
 }
 
-impl GraphicsStyle for CircleTexture {
+impl GraphicsStyle3D for CircleTexture {
     fn change_style(&self, state: &mut StyleContext) {
         state.circle_fill_texture = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for CircleWidth {
+impl GraphicsStyle3D for CircleWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.circle_edge_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for DiskEdgeColor {
+impl GraphicsStyle3D for DiskEdgeColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_edge_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for DiskEdgeWidth {
+impl GraphicsStyle3D for DiskEdgeWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_edge_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for DiskFillColor {
+impl GraphicsStyle3D for DiskFillColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_fill_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for LineColor {
+impl GraphicsStyle3D for LineColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.line_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for LineWidth {
+impl GraphicsStyle3D for LineWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.line_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for PointColor {
+impl GraphicsStyle3D for PointColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.point_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for PointSize {
+impl GraphicsStyle3D for PointSize {
     fn change_style(&self, state: &mut StyleContext) {
         state.point_size = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for PolygonEdgeColor {
+impl GraphicsStyle3D for PolygonEdgeColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.polygon_edge_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for PolygonEdgeWidth {
+impl GraphicsStyle3D for PolygonEdgeWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.polygon_edge_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for PolygonFillColor {
+impl GraphicsStyle3D for PolygonFillColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.polygon_fill_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for PolylineColor {
+impl GraphicsStyle3D for PolylineColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.polyline_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for PolylineWidth {
+impl GraphicsStyle3D for PolylineWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.polyline_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for RectangleEdgeColor {
+impl GraphicsStyle3D for RectangleEdgeColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.rectangle_edge_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for RectangleEdgeWidth {
+impl GraphicsStyle3D for RectangleEdgeWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.rectangle_edge_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for RectangleFillColor {
+impl GraphicsStyle3D for RectangleFillColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.rectangle_fill_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for SquareEdgeColor {
+impl GraphicsStyle3D for SquareEdgeColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.square_edge_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for SquareEdgeWidth {
+impl GraphicsStyle3D for SquareEdgeWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.square_edge_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for SquareFillColor {
+impl GraphicsStyle3D for SquareFillColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.square_fill_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for TextColor {
+impl GraphicsStyle3D for TextColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.text_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for TextFont {
+impl GraphicsStyle3D for TextFont {
     fn change_style(&self, state: &mut StyleContext) {
         state.text_font = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for TextSize {
+impl GraphicsStyle3D for TextSize {
     fn change_style(&self, state: &mut StyleContext) {
         state.text_size = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for TriangleEdgeColor {
+impl GraphicsStyle3D for TriangleEdgeColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.triangle_edge_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for TriangleEdgeWidth {
+impl GraphicsStyle3D for TriangleEdgeWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.triangle_edge_width = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for TriangleFillColor {
+impl GraphicsStyle3D for TriangleFillColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.triangle_fill_color = Some(self.clone());
     }
 }
 
-impl GraphicsStyle for BackgroundStyle {
+impl GraphicsStyle3D for BackgroundStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.background_texture += self.background_color;
     }
 }
 
-impl GraphicsStyle for DiskStyle {
+impl GraphicsStyle3D for DiskStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_fill_color = Some(self.disk_fill_color.unwrap_or_default());
         state.disk_edge_width = Some(self.disk_edge_width.unwrap_or_default());
@@ -177,7 +177,7 @@ impl GraphicsStyle for DiskStyle {
     }
 }
 
-impl GraphicsStyle for EdgeColor {
+impl GraphicsStyle3D for EdgeColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_edge_color = Some(self.disk_edge_color.unwrap_or_default());
         state.triangle_edge_color = Some(self.triangle_edge_color.unwrap_or_default());
@@ -187,14 +187,14 @@ impl GraphicsStyle for EdgeColor {
     }
 }
 
-impl GraphicsStyle for EdgeStyle {
+impl GraphicsStyle3D for EdgeStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_edge_width = Some(self.disk_edge_width.unwrap_or_default());
         state.triangle_edge_color = Some(self.triangle_edge_color.unwrap_or_default());
     }
 }
 
-impl GraphicsStyle for EdgeWidth {
+impl GraphicsStyle3D for EdgeWidth {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_edge_width = Some(self.disk_edge_width.unwrap_or_default());
         state.triangle_edge_width = Some(self.triangle_edge_width.unwrap_or_default());
@@ -204,7 +204,7 @@ impl GraphicsStyle for EdgeWidth {
     }
 }
 
-impl GraphicsStyle for FillColor {
+impl GraphicsStyle3D for FillColor {
     fn change_style(&self, state: &mut StyleContext) {
         state.disk_fill_color = Some(self.disk_fill_color.unwrap_or_default());
         state.triangle_fill_color = Some(self.triangle_fill_color.unwrap_or_default());
@@ -214,21 +214,21 @@ impl GraphicsStyle for FillColor {
     }
 }
 
-impl GraphicsStyle for LineStyle {
+impl GraphicsStyle3D for LineStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.line_width = Some(self.line_width.unwrap_or_default());
         state.line_color = Some(self.line_color.unwrap_or_default());
     }
 }
 
-impl GraphicsStyle for PointStyle {
+impl GraphicsStyle3D for PointStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.point_size = Some(self.point_size.unwrap_or_default());
         state.point_color = Some(self.point_color.unwrap_or_default());
     }
 }
 
-impl GraphicsStyle for PolygonStyle {
+impl GraphicsStyle3D for PolygonStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.polygon_fill_color = Some(self.polygon_fill_color.unwrap_or_default());
         state.polygon_edge_width = Some(self.polygon_edge_width.unwrap_or_default());
@@ -236,14 +236,14 @@ impl GraphicsStyle for PolygonStyle {
     }
 }
 
-impl GraphicsStyle for PolylineStyle {
+impl GraphicsStyle3D for PolylineStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.polyline_width = Some(self.polyline_width.unwrap_or_default());
         state.polyline_color = Some(self.polyline_color.unwrap_or_default());
     }
 }
 
-impl GraphicsStyle for RectangleStyle {
+impl GraphicsStyle3D for RectangleStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.rectangle_fill_color = Some(self.rectangle_fill_color.unwrap_or_default());
         state.rectangle_edge_width = Some(self.rectangle_edge_width.unwrap_or_default());
@@ -251,7 +251,7 @@ impl GraphicsStyle for RectangleStyle {
     }
 }
 
-impl GraphicsStyle for SquareStyle {
+impl GraphicsStyle3D for SquareStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.square_fill_color = Some(self.square_fill_color.unwrap_or_default());
         state.square_edge_width = Some(self.square_edge_width.unwrap_or_default());
@@ -259,7 +259,7 @@ impl GraphicsStyle for SquareStyle {
     }
 }
 
-impl GraphicsStyle for TextStyle {
+impl GraphicsStyle3D for TextStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.text_color = Some(self.text_color.unwrap_or_default());
         state.text_size = Some(self.text_size.unwrap_or_default());
@@ -267,7 +267,7 @@ impl GraphicsStyle for TextStyle {
     }
 }
 
-impl GraphicsStyle for TriangleStyle {
+impl GraphicsStyle3D for TriangleStyle {
     fn change_style(&self, state: &mut StyleContext) {
         state.triangle_fill_color = Some(self.triangle_fill_color.unwrap_or_default());
         state.triangle_edge_width = Some(self.triangle_edge_width.unwrap_or_default());

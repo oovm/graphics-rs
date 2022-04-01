@@ -1,12 +1,12 @@
 use crate::{Drawable, GraphicsBackend};
-use graphics_style::{StyleContext, StyleResolver};
+use graphics_style::StyleContext;
 use std::fmt::Debug;
 
 #[derive(Debug, Default)]
-pub struct Graphics {
-    pub graphic: Vec<Drawable>,
+pub struct Graphics<'a> {
+    pub graphic: Vec<Drawable<'a>>,
     pub setting: GraphicsSetting,
-    pub style: StyleResolver,
+    pub style: StyleContext,
 }
 
 #[derive(Debug)]
@@ -26,12 +26,9 @@ impl Graphics {
 
 impl Graphics {
     pub fn new(theme: Option<StyleContext>, config: Option<GraphicsSetting>) -> Self {
-        Self {
-            graphic: Vec::new(),
-            setting: config.unwrap_or_default(),
-            style: StyleResolver::with_theme_style(theme.unwrap_or_default()),
-        }
+        Self { graphic: Vec::new(), setting: config.unwrap_or_default(), style: theme.unwrap_or_default() }
     }
+
     pub fn render_with<T>(&self, backend: &mut T) -> Result<<T as GraphicsBackend>::Output, <T as GraphicsBackend>::Error>
     where
         T: GraphicsBackend,

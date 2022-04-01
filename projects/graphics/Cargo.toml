@@ -12,11 +12,6 @@ edition = "2021"
 [dependencies]
 #graphics-svg = "0.0.0"
 
-[dependencies.graphics-style]
-version = "0.2.*"
-features = []
-path = "../graphics-style"
-
 [dependencies.graphics-2d]
 version = "0.0.*"
 optional = true

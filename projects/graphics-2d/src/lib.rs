@@ -9,14 +9,6 @@ mod macros;
 mod traits;
 
 pub use crate::{canvas::*, elements::*, macros::*, traits::*};
-pub use graphics_style::{GraphicsStyle, StyleResolver};
-pub use traits::GraphicsBackend;
-
-#[derive(Debug)]
-pub enum Drawable {
-    Shape(GraphicsShape),
-    Style(Box<dyn GraphicsStyle>),
-}
 
 impl Clone for Drawable {
     fn clone(&self) -> Self {
@@ -24,23 +16,18 @@ impl Clone for Drawable {
     }
 }
 
-use graphics_style::{GraphicsStyle, StyleContext};
+use graphics_style::Color;
 use std::borrow::Cow;
 
-pub struct CircleWidth {}
-
-mod raw {
-    pub struct Circle {}
-}
-
-pub struct Circle {
-    shape: crate::raw::Circle,
-    circle_width: Option<CircleWidth>,
+pub struct CircleStyle {
+    edge_color: Color,
+    edge_width: f32,
+    fill_color: Color,
 }
 
 pub enum Drawable<'s> {
-    StyleChange { style: &'s dyn GraphicsStyle },
-    Circle { shape: Cow<'s, crate::raw::Circle>, info: CircleInfo },
+    StyleChange { style: &'s dyn GraphicsStyle, finish: bool },
+    Circle { shape: Circle, style: CircleStyle, finish: bool },
 }
 
 impl Drawable {
@@ -54,20 +41,6 @@ impl<'s> Drawable<'s> {
             Self::Circle { finish, .. } => finish,
         }
     }
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
-pub struct CircleInfo {
-    pub circle_width: f32,
-    pub circle_texture: graphics_style::Texture,
-    pub life_rest: Option<f32>,
-}
-
-#[derive(Debug, Default)]
-pub struct Graphics<'a> {
-    pub graphic: Vec<Drawable<'a>>,
-    pub setting: GraphicsSetting,
-    pub style: StyleResolver,
 }
 
 impl Graphics {

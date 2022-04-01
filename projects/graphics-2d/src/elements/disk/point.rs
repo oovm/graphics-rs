@@ -1,4 +1,5 @@
 use super::*;
+use graphics_style::StyleContext;
 
 impl Point {
     /// Construct new point
@@ -14,9 +15,5 @@ impl Point {
         let dy = self.y - other.y;
         (dx * dx + dy * dy).sqrt()
     }
-    pub fn is_empty(&self, ctx: &StyleResolver) -> bool {
-        let size = || self.get_size(ctx) <= 0.0;
-        let color = || self.get_color(ctx).is_empty();
-        size() || color()
-    }
+    pub fn is_empty(&self, ctx: &StyleContext) -> bool {}
 }

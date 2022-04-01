@@ -1,5 +1,5 @@
 use crate::SVG;
-use graphics_core::{Graphics, GraphicsBackend, Line, Pixel, Point, Rectangle, StyleResolver};
+use graphics_2d::GraphicsBackend;
 use std::mem::take;
 
 pub struct SvgRenderer {

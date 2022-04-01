@@ -1,4 +1,5 @@
 use super::*;
+use std::hash::{Hash, Hasher};
 
 impl Default for Color {
     fn default() -> Self {
@@ -30,5 +31,15 @@ impl LowerHex for Color {
         }
         let (r, g, b, a) = self.view();
         write!(f, "{:02x}{:02x}{:02x}{:02x}", r, g, b, a)
+    }
+}
+
+impl Hash for Color {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        let (r, g, b, a) = self.view();
+        r.hash(state);
+        g.hash(state);
+        b.hash(state);
+        a.hash(state);
     }
 }

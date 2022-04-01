@@ -63,7 +63,7 @@ impl<'de> Visitor<'de> for RGBAVisitor {
     where
         E: Error,
     {
-        Ok(Color::from(v))
+        Ok(Color::from(v as u32))
     }
 
     /// used for json

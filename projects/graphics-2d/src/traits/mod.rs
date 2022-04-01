@@ -3,10 +3,5 @@ mod convert;
 mod proj;
 #[cfg(feature = "wolfram_wxf")]
 mod wolfram;
-use crate::{Drawable, Graphics, GraphicsShape, Line, Pixel, Polygon, Rectangle};
-use graphics_style::{GraphicsStyle, PointStyle, StyleResolver};
-
-pub trait Distance {
-    type Other;
-    fn distance(&self, other: &Self::Other) -> f32;
-}
+pub use self::backend::GraphicsBackend;
+use crate::{Drawable, Graphics, Pixel};

@@ -146,10 +146,10 @@ pub struct PolylineStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RectangleStyle {
     /// Get the config of [`crate::RectangleFillColor`]
-    pub rectangle_fill_color: Color,
+    pub fill_texture: Color,
 
     /// Get the config of [`crate::RectangleEdgeWidth`]
-    pub rectangle_edge_width: f32,
+    pub edge_width: f32,
 
     /// Get the config of [`crate::RectangleEdgeColor`]
     pub rectangle_edge_color: Color,
@@ -294,8 +294,8 @@ impl StyleContext {
     /// Get the [`crate::RectangleStyle`] from theme and state.
     pub fn resolve_rectangle_style(&self, style: crate::RectangleStyle) -> RectangleStyle {
         RectangleStyle {
-            rectangle_fill_color: style.rectangle_fill_color.unwrap_or(self.rectangle_fill_color()).value,
-            rectangle_edge_width: style.rectangle_edge_width.unwrap_or(self.rectangle_edge_width()).value,
+            fill_texture: style.rectangle_fill_color.unwrap_or(self.rectangle_fill_color()).value,
+            edge_width: style.rectangle_edge_width.unwrap_or(self.rectangle_edge_width()).value,
             rectangle_edge_color: style.rectangle_edge_color.unwrap_or(self.rectangle_edge_color()).value,
         }
     }

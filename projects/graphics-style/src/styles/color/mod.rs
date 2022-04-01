@@ -7,7 +7,7 @@ mod display;
 mod serder;
 
 /// A color with red, green, blue, and alpha channel.
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub struct Color(Srgba<u8>);
 
 impl Color {
@@ -17,7 +17,7 @@ impl Color {
     }
     /// Creates a new RGBA color.
     pub const fn view(&self) -> (u8, u8, u8, u8) {
-        (self.0.red, self.0.green, self.0.blue, self.0.alpha)
+        (self.0.color.red, self.0.color.green, self.0.color.blue, self.0.alpha)
     }
 
     /// Check if the color is opaque.

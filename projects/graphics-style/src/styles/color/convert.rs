@@ -26,13 +26,13 @@ impl From<[u8; 4]> for Color {
 
 impl From<(f32, f32, f32)> for Color {
     fn from(c: (f32, f32, f32)) -> Self {
-        Self::new(c.0 * 255.0 as u8, c.1 * 255.0 as u8, c.2 * 255.0 as u8, 255)
+        Self::new((c.0 * 255.0) as u8, (c.1 * 255.0) as u8, (c.2 * 255.0) as u8, 255)
     }
 }
 
 impl From<(f32, f32, f32, f32)> for Color {
     fn from(c: (f32, f32, f32, f32)) -> Self {
-        Self::new(c.0 * 255.0 as u8, c.1 * 255.0 as u8, c.2 * 255.0 as u8, c.3 * 255.0 as u8)
+        Self::new((c.0 * 255.0) as u8, (c.1 * 255.0) as u8, (c.2 * 255.0) as u8, (c.3 * 255.0) as u8)
     }
 }
 

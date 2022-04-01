@@ -1,9 +1,6 @@
-use super::*;
-use graphics_shape::Ellipse;
-use graphics_style::{
-    resolved::{LineStyle, PolygonStyle, RectangleStyle},
-    StyleContext,
-};
+use crate::canvas::Graphics;
+use graphics_shape::{Ellipse, Line, Polygon, Rectangle};
+use graphics_style::StyleContext;
 
 #[allow(unused_variables)]
 pub trait GraphicsBackend {
@@ -20,7 +17,7 @@ pub trait GraphicsBackend {
         Ok(())
     }
 
-    fn draw_rectangle(&mut self, context: &Graphics, shape: &Rectangle, style: RectangleStyle) -> Result<(), Self::Error> {
+    fn draw_rectangle(&mut self, context: &Graphics, shape: &Rectangle, style: &RectangleStyle) -> Result<(), Self::Error> {
         Ok(())
     }
 
