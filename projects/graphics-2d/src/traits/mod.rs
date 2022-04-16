@@ -1,6 +1,9 @@
 mod backend;
 mod convert;
+mod drawable;
 mod proj;
-#[cfg(feature = "wolfram_wxf")]
-mod wolfram;
-pub use self::backend::GraphicsBackend;
+
+pub use self::{
+    backend::GraphicsBackend,
+    drawable::{Drawable, GraphicEffect},
+};

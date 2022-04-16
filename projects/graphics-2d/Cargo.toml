@@ -11,7 +11,6 @@ edition = "2021"
 
 [dependencies]
 serde = { version = "1.0.136", features = ["derive"] }
-projective = "0.2.2"
 
 [dependencies.graphics-shape]
 version = "0.0.*"
@@ -30,8 +29,3 @@ default = []
 
 [package.metadata.docs.rs]
 rustdoc-args = ["--html-in-header", "./src/katex.html"]
-
-[package.metadata.wee]
-t = "cargo test"
-p = "cargo publish --allow-dirty"
-

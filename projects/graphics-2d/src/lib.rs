@@ -4,16 +4,10 @@
 #![doc = include_str!("../Readme.md")]
 
 mod canvas;
-mod elements;
-mod macros;
 mod traits;
 
-pub use crate::{canvas::*, elements::*, macros::*, traits::*};
+pub use crate::{canvas::*, traits::*};
 
-pub mod shapes {
-    pub use graphics_shape::*;
-}
+pub use graphics_shape::*;
 
-pub mod styles {
-    pub use graphics_style::*;
-}
+pub use graphics_style::*;

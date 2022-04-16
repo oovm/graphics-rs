@@ -1,6 +1,5 @@
-use graphics_2d::styles::CircleStyle;
+mod rectangle;
 
-pub struct Circle {
-    shape: graphics_shape::Circle,
-    style: Option<CircleStyle>,
-}
+use graphics_shape::{Circle, Ellipse, Point};
+use graphics_style::{CircleStyle, Color, EllipseStyle, GraphicsStyle, PointStyle};
+use serde::{Deserialize, Serialize};

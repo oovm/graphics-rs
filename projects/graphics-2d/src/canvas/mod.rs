@@ -83,5 +83,11 @@ where
             backend.draw_ellipse(setting, &shape, &style)
         }
         GraphicEffect::Ellipse { shape, style, state: _ } => backend.draw_ellipse(setting, shape, style),
+        GraphicEffect::Sequences(v) => {
+            for drawable in v {
+                render_dispatch(setting, context, drawable, backend)?;
+            }
+            Ok(())
+        }
     }
 }

@@ -1,8 +1,5 @@
 use crate::{
-    canvas::Graphics,
-    shapes::{Ellipse, Line, Polygon, Rectangle},
-    styles::{EdgeStyle, EllipseStyle, PolygonStyle, RectangleStyle},
-    GraphicsSetting,
+    EdgeStyle, Ellipse, EllipseStyle, Graphics, GraphicsSetting, Line, Polygon, PolygonStyle, Rectangle, RectangleStyle,
 };
 
 #[allow(unused_variables)]

@@ -1,0 +1,35 @@
+[package]
+name = "graphics-bitmap"
+version = "0.0.0"
+authors = ["Aster <192607617@qq.com>"]
+description = "The styles of all graphics elements"
+repository = "https://github.com/oovm/graphics-rs"
+documentation = "https://docs.rs/graphics-svg"
+readme = "Readme.md"
+license = "MPL-2.0"
+edition = "2021"
+
+[dependencies]
+shape-svg = "0.0.0"
+shape-core = "0.0.4"
+image = "0.24.1"
+
+[dependencies.graphics-2d]
+version = "0.0.*"
+features = []
+path = "../graphics-2d"
+
+[dependencies.graphics-3d]
+version = "0.0.*"
+features = []
+path = "../graphics-3d"
+
+[dev-dependencies]
+
+[features]
+default = []
+
+[package.metadata.wee]
+t = "cargo test"
+p = "cargo publish --allow-dirty"
+

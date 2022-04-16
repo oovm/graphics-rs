@@ -12,7 +12,7 @@ impl Serialize for Image {
 }
 
 impl<'de> Deserialize<'de> for Image {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
