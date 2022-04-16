@@ -21,18 +21,19 @@ pub trait GraphicsBackend {
     }
 
     ///
-    fn draw_rectangle(
-        &mut self,
-        context: &GraphicsSetting,
-        shape: &Rectangle,
-        style: &RectangleStyle,
-    ) -> Result<(), Self::Error> {
+    #[rustfmt::skip]
+    fn draw_rectangle(&mut self, context: &GraphicsSetting, shape: &Rectangle, style: &RectangleStyle) -> Result<(), Self::Error> {
         let shape = Polygon::from(shape);
         let style = PolygonStyle::from(style);
         self.draw_polygon(context, &shape, &style)
     }
 
-    fn draw_ellipse(&mut self, context: &GraphicsSetting, shape: &Ellipse, style: &EllipseStyle) -> Result<(), Self::Error>;
+    fn draw_ellipse(&mut self, context: &GraphicsSetting, shape: &Ellipse, style: &EllipseStyle) -> Result<(), Self::Error> {
+        const N: usize = 48;
+        let shape = shape.sample_polygon(N);
+        let style = PolygonStyle::from(style);
+        self.draw_polygon(context, &shape, &style)
+    }
 
     fn draw_polyline(&mut self, context: &GraphicsSetting, shape: &Line, style: &EdgeStyle) -> Result<(), Self::Error>;
     /// Draws any polygon like triangle .

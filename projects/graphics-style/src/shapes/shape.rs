@@ -19,7 +19,6 @@ pub struct RectangleStyle {
 }
 
 #[derive(Debug, Clone)]
-
 pub struct EllipseStyle {
     pub fill: FillStyle,
     pub edge: EdgeStyle,

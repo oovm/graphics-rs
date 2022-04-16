@@ -11,3 +11,4 @@ pub type Rectangle = shape_core::Rectangle<f32>;
 
 pub type Triangle = shape_core::Triangle<f32>;
 pub type Polygon = shape_core::Polygon<f32>;
+pub type Polyline = shape_core::Polygon<f32>;

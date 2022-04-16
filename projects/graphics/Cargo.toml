@@ -10,7 +10,6 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-wolfram-library-link = { version = "0.2.3", optional = true }
 
 [dependencies.graphics-shape]
 version = "0.0.*"

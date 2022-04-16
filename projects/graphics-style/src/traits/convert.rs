@@ -11,3 +11,9 @@ impl From<CircleStyle> for EllipseStyle {
         Self { fill: style.fill, edge: style.edge }
     }
 }
+
+impl From<&EllipseStyle> for PolygonStyle {
+    fn from(style: &EllipseStyle) -> Self {
+        Self { fill: style.fill.clone(), edge: style.edge.clone() }
+    }
+}
