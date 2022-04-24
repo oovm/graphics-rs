@@ -1,6 +1,6 @@
 [package]
 name = "graphics-error"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "The representation of a circle"
 repository = "https://github.com/oovm/smallest-enclosing-ball"
@@ -15,6 +15,3 @@ edition = "2021"
 
 [features]
 default = []
-
-[package.metadata.docs.rs]
-rustdoc-args = ["--html-in-header", "./src/katex.html"]

@@ -10,8 +10,8 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-shape-svg = "0.0.0"
-shape-core = "0.0.4"
+shape-svg = "0.0.3"
+shape-core = "0.1.1"
 
 [dependencies.graphics-2d]
 version = "0.0.*"

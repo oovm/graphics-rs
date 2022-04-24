@@ -1,5 +1,7 @@
 use crate::*;
 mod convert;
+#[cfg(feature = "wolfram-expr")]
+mod wolfram;
 use std::fmt::{Debug, Formatter};
 
 /// Trait for drawing a shape with a style.

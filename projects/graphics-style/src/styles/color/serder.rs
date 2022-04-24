@@ -1,5 +1,5 @@
 use super::*;
-use serde::de::Error;
+use serde::{de::Error, Deserialize, Serialize};
 use std::result::Result;
 
 impl Serialize for Color {

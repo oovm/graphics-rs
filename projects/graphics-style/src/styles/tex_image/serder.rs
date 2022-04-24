@@ -1,5 +1,6 @@
 use super::*;
 use image::EncodableLayout;
+use serde::{Deserialize, Serialize};
 use std::result::Result;
 
 impl Serialize for Image {

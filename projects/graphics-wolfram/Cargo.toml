@@ -10,8 +10,7 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-shape-svg = "0.0.0"
-shape-core = "0.0.4"
+shape-svg = "0.0.3"
 wolfram-expr = "0.1.1"
 
 [dependencies.graphics-2d]
@@ -28,8 +27,3 @@ path = "../graphics-3d"
 
 [features]
 default = []
-
-[package.metadata.wee]
-t = "cargo test"
-p = "cargo publish --allow-dirty"
-

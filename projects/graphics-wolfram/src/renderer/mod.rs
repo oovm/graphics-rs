@@ -4,6 +4,7 @@ use graphics_2d::{
     styles::{EdgeStyle, EllipseStyle, PolygonStyle, RectangleStyle},
     Graphics, GraphicsBackend, GraphicsSetting,
 };
+use shape_core::Line;
 use std::mem::take;
 use wolfram_expr::Expr;
 

@@ -1,20 +1,20 @@
 [package]
 name = "graphics-shape"
-version = "0.0.4"
+version = "0.0.5"
 authors = ["Aster <192607617@qq.com>"]
 description = "The representation of a circle"
-repository = "https://github.com/oovm/smallest-enclosing-ball"
+repository = "https://github.com/oovm/graphics-rs"
 documentation = "https://docs.rs/graphics-shape"
 readme = "Readme.md"
 license = "MPL-2.0"
 edition = "2021"
 
 [dependencies.shape-core]
-version = "0.0.6"
+version = "0.1.1"
 features = []
 
 [dev-dependencies]
 
 [features]
 default = []
-wolfram = []
+wolfram-expr = ["shape-core/wolfram-expr"]

@@ -10,7 +10,9 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-serde = { version = "1.0.136", features = ["derive"] }
+serde = "1.0.136"
+serde_derive = "1.0.136"
+wolfram-expr = { version = "0.1.1", optional = true }
 
 [dependencies.graphics-shape]
 version = "0.0.*"
@@ -26,6 +28,11 @@ path = "../graphics-style"
 
 [features]
 default = []
+wolfram-expr = [
+    "dep:wolfram-expr",
+    "graphics-shape/wolfram-expr",
+    "graphics-style/wolfram-expr"
+]
 
 [package.metadata.docs.rs]
 rustdoc-args = ["--html-in-header", "./src/katex.html"]
