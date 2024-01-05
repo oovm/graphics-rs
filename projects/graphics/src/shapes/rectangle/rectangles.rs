@@ -1,5 +1,5 @@
 use super::*;
-use graphics_2d::{Drawable, GraphicEffect};
+use graphics_2d::{Drawable, GraphicElement};
 use graphics_style::{FillStyle, RectangleStyle};
 
 impl Rectangle {
@@ -18,7 +18,7 @@ impl Rectangle {
 }
 
 impl Drawable for Rectangle {
-    fn draw(&self) -> GraphicEffect {
+    fn draw(&self) -> GraphicElement {
         todo!()
     }
 }

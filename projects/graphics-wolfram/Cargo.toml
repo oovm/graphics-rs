@@ -10,7 +10,7 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-shape-svg = "0.0.3"
+shape-svg = "0.0.9"
 wolfram-expr = "0.1.1"
 
 [dependencies.graphics-2d]

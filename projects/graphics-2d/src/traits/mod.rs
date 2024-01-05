@@ -5,5 +5,5 @@ mod proj;
 
 pub use self::{
     backend::GraphicsBackend,
-    drawable::{Drawable, GraphicEffect},
+    drawable::{Drawable, GraphicElement},
 };

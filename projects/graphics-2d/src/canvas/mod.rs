@@ -1,18 +1,18 @@
 mod setting;
 pub use self::setting::GraphicsSetting;
-use crate::{GraphicEffect, GraphicsBackend};
+use crate::{GraphicElement, GraphicsBackend};
 use graphics_shape::Ellipse;
 use graphics_style::{EdgeStyle, EllipseStyle, FillStyle, StyleContext};
 use std::fmt::Debug;
 
 #[derive(Debug, Default)]
 pub struct Graphics {
-    pub graphic: Vec<GraphicEffect>,
+    pub graphic: Vec<GraphicElement>,
     pub style: StyleContext,
     pub setting: GraphicsSetting,
 }
 
-impl Clone for GraphicEffect {
+impl Clone for GraphicElement {
     fn clone(&self) -> Self {
         todo!()
     }
@@ -21,7 +21,7 @@ impl Clone for GraphicEffect {
 impl Graphics {
     pub fn push<T>(&mut self, drawable: T)
     where
-        T: Into<GraphicEffect>,
+        T: Into<GraphicElement>,
     {
         self.graphic.push(drawable.into());
     }
@@ -60,30 +60,31 @@ impl Default for GraphicsSetting {
 fn render_dispatch<T>(
     setting: &GraphicsSetting,
     context: &mut StyleContext,
-    drawable: &mut GraphicEffect,
+    drawable: &mut GraphicElement,
     backend: &mut T,
 ) -> Result<(), <T as GraphicsBackend>::Error>
 where
     T: GraphicsBackend,
 {
     match drawable {
-        GraphicEffect::StyleChange { style, finish } => {
+        GraphicElement::StyleChange { style, finish } => {
             style.change_style(context);
             *finish = true;
             Ok(())
         }
-        GraphicEffect::Point { shape, style, state: _ } => {
-            let shape = Ellipse::new(*shape, (style.size, style.size), 0.0);
-            let style = EllipseStyle { fill: FillStyle::from(style.color), edge: EdgeStyle::empty() };
-            backend.draw_ellipse(setting, &shape, &style)
+        GraphicElement::Point(point) => {
+            todo!()
+            // let shape = Ellipse::new(*shape, (style.size, style.size), 0.0);
+            // let style = EllipseStyle { fill: FillStyle::from(style.color), edge: EdgeStyle::empty() };
+            // backend.draw_ellipse(setting, &shape, &style)
         }
-        GraphicEffect::Circle { shape, style, state: _ } => {
+        GraphicElement::Circle { shape, style, state: _ } => {
             let shape = Ellipse::new(shape.center, (shape.radius, shape.radius), 0.0);
             let style = EllipseStyle::from(style.clone());
             backend.draw_ellipse(setting, &shape, &style)
         }
-        GraphicEffect::Ellipse { shape, style, state: _ } => backend.draw_ellipse(setting, shape, style),
-        GraphicEffect::Sequences(v) => {
+        GraphicElement::Ellipse { shape, style, state: _ } => backend.draw_ellipse(setting, shape, style),
+        GraphicElement::Sequences(v) => {
             for drawable in v {
                 render_dispatch(setting, context, drawable, backend)?;
             }

@@ -19,6 +19,10 @@ version = "0.0.*"
 features = []
 path = "../graphics-shape"
 
+[dependencies.shape-core]
+version = "0.1.1"
+features = []
+
 [dependencies.graphics-style]
 version = "0.2.*"
 features = []

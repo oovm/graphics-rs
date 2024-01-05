@@ -20,7 +20,7 @@ pub trait GraphicsBackend {
     ///
     #[rustfmt::skip]
     fn draw_rectangle(&mut self, context: &GraphicsSetting, shape: &Rectangle, style: &RectangleStyle) -> Result<(), Self::Error> {
-        let shape = Polygon::from(shape);
+        let shape = Polygon::new(vec![shape.min, shape.max].into_iter());
         let style = PolygonStyle::from(style);
         self.draw_polygon(context, &shape, &style)
     }

@@ -1,28 +1,43 @@
-use graphics_shape::{Circle, Ellipse, Point};
-use graphics_style::{CircleStyle, EllipseStyle, GraphicsStyle, PointStyle};
+use graphics_shape::{Circle, Ellipse};
+use graphics_style::{CircleStyle, Color, EllipseStyle, GraphicsStyle, StyleAttribute};
+
+mod point;
+
+pub use self::point::{Point, PointStyle};
 
 pub trait Drawable {
-    fn draw(&self) -> GraphicEffect;
+    fn draw(&self) -> GraphicElement;
 }
 
+pub trait Graphic {
+    type Style;
+
+    fn get_style(&self, theme: &Option<GraphicTheme>) -> &Self::Style;
+}
+
+
 #[derive(Debug)]
-pub enum GraphicEffect {
+pub enum GraphicElement {
     StyleChange { style: Box<dyn GraphicsStyle>, finish: bool },
-    Point { shape: Point, style: PointStyle, state: DrawableState },
+    Point(Point),
     Circle { shape: Circle, style: CircleStyle, state: DrawableState },
     Ellipse { shape: Ellipse, style: EllipseStyle, state: DrawableState },
-    Sequences(Vec<GraphicEffect>),
+    Sequences(Vec<GraphicElement>),
+}
+
+
+pub struct GraphicTheme {
+    point: PointStyle,
 }
 
 #[derive(Debug)]
-
 pub struct DrawableState {}
 
-impl GraphicEffect {
+impl GraphicElement {
     pub fn change_style(&self) {}
 }
 
-impl GraphicEffect {
+impl GraphicElement {
     pub fn should_remove(&self) -> bool {
         todo!()
     }

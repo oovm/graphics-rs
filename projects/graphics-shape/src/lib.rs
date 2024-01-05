@@ -17,8 +17,11 @@ pub type Line = shape_core::Line<f32>;
 pub type Square = shape_core::Square<f32>;
 /// A rectangle without rotated.
 pub type Rectangle = shape_core::Rectangle<f32>;
-
+/// A triangle defined by three points.
 pub type Triangle = shape_core::Triangle<f32>;
+/// A convex polygon defined by a set of points.
 pub type Polygon = shape_core::Polygon<f32>;
+/// A polyline defined by a set of points.
 pub type Polyline = shape_core::Polyline<f32>;
+/// A regular polygon defined by center, radius and edges.
 pub type RegularPolygon = shape_core::RegularPolygon<f32>;

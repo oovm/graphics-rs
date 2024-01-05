@@ -1,4 +1,3 @@
-#![feature(generic_associated_types)]
 // #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
 #![doc = include_str!("../Readme.md")]
